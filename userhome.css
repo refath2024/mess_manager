@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; /* Ensures the body spans the entire viewport height */
+    font-family: 'Georgia', serif;
+    background-image: url('top-view-food-frame-with-copy-space.jpg');
+    background-size: cover; /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: #d8d4d49d; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    backdrop-filter: blur(4px);/* Necessary for pseudo-elements positioning */
+
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(90, 92, 91, 0.58); /* Semi-transparent overlay */
+    z-index: -1; /* Places the overlay behind the content */
+}
+
+
+header {
+    position: relative;
+    width: 100%;
+    height: 20vh; /* 1/5 of the viewport height */
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 50px rgb(8, 1, 1);
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around; /* Divides the navbar evenly */
+    background-color: #272927; /* Slightly lighter green */
+    
+   
+}
+
+
+nav a {
+    flex: 1; /* Each option takes equal width */
+    text-align: center; /* Centers text within each section */
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+    border-left: 1px solid black;
+}
+nav a:first-child {
+    border-left: none;
+}
+nav a:hover {
+    background-color: #515551; /* Dark green on hover */
+    
+}
+
+
+main {
+    display: flex;
+
+   
+}
+.middle-section{
+    flex: 1;
+    margin-top: 20px ;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: #193d19bd;
+    border: 4px solid #272927;
+    border-radius: 10px;
+    padding: 7px;
+    
+     
+}
+
+.left-section {
+    flex: 1;
+    margin-top: 20px;
+    background-color: #193d19bd;
+    margin-left: 0px;
+    border: 4px solid #272927;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.right-section {
+    flex: 1;
+    border: 4px solid #272927;
+    
+  margin-top: 20px;
+    background-color: #193d19bd; /* Slightly darker green */
+  
+    margin-right: 0px;
+    padding: 7px;
+    
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.right-section h2,.middle-section h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: whitesmoke;
+    text-shadow: 5px 5px 20px rgb(8, 1, 1);
+    
+
+}
+.jhol {
+    margin-bottom: 10px;
+   
+    padding-bottom: 10px;
+    background-color: #0f4b0f;
+    border: 1px solid #002200;
+    border-radius: 5px;
+    position: relative;
+    color: whitesmoke;
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Vertically align the items */
+    justify-content: space-between; /* Space between percentage and content */
+}
+
+.jhol .cont {
+    display: flex;
+    flex-direction: column; /* Stack h3 and menu vertically */
+}
+
+.jhol h3 {
+    width: 424px;
+    padding: 7px;
+    background-color: #1b301b;
+    background-size: 
+   
+    font-size: 1.2rem;
+    margin: 0; /* Remove default margin for alignment */
+}
+
+.jhol .men {
+    font-size: 1rem;
+    margin-top: 5px;
+    padding: 5px;
+    padding-bottom: 0px;/* Add spacing between h3 and menu */
+}
+
+.poll {
+    margin-bottom: 10px;
+  
+    padding-bottom: 10px;
+    background-color: #0f4b0f;
+    border: 1px solid #002200;
+    border-radius: 5px;
+    position: relative;
+    color: whitesmoke;
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Vertically align the items */
+    justify-content: space-between; /* Space between percentage and content */
+}
+
+.poll .content {
+    display: flex;
+    flex-direction: column; /* Stack h3 and menu vertically */
+}
+
+.poll h3 {
+    width: 424px;
+    padding: 7px;
+    background-color: #1b301b;
+    background-size: 
+   
+    font-size: 1.2rem;
+    margin: 0; /* Remove default margin for alignment */
+}
+
+.poll .menu {
+    font-size: 1rem;
+    margin-top: 5px;
+    padding: 5px; 
+    padding-bottom: 0px;/* Add spacing between h3 and menu */
+}
+
+
+
+.poll:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+footer {
+    background-color: #3b3a38; /* Dark background for the footer */
+    color: #fff; /* White text color */
+    text-align: left; /* Align text to the left */
+    padding: 10px 20px; /* Add padding for spacing */
+    width: 100%; /* Ensure footer spans the full width of the page */
+    position: absolute; /* Default position to stay within normal page flow */
+    bottom: 0px;
+}
+
+.footer p {
+    margin: 0; /* Remove default margins for consistent alignment */
+    font-size: 0.9rem; /* Adjust font size as needed */
+}

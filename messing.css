@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Georgia', serif;
+    background-image: url('top-view-food-frame-with-copy-space.jpg');
+    background-size: cover;
+    background-attachment: fixed; /* Keeps background constant */
+    background-position: center;
+    color: #d8d4d49d;
+}
+
+header {
+    width: 100%;
+    height: 20vh;
+    position: relative;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 50px rgb(8, 1, 1);
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #272927;
+}
+
+nav a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+    border-left: 1px solid black;
+}
+
+nav a:first-child {
+    border-left: none;
+}
+
+nav a:hover, nav a.active {
+    background-color: #515551;
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 20vh - 50px); /* Adjust height based on header and footer */
+    overflow: hidden;
+    padding: 20px;
+}
+
+.left-section {
+    flex: 1;
+    margin-right: 10px;
+    height: 100%;
+    max-height: calc(100vh - 20vh - 50px); /* Ensure that the section doesn't overflow */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds the section height */
+}
+
+/* Left section tables */
+.left-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.1); /* Optional: Add background color to the whole table */
+}
+
+.left-section th {
+    background-color: #0a230a; /* Header background color */
+    color: #fff; /* Header text color */
+    padding: 8px;
+    text-align: center;
+}
+
+.left-section td {
+    border: 1px solid #000000; /* Border color for data cells */
+    padding: 8px;
+    text-align: center; /* Align text in the center */
+    background-color: #2e532e; /* Background color for data cells */
+    color: #ffffff9d; /* Text color for data cells */
+}
+
+/* Optional: Hover effect for left section table rows */
+.left-section td:hover {
+    background-color: #3c553c; /* Hover effect for row */
+}
+/* Targeting the row and cells in the left section */
+.left-section .total-bill-row td {
+    background-color: #3c753d; /* Yellow background to highlight */
+    font-weight: bold; /* Make text bold */
+    color: #ffffff; /* Change text color to black for better visibility */
+}
+
+.left-section .total-bill-row {
+    /* Optional: If you want to ensure the entire row gets some styling */
+    border-bottom: 1px solid #000000; /* Border for visual separation */
+}
+
+.right-section {
+    width: 60%; /* Adjusted width */
+    background-color: #193d19bd;
+    border: 4px solid #272927;
+    border-radius: 10px;
+    padding: 10px;
+    color: whitesmoke;
+    overflow-y: auto; /* Allow scrolling */
+    max-height: calc(100vh - 20vh - 50px); /* Make right section scrollable */
+}
+
+.right-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.right-section th,
+.right-section td {
+    border: 1px solid #4b5a4b;
+    padding: 8px;
+    text-align: center; /* Align text in the center */
+}
+
+/* Sticky thead (header row) */
+.right-section table thead {
+    position: sticky;
+    top: 0;
+    background-color: #012501bd; /* Same as the background of the right section */
+    z-index: 2; /* Ensure it stays above other content */
+}
+
+/* Sticky tfoot (total row) */
+.right-section table tfoot {
+    position: sticky;
+    bottom: 0;
+    background-color: #052705bd; /* Same as the background of the right section */
+    z-index: 2; /* Ensure it stays above other content */
+}
+
+footer {
+    background-color: #3b3a38;
+    color: #fff;
+    text-align: left;
+    padding: 10px 20px;
+    width: 100%;
+}

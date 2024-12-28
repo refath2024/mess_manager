@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Manager Dashboard</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e5e5;
+            padding: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .logo-badge {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f3f4f6;
+        }
+
+        .nav-link.active {
+            background-color: #e5e7eb;
+            color: #1f2937;
+        }
+
+        /* Header with profile */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+        }
+
+        .logout-btn {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: linear-gradient(135deg, #d1d5db, #e32121);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #d1d5db, #ff6969);
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        /* Grid layout for cards */
+        .card-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        /* Card styles */
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            margin-bottom: 1rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #e5e5e5;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-badge">MM</span>
+                Mess Manager
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">User Roles</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Pending IDs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Shopping History</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Inventory State</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Inventory</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Messing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Edit Menu</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Meal State</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Meal Consumptions</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Bills</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Payments</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Dining Member State</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Staff State</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Cook State</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="profile" onclick="openModal()">
+                    <img src="refath.jpg" alt="Profile">
+                    <span>Lt Refath</span>
+                </div>
+                <!-- Logout Button -->
+                <a href="home.html" class="logout-btn">Logout</a>
+            </div>
+
+            <!-- Cards -->
+            <div class="card-grid">
+                <a href="#" class="card"><h3 class="card-title">Users</h3></a>
+                <a href="#" class="card"><h3 class="card-title">User Roles</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Pending IDs</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Shopping History</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Inventory State</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Inventory</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Messing</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Edit Menu</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Meal State</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Meal Consumption</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Bills</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Payments</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Dining Member State</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Staff State</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Cook State</h3></a>
+                <a href="#" class="card"><h3 class="card-title">Overview</h3></a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Admin Details</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Name:</strong> Lt Refath</p>
+                <p><strong>Email:</strong> admin@example.com</p>
+                <p><strong>Role:</strong> Administrator</p>
+                <!-- Add more details if needed -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                <button class="btn btn-primary" onclick="window.location.href='update_profile.html'">Update Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open modal
+        function openModal() {
+            document.getElementById('profileModal').style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

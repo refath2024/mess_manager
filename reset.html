@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Manager - Reset Password</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0d47a1, #1e88e5); /* Gradient background */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Main container */
+        .main-container {
+            width: 80%;
+            max-width: 500px;
+            background: #fff;
+            color: #000;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo-container img {
+            width: 60px;
+        }
+
+        .logo-container h2 {
+            font-size: 1.8em;
+            margin-top: 10px;
+            color: #0d47a1;
+        }
+
+        .description {
+            font-size: 0.9em;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .btn-reset {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #0d47a1;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-reset:hover {
+            background: #1565c0;
+        }
+
+        .links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .links a {
+            color: #0d47a1;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // JavaScript to dynamically update the back link
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the URL parameter "ref"
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get("ref") || "home.html"; // Default to home.html if no ref provided
+
+            // Update the "Back to Login" link dynamically
+            const backLink = document.getElementById("back-link");
+            backLink.href = ref;
+        });
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Mess Manager Logo">
+            <h2>Reset Password</h2>
+        </div>
+        
+        <p class="description">Enter your registered email address, and we'll send you a link to reset your password.</p>
+        
+        <!-- Form Section -->
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn-reset">Send Reset Link</button>
+        </form>
+        
+        <div class="links">
+            <p><a id="back-link" href="home.html">← Back to Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
