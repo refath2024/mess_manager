@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salad Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item.highlighted {
+            background-color: #fef3c7;
+        }
+
+        .image-container {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 100%;
+            clip-path: circle(50% at 50% 50%);
+        }
+
+        .menu-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            
+        }
+
+        .menu-details {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .price {
+            
+           
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="image-container">
+                <img src="top-view-delicious-meat-soup-with-potatoes-greens-dark-blue-desk.jpg" alt="Fresh and Health Salad" class="menu-image">
+            </div>
+            <h3 class="menu-title">Fresh and Health Salad</h3>
+            <p class="menu-details">80 calories</p>
+            <div class="menu-footer">
+                <p class="price">$2.65</p>
+          
+            </div>
+        </div>
+
+        <div class="menu-item highlighted">
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Cashewnut Chicken Salad" class="menu-image">
+            </div>
+            <h3 class="menu-title">Cashewnut Chicken Salad</h3>
+            <p class="menu-details">90 calories</p>
+            <div class="menu-footer">
+                <span class="price">$2.65</span>
+               
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Crunchy Cashew Salad" class="menu-image">
+            </div>
+            <h3 class="menu-title">Crunchy Cashew Salad</h3>
+            <p class="menu-details">80 calories </p>
+            <div class="menu-footer">
+                <span class="price">$2.65</span>
+                
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Sesame Dressing Salad" class="menu-image">
+            </div>
+            <h3 class="menu-title">Sesame Dressing Salad</h3>
+            <p class="menu-details">80 calories </p>
+            <div class="menu-footer">
+                <span class="price">40taka</span>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

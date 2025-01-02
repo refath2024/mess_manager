@@ -1,0 +1,359 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-image: url('top-view-food-frame-with-copy-space.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: #d8d4d49d;
+    height: 100vh;
+    overflow: hidden; /* Prevents the page from scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(90, 92, 91, 0.58); /* Semi-transparent overlay */
+    z-index: -1; /* Places the overlay behind the content */
+}
+
+/* Header */
+header {
+    width: 100%;
+    height: 15vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    z-index: 10; /* Keeps the header on top of other content */
+}
+
+header .left-logo {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    height: 70%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+header .left-logo:hover {
+    background-color: rgba(255, 215, 0, 0.3);
+    border: 2px solid #FFD700;
+}
+
+header .logo {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 70%;
+}
+
+header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 2rem;
+    text-shadow: 2px 2px 50px rgb(8, 1, 1);
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position directly below the logo */
+    left: 0;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 999; /* Set a higher z-index to ensure it stays above the navbar */
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px;
+}
+
+.dropdown-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    background-color: #444;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu ul li a:hover {
+    background-color: #555;
+}
+
+#logout {
+    background-color: #e74c3c;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 999; /* Ensure logout button stays above other navbar elements */
+}
+
+#logout:hover {
+    background-color: #c0392b;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #272927;
+    z-index: 1; /* Lower z-index for the navbar */
+    position: relative;
+    margin-top: 15vh; /* Adjust for the height of the fixed header */
+}
+
+nav a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+    border-left: 1px solid black;
+    flex: 1;
+}
+
+nav a:first-child {
+    border-left: none;
+}
+
+nav a:hover, nav a.active {
+    background-color: #515551;
+}
+
+/* Weekday Navigation Bar */
+.sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+    background-color: rgba(39, 41, 39, 0.9);
+    padding: 20px;
+    margin-top: 40px; /* Space from the top nav */
+    margin-left: 15px;
+    position: relative;
+    top: 10px;
+    
+    height: calc(100vh - 40px); /* Adjust sidebar height */
+    border-radius: 8px; /* Rounded corners for the box */
+}
+
+.sidebar a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #515551;
+}
+
+/* Main Layout */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    position: relative;
+    flex-grow: 1; /* Ensures content area grows */
+    padding-bottom: 80px; /* Ensures space for footer */
+}
+
+/* Content Area */
+.content {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px; /* Space from the weekday navigation bar */
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+    padding-bottom: 100px; /* Ensure there's space between content and footer */
+}
+
+/* Meal Set Box */
+.box {
+    background-color: rgba(46, 86, 46, 0.888);
+    border: 2px solid #0a230a;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 412px; /* Allows the box to have a max height and be scrollable */
+    overflow-y: auto; /* Ensures scrolling of content */
+    margin-bottom: 20px; /* Adds space between the box and the footer */
+    display: flex;
+    flex-direction: column; /* Ensures that children are aligned in a column */
+    justify-content: flex-start; /* Aligns content at the top */
+}
+
+.meal-category {
+    margin-bottom: 15px;
+    width: 900px; /* Increase width */
+    height: 180px; /* Increase height */
+    padding: 20px;
+}
+
+.meal-category h3 {
+    color: #fefeff;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.meal-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.meal {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #2a3d2d9e;
+    transition: transform 0.3s ease-in-out;
+    width: 250px;
+    height: 120px;
+}
+
+.meal:hover {
+    transform: scale(1.05);
+    background-color: #6ab763;
+}
+
+.meal input {
+    margin-right: 5px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    margin-top: 20px; /* Ensures space above the button */
+    align-self: flex-end; /* Aligns the button to the bottom-right */
+    background-color: #3d546c;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #0059b3;
+}
+
+/* Footer */
+footer {
+    background-color: #3b3a38;
+    color: #fff;
+    
+    padding: 2px 20px;
+    width: 100%;
+    margin-top: -45px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.largetext {
+    font-size: 23px; /* Increase font size */
+    font-weight: 900; /* Make text very bold */
+    color: rgb(255, 255, 255);
+}
+
+.smalltext {
+    font-size: 15px; /* Increase font size */
+    font-weight: 600; /* Make text very bold */
+    color: rgb(148, 165, 153);
+} 
+
+.headertext {
+    text-align: left; /* Align text in the center */
+    padding-left: 20px; /* Gap from the left */
+    padding-right: 20px; /* Gap from the right */
+    font-size: 35px; /* Increase font size */
+    font-weight: 600; /* Make text very bold */
+    color: rgb(148, 165, 153);
+}
+
+.boxheader {
+    text-align: center; /* Align text in the center */
+    padding-left: 20px; /* Gap from the left */
+    padding-right: 20px; /* Gap from the right */
+    font-size: 25px; /* Increase font size */
+    font-weight: 600; /* Make text very bold */
+    color: rgb(9, 36, 17);
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fcfcfcfe;
+    color: rgb(50, 47, 47);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+    width: auto;
+    text-align: center;
+}
+
+.notification p {
+    margin: 0;
+}
+
+/* Animation for notification */
+@keyframes slideDown {
+    from {
+        top: -100px;
+    }
+    to {
+        top: 0;
+    }
+}
+
+.notification.show {
+    display: block;
+    animation: slideDown 0.5s ease-in-out;
+}

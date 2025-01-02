@@ -1,280 +1,320 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notifications - Mess Manager</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', serif;
-        }
-
-        body {
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            background-image: url('top-view-food-frame-with-copy-space.jpg');
-            background-size: cover; /* Ensures the image covers the entire body */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat;
-            backdrop-filter: blur(4px);
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(90, 92, 91, 0.58); /* Semi-transparent overlay */
-            z-index: -1;
-        }
-
-        .card {
-            background-color: rgb(229, 231, 229);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            transform: scale(1.2);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .card-title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .close-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .notification {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .notification:last-child {
-            margin-bottom: 0;
-        }
-
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #ec9625;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-
-        .notification-content {
-            flex-grow: 1;
-        }
-
-        .notification-title {
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .notification-description {
-            color: #5f2323;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .notification-time {
-            color: #999;
-            font-size: 12px;
-        }
-
-        .mark-read-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-            margin-left: 8px;
-        }
-
-        .profile-picture {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 12px;
-        }
-
-        /* Animation Overlay */
-        .animation-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-            animation: fadeOut 1s forwards 0s;
-        }
-
-        .animation-overlay img {
-            width: 100px;
-            animation: logoBounce 1.5s ease-in-out infinite;
-        }
-
-        .animation-overlay h1 {
-            font-size: 24px;
-            margin-top: 10px;
-            color: #0d47a1;
-            animation: fadeInText 1.5s ease-in-out forwards;
-        }
-
-        @keyframes logoBounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes fadeInText {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-                visibility: visible;
-            }
-            100% {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-    </style>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="notifi.css">
 </head>
 <body>
+    <header>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
+        <h1>Smart Mess</h1>
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="officers_portal.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <a href="userhome.html">Home</a>
+        <a href="meal.html">Meal IN/OUT</a>
+        <a href="messing.html">Messing</a>
+        <a href="menuset3.html">Menu-set</a>
+        <a href="billing.html">Billing</a>
+        <a href="notifi.html" id="notification-link" class="active">Notification</a> <!-- Added active class here -->
+    </nav>
 
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">Notifications</h2>
-            <button class="close-button" aria-label="Close" onclick="window.history.back();">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            
+        
         </div>
         <div class="card-content">
             <div class="notification">
-                <div class="icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                        <line x1="6" y1="1" x2="6" y2="4"></line>
-                        <line x1="10" y1="1" x2="10" y2="4"></line>
-                        <line x1="14" y1="1" x2="14" y2="4"></line>
-                    </svg>
-                </div>
+                <div class="notification-icon">🔔</div>
                 <div class="notification-content">
-                    <div class="notification-title">Mess Menu Updated</div>
-                    <div class="notification-description">The menu of the mess has been updated</div>
+                    <div class="notification-title">Notification Title 1</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">2 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 2</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">5 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 3</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
                     <div class="notification-time">10 minutes ago</div>
                 </div>
-                <button class="mark-read-button" aria-label="Mark as read">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                </button>
+                <button class="mark-read-button">Mark as read</button>
             </div>
             <div class="notification">
-                <div class="icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                </div>
+                <div class="notification-icon">🔔</div>
                 <div class="notification-content">
-                    <div class="notification-title">Menu Voting Closing Soon</div>
-                    <div class="notification-description">Short time remaining for voting of the next week's menu</div>
-                    <div class="notification-time">2 hours ago</div>
+                    <div class="notification-title">Notification Title 4</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">15 minutes ago</div>
                 </div>
-                <button class="mark-read-button" aria-label="Mark as read">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                </button>
+                <button class="mark-read-button">Mark as read</button>
             </div>
             <div class="notification">
-                <div class="icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                    </svg>
-                </div>
+                <div class="notification-icon">🔔</div>
                 <div class="notification-content">
-                    <div class="notification-title">Mess Bill Pending</div>
-                    <div class="notification-description">Your this month's mess bill is pending</div>
-                    <div class="notification-time">1 day ago</div>
+                    <div class="notification-title">Notification Title 5</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">20 minutes ago</div>
                 </div>
-                <button class="mark-read-button" aria-label="Mark as read">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                </button>
+                <button class="mark-read-button">Mark as read</button>
             </div>
             <div class="notification">
-                <img src="IMG_7886.JPG" alt="istiak" class="profile-picture">
+                <div class="notification-icon">🔔</div>
                 <div class="notification-content">
-                    <div class="notification-title">New Point Raised</div>
-                    <div class="notification-description">John Doe has raised a point</div>
-                    <div class="notification-time">2 days ago</div>
+                    <div class="notification-title">Notification Title 6</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">25 minutes ago</div>
                 </div>
-                <button class="mark-read-button" aria-label="Mark as read">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                </button>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 7</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">30 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 8</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">35 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 9</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">40 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 10</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">45 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 11</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">50 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 12</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">55 minutes ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 13</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 14</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 15</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 16</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 17</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 18</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 19</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 20</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <!-- Add remaining 10 notifications similarly... -->
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 21</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 22</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 23</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 24</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 25</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 26</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 27</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 28</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 29</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
+            </div>
+            <div class="notification">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Notification Title 30</div>
+                    <div class="notification-description">This is a description of the notification content.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <button class="mark-read-button">Mark as read</button>
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>Developed by Brocoder</p>
+    </footer>
+    <script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+
 </body>
 </html>
+

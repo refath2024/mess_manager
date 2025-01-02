@@ -3,19 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fucken nut</title>
+    <title>Meal In & Out</title>
     <link rel="stylesheet" href="Meal.css">
 </head>
 <body>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Meal IN/OUT</a>
-        <a href="#">Messing</a>
-        <a href="#">Menu-set</a>
-        <a href="#">Billing</a>
-        <a href="#">Notification</a>
 
+    <!-- Notification Popup -->
+<div id="notification" class="notification">
+    <p>Your order has been submitted</p>
+</div>
+
+
+    <header>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+    
+        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
+        <h1>Smart Mess</h1>
+    
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="officers_portal.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <a href="userhome.html" >Home</a> <!-- Add 'active' class here -->
+        <a href="meal.html" class="active">Meal IN/OUT</a>
+        <a href="messing.html">Messing</a>
+        <a href="menuset3.html">Menu-set</a>
+        <a href="billing.html">Billing</a>
+        <a href="notifi.html">Notification</a>
     </nav>
+    
     <div class="border">
     <h1>Select Your Meal</h1>
 
@@ -26,8 +46,8 @@
                     <input type="checkbox" name="meal" value="breakfast"> Breakfast
                 </label>
                 <div class="meal-info">
-                    <strong>Menu:</strong> Eggs, Toast, Juice<br>
-                    <strong>Price:</strong> $5
+                    <p class="men"> Eggs, Toast, Juice</p>
+                    <p class="rome"> ৳ 30</p>
                 </div>
             </div>
             <div class="meal">
@@ -35,8 +55,8 @@
                     <input type="checkbox" name="meal" value="lunch"> Lunch
                 </label>
                 <div class="meal-info">
-                    <strong>Menu:</strong> Rice, Chicken Curry, Salad<br>
-                    <strong>Price:</strong> $10
+                    <p class="men"> Rice, Chicken Curry, Salad</p>
+                    <p class="rome"> ৳ 150</p>
                 </div>
             </div>
             <div class="meal">
@@ -44,13 +64,21 @@
                     <input type="checkbox" name="meal" value="dinner"> Dinner
                 </label>
                 <div class="meal-info">
-                    <strong>Menu:</strong> Pasta, Garlic Bread, Dessert<br>
-                    <strong>Price:</strong> $8
+                    <p class="men"> Pasta, Garlic Bread, Dessert</p>
+                    <p class="rome">৳ 80</p> 
                 </div>
             </div>
         </div>
         <button type="submit">Submit</button>
     </form>
     </div>
+
+    <footer class="footer">
+        <p>Developed by Brocoder</p>
+    </footer>
+<script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+<script src="notification1.js"></script>
+
+
 </body>
 </html>

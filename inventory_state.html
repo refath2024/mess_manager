@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Manager - Inventory State</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid #e9ecef;
+            padding: 1rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #495057;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar-item.active {
+            background-color: #e9ecef;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #212529;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .chart {
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2rem;
+            padding: 2rem 0;
+            position: relative;
+            margin-left: 40px; /* Added space for y-axis */
+        }
+
+        .chart::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: #dee2e6;
+        }
+
+        .y-axis {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bar {
+            width: 40px; /* Fixed width for bars */
+            background-color: #3B7B8E; /* Exact blue color from image */
+            border-radius: 0;
+            transition: height 0.3s ease;
+        }
+
+        .bar-label {
+            color: #495057;
+            font-size: 0.875rem;
+            text-align: center;
+            transform: rotate(-45deg);
+            transform-origin: right top;
+            white-space: nowrap;
+            margin-top: 20px;
+        }
+
+        /* Exact bar heights based on the image */
+        .bar-rice { height: 180px; }
+        .bar-salt { height: 140px; }
+        .bar-chicken { height: 140px; }
+        .bar-milk { height: 100px; }
+        .bar-oil { height: 180px; }
+        .bar-dal { height: 160px; }
+        .bar-noodles { height: 100px; }
+        .bar-beef { height: 90px; }
+        .bar-sugar { height: 160px; }
+        .bar-fish { height: 140px; }
+        .bar-vegetable { height: 200px; }
+        .bar-egg { height: 320px; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <a href="dashboard.html" class="sidebar-item">Home</a>
+        <a href="users.html" class="sidebar-item ">Users</a>
+        <a href="overview.html" class="sidebar-item ">Overview</a>
+        <a href="users_role.html" class="sidebar-item">User Roles</a>
+        <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
+        <a href="shopping_history.html" class="sidebar-item">Shopping History</a>
+        <a href="vouchers.html" class="sidebar-item">Vouchers List</a>
+        <a href="inventory_state.html" class="sidebar-item active">Inventory State</a>
+        <a href="inventory.html" class="sidebar-item">Inventory</a>
+        <a href="admin_messing.html" class="sidebar-item">Messing</a>
+        <a href="meal_state.html" class="sidebar-item">Meals</a>
+        <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
+        <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
+        <a href="admin_bills.html" class="sidebar-item">Bills</a>
+        <a href="payments.html" class="sidebar-item">Payments</a>
+        <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
+        <a href="staff_state.html" class="sidebar-item">Staff State</a>
+        <a href="cook_state.html" class="sidebar-item">Cook State</a>
+        <a href="administration.html" class="sidebar-item">Administration</a>
+    </aside>
+    <main class="main-content">
+        <h1 class="page-title">Inventory State</h1>
+        <div class="chart-container">
+            <div class="chart">
+                <div class="y-axis">
+                    <span>14</span>
+                    <span>12</span>
+                    <span>10</span>
+                    <span>8</span>
+                    <span>6</span>
+                    <span>4</span>
+                    <span>2</span>
+                    <span>0</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-rice"></div>
+                    <div class="bar-label">Rice</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-salt"></div>
+                    <div class="bar-label">Salt</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-chicken"></div>
+                    <div class="bar-label">Chicken</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-milk"></div>
+                    <div class="bar-label">Milk</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-oil"></div>
+                    <div class="bar-label">Oil</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-dal"></div>
+                    <div class="bar-label">Dal</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-noodles"></div>
+                    <div class="bar-label">Noodles</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-beef"></div>
+                    <div class="bar-label">Beef</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-sugar"></div>
+                    <div class="bar-label">Sugar</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-fish"></div>
+                    <div class="bar-label">Fish</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-vegetable"></div>
+                    <div class="bar-label">Vegetable</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-egg"></div>
+                    <div class="bar-label">Egg</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess Management System</title>
+    <title>Messing</title>
     <link rel="stylesheet" href="messing.css">
 </head>
 <body>
     <header>
-        <img src="indian-circular-food-frame-with-copy-space.jpg" alt="Header Image">
-        <h1>Mess Management System</h1>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+    
+        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
+        <h1>Smart Mess</h1>
+    
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="officers_portal.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
     </header>
+    
+    
     <nav>
-        <a href="userhome.html">Home</a>
+        <a href="home.html">Home</a>
         <a href="meal.html">Meal IN/OUT</a>
-        <a href="#" class="active">Messing</a>
-        <a href="#">Menu-set</a>
-        <a href="#">Billing</a>
+        <a href="messing.html" class="active">Messing</a>
+        <a href="menuset3.html">Menu-set</a>
+        <a href="billing.html">Billing</a>
         <a href="notifi.html">Notification</a>
     </nav>
     <main>
@@ -171,7 +182,7 @@
                         <th>T/Break</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tablebody">
                     <!-- Rows 1 to 31 can be dynamically added, or you can manually add them. -->
                     <tr>
                         <td>1</td>
@@ -482,5 +493,7 @@
     <footer>
         <p>Developed by Brocoder</p>
     </footer>
+    <script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+
 </body>
 </html>

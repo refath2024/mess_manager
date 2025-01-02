@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Manager - Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid #e9ecef;
+            padding: 1rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #495057;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar-item.active {
+            background-color: #e9ecef;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .overview-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #212529;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            color: #495057;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .no-data {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            background: conic-gradient(
+                #6f42c1 0% 70%,
+                #20c997 70% 80%,
+                #0dcaf0 80% 90%,
+                #198754 90% 100%
+            );
+            border-radius: 50%;
+        }
+
+        .rolling-money {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .rolling-money-value {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .pending-payments {
+            margin-top: 1rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .search-button {
+            padding: 0.5rem 1rem;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            color: #495057;
+            font-weight: 500;
+        }
+
+        td {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <a href="dashboard.html" class="sidebar-item">Home</a>
+        <a href="users.html" class="sidebar-item ">Users</a>
+        <a href="overview.html" class="sidebar-item active">Overview</a>
+        <a href="users_role.html" class="sidebar-item">User Roles</a>
+        <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
+        <a href="shopping_history.html" class="sidebar-item">Shopping History</a>
+        <a href="vouchers.html" class="sidebar-item">Vouchers List</a>
+        <a href="inventory_state.html" class="sidebar-item">Inventory State</a>
+        <a href="inventory.html" class="sidebar-item">Inventory</a>
+        <a href="admin_messing.html" class="sidebar-item">Messing</a>
+        <a href="admin_meals.html" class="sidebar-item">Meals</a>
+        <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
+        <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
+        <a href="admin_bills.html" class="sidebar-item">Bills</a>
+        <a href="payments.html" class="sidebar-item">Payments</a>
+        <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
+        <a href="staff_state.html" class="sidebar-item">Staff State</a>
+        <a href="cook_state.html" class="sidebar-item">Cook State</a>
+        <a href="administration.html" class="sidebar-item">Administration</a>
+    </aside>
+    <main class="main-content">
+        <h1 class="overview-title">Overview</h1>
+        <div class="cards-container">
+            <div class="card">
+                <h2 class="card-title">Income Vs Expenditure</h2>
+                <div class="no-data">No data to display</div>
+            </div>
+            <div class="card">
+                <h2 class="card-title">Balance</h2>
+                <div class="pie-chart"></div>
+                <div class="rolling-money">
+                    <div class="card-title">Rolling Money</div>
+                    <div class="rolling-money-value">100000</div>
+                </div>
+            </div>
+            <div class="card" style="grid-column: 1 / -1">
+                <h2 class="card-title">Pending Payments</h2>
+                <div class="search-bar">
+                    <input type="search" class="search-input" placeholder="Search...">
+                    <button class="search-button">Go</button>
+                    <button class="search-button">Actions</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User No</th>
+                            <th>User Name</th>
+                            <th>Mobile No</th>
+                            <th>Month</th>
+                            <th>Total Bill</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>11717</td>
+                            <td>Shahriar</td>
+                            <td>01743500312</td>
+                            <td>2024-09</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>11760</td>
+                            <td>Ramisa</td>
+                            <td>01769511760</td>
+                            <td>2024-09</td>
+                            <td>52993</td>
+                        </tr>
+                        <tr>
+                            <td>11795</td>
+                            <td>Ayon</td>
+                            <td>01769511795</td>
+                            <td>2024-09</td>
+                            <td>6011</td>
+                        </tr>
+                        <tr>
+                            <td>11754</td>
+                            <td>Parvez</td>
+                            <td>01769511754</td>
+                            <td>2024-09</td>
+                            <td>541.42</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

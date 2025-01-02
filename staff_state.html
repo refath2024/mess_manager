@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Manager - Staff State</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid #e9ecef;
+            padding: 1rem;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+        }
+
+        .sidebar-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #495057;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar-item.active {
+            background-color: #e9ecef;
+            color: #212529;
+            font-weight: 500;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 250px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: #212529;
+        }
+
+        .user-info {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .search-input {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            width: 300px;
+            font-size: 0.875rem;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background: white;
+            color: #495057;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .button:hover {
+            background: #f8f9fa;
+            border-color: #ced4da;
+        }
+
+        .button.primary {
+            background: #212529;
+            color: white;
+            border: none;
+        }
+
+        .button.primary:hover {
+            background: #343a40;
+        }
+
+        .staff-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .staff-table th,
+        .staff-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .staff-table th {
+            background: #f8f9fa;
+            font-weight: 500;
+            color: #495057;
+            white-space: nowrap;
+        }
+
+        .staff-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .checkbox-cell {
+            width: 40px;
+            text-align: center;
+        }
+
+        .pagination {
+            text-align: right;
+            color: #6c757d;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+                padding: 1rem;
+            }
+            .search-input {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">Mess Manager</div>
+        <nav>
+            <a href="dashboard.html" class="sidebar-item">Home</a>
+            <a href="overview.html" class="sidebar-item">Overview</a>
+            <a href="users.html" class="sidebar-item">Users</a>
+            <a href="users_role.html" class="sidebar-item">User Roles</a>
+            <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
+            <a href="shopping_history.html" class="sidebar-item">Shopping History</a>
+            <a href="vouchers.html" class="sidebar-item">Vouchers List</a>
+            <a href="inventory_state.html" class="sidebar-item">Inventory State</a>
+            <a href="inventory.html" class="sidebar-item">Inventory</a>
+            <a href="admin_messing.html" class="sidebar-item">Messing</a>
+            <a href="meal_state.html" class="sidebar-item">Meals</a>
+            <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
+            <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
+            <a href="admin_bills.html" class="sidebar-item">Bills</a>
+            <a href="payments.html" class="sidebar-item">Payments</a>
+            <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
+            <a href="staff_state.html" class="sidebar-item active">Staff State</a>
+            <a href="cook_state.html" class="sidebar-item">Cook State</a>
+            <a href="administration.html" class="sidebar-item">Administration</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <div class="header">
+            <h1 class="page-title">Staff State</h1>
+            <div class="user-info">maj.adib</div>
+        </div>
+        
+        <div class="toolbar">
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search All Text Columns">
+                <button class="button">Go</button>
+                <button class="button">Actions ▼</button>
+            </div>
+        </div>
+
+        <table class="staff-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>No</th>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Unit</th>
+                    <th>Mobile No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>145</td>
+                    <td>112233</td>
+                    <td>Cpl</td>
+                    <td>Arif</td>
+                    <td>MIST</td>
+                    <td>01706912233</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">Total: 1</div>
+    </main>
+</body>
+</html>

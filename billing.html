@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing</title>
+    <link rel="stylesheet" href="billing.css">
+</head>
+<body>
+    <header>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+    
+        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
+        <h1>Smart Mess</h1>
+    
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="officers_portal.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <a href="userhome.html">Home</a>
+        <a href="meal.html">Meal IN/OUT</a>
+        <a href="messing.html">Messing</a>
+        <a href="menuset3.html">Menu-set</a>
+        <a href="billing.html" id="billing-link" class="active">Billing</a> <!-- Added active class here -->
+        <a href="notifi.html">Notification</a>
+    </nav>
+
+    <main>
+        <div id="billing-page" class="billing-page">
+            <h2 class="select-payment">Select Payment Method</h2> <!-- Add the class here -->
+            <div class="payment-options">
+                <div class="payment-option" id="bkash">
+                    <h3>bKash</h3>
+                    <p>Make payment through bKash</p>
+                </div>
+                <div class="payment-option" id="nagad">
+                    <h3>Nagad</h3>
+                    <p>Make payment through Nagad</p>
+                </div>
+                <div class="payment-option" id="tapPay">
+                    <h3>Tap Pay</h3>
+                    <p>Make payment through Tap Pay</p>
+                </div>
+                <div class="payment-option" id="cardsMFS">
+                    <h3>Cards and MFS</h3>
+                    <p>Make payment through Cards and other Mobile Financial Services</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>Developed by Brocoder</p>
+    </footer>
+
+    <script src="billing.js"></script>
+    <script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+
+</body>
+</html>

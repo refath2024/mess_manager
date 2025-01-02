@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Set - Sunday</title>
+    <link rel="stylesheet" href="menuset3.css">
+</head>
+<body>
+    <div id="notification" class="notification">
+        <p>Your vote has been submitted.<br>Thank you.</p>
+    </div>
+    <header>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
+        <h1>Smart Mess</h1>
+    
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li><a href="officers_portal.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <nav>
+        <a href="userhome.html">Home</a>
+        <a href="meal.html">Meal IN/OUT</a>
+        <a href="messing.html">Messing</a>
+        <a href="menuset3.html" class="active">Menu-set</a>
+        <a href="billing.html">Billing</a>
+        <a href="notifi.html">Notification</a>
+    </nav>
+
+    <div class="main-container">
+        <!-- Sidebar for Days of the Week -->
+        <div class="sidebar">
+            <a href="menuset3.html" >Sunday</a>
+            <a href="menuset4.html">Monday</a>
+            <a href="menuset5.html">Tuesday</a>
+            <a href="menuset6.html">Wednesday</a>
+            <a href="menuset7.html">Thursday</a>
+            <a href="menuset8.html">Friday</a>
+            <a href="menuset9.html" class="active">Saturday</a>
+        </div>
+
+        <!-- Content Area (Meal Set Box) -->
+        <div class="right-box">
+            <div class="box">
+                <h2 class="headertext">Saturday</h2>
+                <form>
+                    <!-- Breakfast Category -->
+                    <div class="meal-category">
+                        <h3 class="boxheader">Breakfast</h3>
+                        <div class="meal-container">
+                            <div class="meal">
+                                <input type="radio" name="breakfast" id="breakfast1">
+                                <label for="breakfast1">
+                                    <strong class="largetext">Set 1</strong><br> <br>
+                                    <p class="smalltext">Roti served with Egg Curry & Mixed Vegetables </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="breakfast" id="breakfast2">
+                                <label for="breakfast2">
+                                    <strong class="largetext">Set 2</strong><br> <br>
+                                    <p class="smalltext"> Khichuri served with Beef Curry & Fried Egg </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="breakfast" id="breakfast3">
+                                <label for="breakfast3">
+                                    <strong class="largetext">Set 3</strong><br> <br>
+                                    <p class="smalltext">  Paratha served with Chicken Curry & Dal </p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch Category -->
+                    <div class="meal-category">
+                        <h3 class="boxheader">Lunch</h3>
+                        <div class="meal-container">
+                            <div class="meal">
+                                <input type="radio" name="lunch" id="lunch1">
+                                <label for="lunch1">
+                                    <strong class="largetext">Set 1</strong><br> <br>
+                                    <p class="smalltext">   Teheri served with Spicy Chicken Roast & Salad </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="lunch" id="lunch2">
+                                <label for="lunch2">
+                                    <strong class="largetext">Set 2</strong><br> <br>
+                                    <p class="smalltext">    Plain Rice served with Fish Curry & Mixed Vegetables </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="lunch" id="lunch3">
+                                <label for="lunch3">
+                                    <strong class="largetext">Set 3</strong><br> <br>
+                                    <p class="smalltext">    Fried Rice served with Chicken Chili & Egg Roll</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner Category -->
+                    <div class="meal-category">
+                        <h3 class="boxheader">Dinner</h3>
+                        <div class="meal-container">
+                            <div class="meal">
+                                <input type="radio" name="dinner" id="dinner1">
+                                <label for="dinner1">
+                                    <strong class="largetext">Set 1 </strong><br> <br>
+                                    <p class="smalltext">    Chicken Biryani served with Egg Curry & Salad </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="dinner" id="dinner2">
+                                <label for="dinner2">
+                                    <strong class="largetext">Set 2</strong><br> <br>
+                                    <p class="smalltext">    Mixed Vegetable Curry served with Paratha & Lentil Soup </p>
+                                </label>
+                            </div>
+                            <div class="meal">
+                                <input type="radio" name="dinner" id="dinner3">
+                                <label for="dinner3">
+                                    <strong class="largetext">Set 3</strong><br> <br>
+                                    <p class="smalltext">    Plain Rice served with Beef Curry & Fried Eggplant
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="butt">Submit Your Vote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Developed by Brocoder</p>
+    </footer>
+
+    <script src="dropdown.js"></script>
+    <script src="notification.js"></script>
+</body>
+</html>

@@ -3,79 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage with Header and Navbar</title>
+    <title>Menu Display</title>
     <link rel="stylesheet" href="userhome.css">
+
 </head>
 <body>
     <header>
-        <img src="indian-circular-food-frame-with-copy-space.jpg" alt="Header Image">
-        <h1>Mess Management System</h1>
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo">
+        <img src="MIST Logo.png" alt="Logo" class="logo">
+        <h1>Smart Mess</h1>
+
+                <!-- Dropdown Menu -->
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="officers_portal.html" id="logout">Logout</a></li>
+                    </ul>
+                </div>
     </header>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Meal IN/OUT</a>
+        <a href="userhome.html" class="active">Home</a>
+        <a href="meal.html">Meal IN/OUT</a>
         <a href="messing.html">Messing</a>
-        <a href="#">Menu-set</a>
-        <a href="#">Billing</a>
+        <a href="menuset3.html">Menu-set</a>
+        <a href="billing.html">Billing</a>
         <a href="notifi.html">Notification</a>
-
     </nav>
-   
-    <main>
-        <section class="left-section"></section>
-        <section class="middle-section">
-            <h2>Today's Menu</h2>  
-            <div class="jhol">
-                <div class="cont">
-                    <h3>Breakfast</h3>
-                    <div class="men">Ruti,dal,porota</div>
-                </div>
+
+    <div class="head">
+        <h2>Today's Menu</h2>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="5.jpeg" alt="Breakfast">
+            <h3>Breakfast</h3>
+            <div class="details">
+                <p>Bread, Butter, Eggs</p>
+                <p class="price">50tk</p>
             </div>
-            <div class="jhol">
-                <div class="cont">
-                    <h3>Lunch</h3>
-                    <div class="men">rice,chicken,pulse</div>
-                </div>
+        </div>
+        <div class="menu-item">
+            <img src="boo.jpg" alt="Lunch">
+            <h3>Lunch</h3>
+            <div class="details">
+                <p>Rice, Chicken, Mixed Veg</p>
+                <p class="price">100tk</p>
             </div>
-            <div class="jhol">
-                <div class="cont">
-                    <h3>Dinner</h3>
-                    <div class="men">rice,beef,pulse</div>
-                </div>
+        </div>
+        <div class="menu-item">
+            <img src="joo.jpg" alt="Dinner">
+            <h3>Dinner</h3>
+            <div class="details">
+                <p>Soup, Bread, Salad</p>
+                <p class="price">80tk</p>
             </div>
-        </section>
-        <section class="right-section">
-            <h2>Tomorrow's Menu</h2>
-            <div class="poll">
-                <div class="content">
-                    <h3>Breakfast</h3>
-                    <div class="menu">Pancakes and Syrup</div>
-                </div>
-              
+        </div>
+    </div>
+
+    <div class="head">
+        <h2>Tomorrow's Menu</h2>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="joo.jpg" alt="Breakfast">
+            <h3>Breakfast</h3>
+            <div class="details">
+                <p>Alu ka paratha,eggs,fruits</p>
+                <p class="price">60tk</p>
             </div>
-            <div class="poll">
-                <div class="content">
-                    <h3>Lunch</h3>
-                    <div class="menu">Grilled Chicken with Rice</div>
-                </div>
-                
+        </div>
+        <div class="menu-item">
+            <img src="boo.jpg" alt="Lunch">
+            <h3>Lunch</h3>
+            <div class="details">
+                <p>Biryani, Salad, Raita</p>
+                <p class="price">120tk</p>
             </div>
-            <div class="poll">
-                <div class="content">
-                    <h3>Dinner</h3>
-                    <div class="menu">Vegetable Stir Fry</div>
-                </div>
-                
+        </div>
+        <div class="menu-item">
+            <img src="5.jpeg" alt="Dinner">
+            <h3>Dinner</h3>
+            <div class="details">
+                <p>Pizza, Garlic Bread, Dessert</p>
+                <p class="price">150tk</p>
             </div>
-        </section>
-       
-    </main>
-   
-    
-    <footer class="footer">
+        </div>
+    </div>
+
+    <footer>
         <p>Developed by Brocoder</p>
     </footer>
-    </body>
 
-
-    </html>
+    <script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+</body>
+</html>
