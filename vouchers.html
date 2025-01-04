@@ -5,62 +5,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mess Manager - Vouchers List</title>
     <style>
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Layout */
+        .dashboard {
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
-            background-color: #f8f9fa;
         }
 
-        .sidebar {
-            width: 250px;
+        /* Header styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem;
             background-color: #fff;
-            border-right: 1px solid #e9ecef;
-            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 2;
+            position: sticky;
+            top: 0;
         }
 
-        .sidebar-item {
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .profile {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
-            color: #495057;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+        }
+
+        /* Dropdown menu for Logout */
+        .logout-dropdown {
+            display: none;  /* Initially hidden */
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            padding: 0.5rem;
+            z-index: 10;
+        }
+
+        .logout-dropdown a {
+            display: block;
+            padding: 0.5rem;
             text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 0.25rem;
+            color: #333;
+            border-radius: 5px;
+            transition: background-color 0.2s;
         }
 
-        .sidebar-item:hover {
-            background-color: #f8f9fa;
+        .logout-dropdown a:hover {
+            background-color: #f3f4f6;
         }
 
-        .sidebar-item.active {
-            background-color: #e9ecef;
+        .logout-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: linear-gradient(135deg, #d1d5db, #e32121);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #d1d5db, #ff6969);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            position: fixed;
+            top: 70px; /* Adjust according to header height */
+            left: 0;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f3f4f6;
+        }
+
+        .nav-link.active {
+            background-color: #e5e7eb;
+            color: #1f2937;
+        }
+
+        /* Main content area */
         .main-content {
-            flex: 1;
+            margin-top: 0px; /* Adjust according to header height */
+            margin-left: 0; /* Initially no sidebar offset */
             padding: 2rem;
+            transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+            width: 100%; /* Full width when sidebar is hidden */
         }
 
-        .page-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #212529;
+        .main-content.shifted {
+            margin-left: 250px; /* Sidebar width */
+            width: calc(100% - 250px); /* Adjust width to account for sidebar */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        th {
+            background-color: #f3f4f6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
 
         .toolbar {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+            .vouchers-table-container
+
+        {
+            max-height: 300px; /* Adjust the height to show 4 rows */
+            overflow-y: auto; 
+
         }
 
+
+        .vouchers-table-container thead {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa; /* Ensure the header has a background */
+            z-index: 2; /* Keep it above the table rows */
+        }
         .search-container {
             display: flex;
             gap: 0.5rem;
@@ -74,18 +236,6 @@
             width: 200px;
         }
 
-        .button {
-            padding: 0.5rem 1rem;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            background: white;
-            color: #495057;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background: #f8f9fa;
-        }
 
         .button.dark {
             background: #343a40;
@@ -102,7 +252,7 @@
             border-collapse: collapse;
             background: white;
             border-radius: 4px;
-            overflow: hidden;
+            
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             margin-bottom: 1rem;
         }
@@ -121,7 +271,7 @@
         }
 
         .price-column {
-            text-align: right;
+            text-align: left;
         }
 
         .table-footer {
@@ -145,28 +295,49 @@
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <a href="dashboard.html" class="sidebar-item">Home</a>
-        <a href="users.html" class="sidebar-item ">Users</a>
-        <a href="overview.html" class="sidebar-item ">Overview</a>
-        <a href="users_role.html" class="sidebar-item">User Roles</a>
-        <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
-        <a href="shopping_history.html" class="sidebar-item">Shopping History</a>
-        <a href="vouchers.html" class="sidebar-item active">Vouchers List</a>
-        <a href="inventory_state.html" class="sidebar-item">Inventory State</a>
-        <a href="inventory.html" class="sidebar-item">Inventory</a>
-        <a href="admin_messing.html" class="sidebar-item">Messing</a>
-        <a href="meal_state.html" class="sidebar-item">Meals</a>
-        <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
-        <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
-        <a href="admin_bills.html" class="sidebar-item">Bills</a>
-        <a href="payments.html" class="sidebar-item">Payments</a>
-        <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
-        <a href="staff_state.html" class="sidebar-item">Staff State</a>
-        <a href="cook_state.html" class="sidebar-item">Cook State</a>
-        <a href="administration.html" class="sidebar-item">Administration</a>
-    </aside>
-    <main class="main-content">
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <img src="more-option.jpg" alt="Menu Toggle" class="menu-toggle" id="menu-toggle">
+            <div class="profile" id="profile">
+                <img src="refath.jpg" alt="Profile" class="profile-icon">
+                <span>Lt Refath</span>
+                <!-- Dropdown Menu for Logout -->
+                <div class="logout-dropdown" id="logout-dropdown">
+                    <a href="home.html" class="logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Sidebar -->
+        <aside class="sidebar hidden" id="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="dashboard.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="users.html" class="nav-link"  >Users</a></li>
+                    <li class="nav-item"><a href="users_role.html" class="nav-link">User Roles</a></li>
+                    <li class="nav-item"><a href="pending_ids.html" class="nav-link">Pending IDs</a></li>
+                    <li class="nav-item"><a href="shopping_history.html" class="nav-link">Shopping History</a></li>
+                    <li class="nav-item"><a href="vouchers.html" class="nav-link active">Voucher List</a></li>
+                    <li class="nav-item"><a href="inventory_state.html" class="nav-link">Inventory State</a></li>
+                    <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                    <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
+                    <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
+                    <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
+                    <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
+                    <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
+                    <li class="nav-item"><a href="staff_state.html" class="nav-link">Staff State</a></li>
+                    <li class="nav-item"><a href="cook_state.html" class="nav-link">Cook State</a></li>
+                    <li class="nav-item"><a href="overview.html" class="nav-link">Overview</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
         <h1 class="page-title">Vouchers List</h1>
         <div class="toolbar">
             <div class="search-container">
@@ -174,48 +345,197 @@
                 <button class="button">Go</button>
                 <button class="button">Actions</button>
             </div>
-            <button class="reset-button">Reset</button>
-        </div>
-        <table class="vouchers-table">
+            </div>
+
+            <div class="vouchers-table-container">
+       <table class="vouchers-table">
             <thead>
                 <tr>
-                    <th>Voucher Id</th>
-                    <th>Shopping Date</th>
-                    <th>Shopped By</th>
-                    <th class="price-column">Price</th>
+                    <th>Voucher ID</th>
+                    <th>Date</th>
+                    <th>Buyer</th>
+                    <th>Qty</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>142</td>
-                    <td>9/4/2024</td>
-                    <td>112235</td>
-                    <td class="price-column">5260</td>
+                    <td>V9876</td>
+                    <td>01-01-2025</td>
+                    <td>Mess Sgt</td>
+                    <td>3</td>
+                    <td class="price-column">960.0</td>
                 </tr>
                 <tr>
-                    <td>161</td>
-                    <td>9/2/2024</td>
-                    <td>112235</td>
-                    <td class="price-column">1567</td>
+                    <td>V9023</td>
+                    <td>02-01-2025</td>
+                    <td>BK NCO</td>
+                    <td>6</td>
+                    <td class="price-column">420.0</td>
                 </tr>
                 <tr>
-                    <td>162</td>
-                    <td>9/3/2024</td>
-                    <td>112235</td>
-                    <td class="price-column">2197</td>
+                    <td>V8642</td>
+                    <td>03-01-2025</td>
+                    <td>RP NCO</td>
+                    <td>12</td>
+                    <td class="price-column">150.0</td>
                 </tr>
                 <tr>
-                    <td>141</td>
-                    <td>9/1/2024</td>
-                    <td>112235</td>
-                    <td class="price-column">2216</td>
+                    <td>V7569</td>
+                    <td>04-01-2025</td>
+                    <td>Mess Secy</td>
+                    <td>4</td>
+                    <td class="price-column">2800.0</td>
+                </tr>
+                <tr>
+                    <td>V1423</td>
+                    <td>05-01-2025</td>
+                    <td>John Doe</td>
+                    <td>1</td>
+                    <td class="price-column">4500.0</td>
+                </tr>
+                <tr>
+                    <td>V5632</td>
+                    <td>06-01-2025</td>
+                    <td>Jane Smith</td>
+                    <td>4</td>
+                    <td class="price-column">3600.0</td>
+                </tr>
+                <tr>
+                    <td>V7482</td>
+                    <td>07-01-2025</td>
+                    <td>Michael Clark</td>
+                    <td>1</td>
+                    <td class="price-column">15000.0</td>
+                </tr>
+                <tr>
+                    <td>V6319</td>
+                    <td>08-01-2025</td>
+                    <td>Anna Bell</td>
+                    <td>1</td>
+                    <td class="price-column">55000.0</td>
+                </tr>
+                <tr>
+                    <td>V4952</td>
+                    <td>09-01-2025</td>
+                    <td>David Johnson</td>
+                    <td>2</td>
+                    <td class="price-column">50000.0</td>
+                </tr>
+                <tr>
+                    <td>V8236</td>
+                    <td>10-01-2025</td>
+                    <td>Emily Adams</td>
+                    <td>1</td>
+                    <td class="price-column">3000.0</td>
+                </tr>
+                <tr>
+                    <td>V7624</td>
+                    <td>11-01-2025</td>
+                    <td>William Harris</td>
+                    <td>1</td>
+                    <td class="price-column">12000.0</td>
+                </tr>
+                <tr>
+                    <td>V4856</td>
+                    <td>12-01-2025</td>
+                    <td>Amy Wilson</td>
+                    <td>1</td>
+                    <td class="price-column">3500.0</td>
+                </tr>
+                <tr>
+                    <td>V2134</td>
+                    <td>13-01-2025</td>
+                    <td>Chris Martin</td>
+                    <td>1</td>
+                    <td class="price-column">45000.0</td>
+                </tr>
+                <tr>
+                    <td>V9024</td>
+                    <td>14-01-2025</td>
+                    <td>Linda Green</td>
+                    <td>1</td>
+                    <td class="price-column">15000.0</td>
+                </tr>
+                <tr>
+                    <td>V1473</td>
+                    <td>15-01-2025</td>
+                    <td>James Taylor</td>
+                    <td>2</td>
+                    <td class="price-column">8000.0</td>
+                </tr>
+                <tr>
+                    <td>V3247</td>
+                    <td>16-01-2025</td>
+                    <td>Patricia Lee</td>
+                    <td>1</td>
+                    <td class="price-column">65000.0</td>
+                </tr>
+                <tr>
+                    <td>V6012</td>
+                    <td>17-01-2025</td>
+                    <td>Charles Walker</td>
+                    <td>1</td>
+                    <td class="price-column">20000.0</td>
+                </tr>
+                <tr>
+                    <td>V8004</td>
+                    <td>18-01-2025</td>
+                    <td>Rachel Scott</td>
+                    <td>1</td>
+                    <td class="price-column">30000.0</td>
+                </tr>
+                <tr>
+                    <td>V2357</td>
+                    <td>19-01-2025</td>
+                    <td>Daniel Allen</td>
+                    <td>1</td>
+                    <td class="price-column">40000.0</td>
                 </tr>
             </tbody>
         </table>
+
+        </div>
+        
         <div class="table-footer">
             <button class="button dark">Add Voucher</button>
             <span>Total 4</span>
         </div>
-    </main>
+        </div>
+        <script>
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            const profile = document.getElementById('profile');
+            const logoutDropdown = document.getElementById('logout-dropdown');
+            const dashboard = document.getElementById('dashboard');
+            const mainContent = document.getElementById('main-content');
+    
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
+                sidebar.classList.toggle('hidden');
+                mainContent.classList.toggle('shifted');
+            });
+    
+            profile.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent closing when clicking on profile
+                logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
+            });
+    
+            dashboard.addEventListener('click', (e) => {
+                if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
+                    sidebar.classList.add('hidden');
+                    mainContent.classList.remove('shifted');
+                }
+    
+                // Collapse the logout dropdown if clicked outside of it
+                if (!e.target.closest('#profile')) {
+                    logoutDropdown.style.display = 'none';
+                }
+            });
+    
+            function openModal() {
+                // Modal logic here
+            }
+        </script>
 </body>
 </html>

@@ -5,104 +5,254 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mess Manager - Shopping History</title>
     <style>
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Layout */
+        .dashboard {
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
-            background-color: #f8f9fa;
         }
 
-        .sidebar {
-            width: 250px;
-            background-color: #fff;
-            border-right: 1px solid #e9ecef;
-            padding: 1rem;
-        }
-
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            color: #495057;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 0.25rem;
-        }
-
-        .sidebar-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        .sidebar-item.active {
-            background-color: #e9ecef;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #212529;
-        }
-
-        .toolbar {
+        /* Header styles */
+        .header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            align-items: center;
+            padding: 1rem 1rem;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 2;
+            position: sticky;
+            top: 0;
         }
 
-        .search-container {
-            display: flex;
-            gap: 0.5rem;
+        .profile-icon
+        {
+            margin-left: 0;
         }
-
-        .search-input {
-            padding: 0.5rem;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            width: 200px;
-        }
-
-        .button {
-            padding: 0.5rem 1rem;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            background: white;
-            color: #495057;
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
             cursor: pointer;
         }
 
-        .button:hover {
-            background: #f8f9fa;
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+        }
+
+        /* Dropdown menu for Logout */
+        .logout-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            padding: 0.5rem;
+            z-index: 10;
+        }
+
+        .logout-dropdown a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .logout-dropdown a:hover {
+            background-color: #f3f4f6;
+        }
+
+        .logout-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: linear-gradient(135deg, #d1d5db, #e32121);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #d1d5db, #ff6969);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            position: fixed;
+            top: 70px; /* Adjust according to header height */
+            left: 0;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f3f4f6;
+        }
+
+
+        .nav-link.active {
+            background-color: #e5e7eb;
+            color: #1f2937;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-top: 0px; /* Adjust according to header height */
+            margin-left: 0; /* Initially no sidebar offset */
+            padding: 2rem;
+            transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+            width: 100%; /* Full width when sidebar is hidden */
+        }
+        .main-content h1{
+
+            margin-top: 0;
+        }
+        .main-content.shifted {
+            margin-left: 250px; /* Sidebar width */
+            width: calc(100% - 250px); /* Adjust width to account for sidebar */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        th {
+            background-color: #f3f4f6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
 
         .button.dark {
             background: #343a40;
             color: white;
             border: none;
+            margin-top: 10px;
         }
 
         .button.dark:hover {
             background: #212529;
         }
+.search-container
+{
+    margin-top: 30px;
+    display: flex; /* or display: grid; */
+    gap: 15px; /* Adds space between child elements */
+}
+.search-input
+{
+   padding: 6px 30px; 
+}
+
+        .shopping-table-container
+
+        {
+            max-height: 300px; /* Adjust the height to show 4 rows */
+            overflow-y: auto; 
+
+        }
+
+        .shopping-table-container table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure it stays above other content */
+}
+
 
         .shopping-table {
             width: 100%;
             border-collapse: collapse;
             background: white;
             border-radius: 4px;
-            overflow: hidden;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+       
 
         .shopping-table th,
         .shopping-table td {
@@ -139,27 +289,46 @@
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <a href="dashboard.html" class="sidebar-item">Home</a>
-        <a href="users.html" class="sidebar-item ">Users</a>
-        <a href="overview.html" class="sidebar-item ">Overview</a>
-        <a href="users_role.html" class="sidebar-item">User Roles</a>
-        <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
-        <a href="shopping_history.html" class="sidebar-item active">Shopping History</a>
-        <a href="vouchers.html" class="sidebar-item">Vouchers List</a>
-        <a href="inventory_state.html" class="sidebar-item">Inventory State</a>
-        <a href="inventory.html" class="sidebar-item">Inventory</a>
-        <a href="admin_messing.html" class="sidebar-item">Messing</a>
-        <a href="meal_state.html" class="sidebar-item">Meals</a>
-        <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
-        <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
-        <a href="admin_bills.html" class="sidebar-item">Bills</a>
-        <a href="payments.html" class="sidebar-item">Payments</a>
-        <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
-        <a href="staff_state.html" class="sidebar-item">Staff State</a>
-        <a href="cook_state.html" class="sidebar-item">Cook State</a>
-        <a href="administration.html" class="sidebar-item">Administration</a></aside>
-    <main class="main-content">
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <img src="more-option.jpg" alt="Menu Toggle" class="menu-toggle" id="menu-toggle">
+            <div class="profile" id="profile">
+                <img src="refath.jpg" alt="Profile" class="profile-icon">
+                <span>Lt Refath</span>
+                <!-- Dropdown Menu for Logout -->
+                <div class="logout-dropdown" id="logout-dropdown">
+                    <a href="home.html" class="logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar hidden" id="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="dashboard.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="users.html" class="nav-link">Users</a></li>
+                    <li class="nav-item"><a href="users_role.html" class="nav-link">User Roles</a></li>
+                    <li class="nav-item"><a href="pending_ids.html" class="nav-link">Pending IDs</a></li>
+                    <li class="nav-item"><a href="shopping_history.html"  class="nav-link active">Shopping History</a></li>
+                    <li class="nav-item"><a href="vouchers.html" class="nav-link">Voucher List</a></li>
+                    <li class="nav-item"><a href="inventory_state.html" class="nav-link">Inventory State</a></li>
+                    <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                    <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
+                    <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
+                    <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
+                    <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
+                    <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
+                    <li class="nav-item"><a href="staff_state.html" class="nav-link">Staff State</a></li>
+                    <li class="nav-item"><a href="cook_state.html" class="nav-link">Cook State</a></li>
+                    <li class="nav-item"><a href="overview.html" class="nav-link">Overview</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="main-content" id="main-content">
         <h1 class="page-title">Shopping History</h1>
         <div class="toolbar">
             <div class="search-container">
@@ -169,119 +338,516 @@
             </div>
             <button class="button dark">Add an entry</button>
         </div>
-        <table class="shopping-table">
-            <thead>
-                <tr>
-                    <th class="checkbox-cell"></th>
-                    <th>Voucher</th>
-                    <th>Product</th>
-                    <th class="number-column">Unit Price</th>
-                    <th class="number-column">Amount</th>
-                    <th class="number-column">Total Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>141</td>
-                    <td>Fish</td>
-                    <td class="number-column">300.0</td>
-                    <td class="number-column">6</td>
-                    <td class="number-column">1,800.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>141</td>
-                    <td>Milk</td>
-                    <td class="number-column">65.0</td>
-                    <td class="number-column">4</td>
-                    <td class="number-column">260.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>141</td>
-                    <td>Egg</td>
-                    <td class="number-column">13.0</td>
-                    <td class="number-column">12</td>
-                    <td class="number-column">156.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>142</td>
-                    <td>Beef</td>
-                    <td class="number-column">690.0</td>
-                    <td class="number-column">5</td>
-                    <td class="number-column">3,450.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>142</td>
-                    <td>Dal</td>
-                    <td class="number-column">100.0</td>
-                    <td class="number-column">7</td>
-                    <td class="number-column">700.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>142</td>
-                    <td>Chicken</td>
-                    <td class="number-column">185.0</td>
-                    <td class="number-column">6</td>
-                    <td class="number-column">1,110.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>161</td>
-                    <td>Sugar</td>
-                    <td class="number-column">125.0</td>
-                    <td class="number-column">7</td>
-                    <td class="number-column">875.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>161</td>
-                    <td>Vegetable</td>
-                    <td class="number-column">40.0</td>
-                    <td class="number-column">8</td>
-                    <td class="number-column">320.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>161</td>
-                    <td>Salt</td>
-                    <td class="number-column">62.0</td>
-                    <td class="number-column">6</td>
-                    <td class="number-column">372.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>162</td>
-                    <td>Rice</td>
-                    <td class="number-column">65.0</td>
-                    <td class="number-column">9</td>
-                    <td class="number-column">585.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>162</td>
-                    <td>Oil</td>
-                    <td class="number-column">185.0</td>
-                    <td class="number-column">8</td>
-                    <td class="number-column">1,480.0</td>
-                </tr>
-                <tr>
-                    <td class="checkbox-cell"><input type="checkbox" checked></td>
-                    <td>162</td>
-                    <td>Noodles</td>
-                    <td class="number-column">33.0</td>
-                    <td class="number-column">4</td>
-                    <td class="number-column">132.0</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="shopping-table-container">    
+            <table class="shopping-table">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Product Name</th>
+                        <th class="number-column">Unit Price</th>
+                        <th class="number-column">Amount</th>
+                        <th class="number-column">Total Price</th>
+                        <th>Date</th>
+                        <th>Voucher ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Fish</td>
+                        <td class="number-column">320.0</td>
+                        <td class="number-column">3</td>
+                        <td class="number-column">960.0</td>
+                        <td>01-01-2025</td>
+                        <td>V9876</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Milk</td>
+                        <td class="number-column">70.0</td>
+                        <td class="number-column">6</td>
+                        <td class="number-column">420.0</td>
+                        <td>02-01-2025</td>
+                        <td>V9023</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Egg</td>
+                        <td class="number-column">12.5</td>
+                        <td class="number-column">12</td>
+                        <td class="number-column">150.0</td>
+                        <td>03-01-2025</td>
+                        <td>V8642</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Beef</td>
+                        <td class="number-column">700.0</td>
+                        <td class="number-column">4</td>
+                        <td class="number-column">2800.0</td>
+                        <td>04-01-2025</td>
+                        <td>V7569</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Table</td>
+                        <td class="number-column">4500.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">4500.0</td>
+                        <td>05-01-2025</td>
+                        <td>V1423</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Chair</td>
+                        <td class="number-column">900.0</td>
+                        <td class="number-column">4</td>
+                        <td class="number-column">3600.0</td>
+                        <td>06-01-2025</td>
+                        <td>V5632</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Television</td>
+                        <td class="number-column">15000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">15000.0</td>
+                        <td>07-01-2025</td>
+                        <td>V7482</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Laptop</td>
+                        <td class="number-column">55000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">55000.0</td>
+                        <td>08-01-2025</td>
+                        <td>V6319</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Mobile Phone</td>
+                        <td class="number-column">25000.0</td>
+                        <td class="number-column">2</td>
+                        <td class="number-column">50000.0</td>
+                        <td>09-01-2025</td>
+                        <td>V4952</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Blender</td>
+                        <td class="number-column">3000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">3000.0</td>
+                        <td>10-01-2025</td>
+                        <td>V8236</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Dining Set</td>
+                        <td class="number-column">12000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">12000.0</td>
+                        <td>11-01-2025</td>
+                        <td>V7624</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Rice Cooker</td>
+                        <td class="number-column">3500.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">3500.0</td>
+                        <td>12-01-2025</td>
+                        <td>V4856</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Fridge</td>
+                        <td class="number-column">45000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">45000.0</td>
+                        <td>13-01-2025</td>
+                        <td>V2134</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Oven</td>
+                        <td class="number-column">15000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">15000.0</td>
+                        <td>14-01-2025</td>
+                        <td>V9024</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Fan</td>
+                        <td class="number-column">4000.0</td>
+                        <td class="number-column">2</td>
+                        <td class="number-column">8000.0</td>
+                        <td>15-01-2025</td>
+                        <td>V1473</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Air Conditioner</td>
+                        <td class="number-column">65000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">65000.0</td>
+                        <td>16-01-2025</td>
+                        <td>V3247</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Wardrobe</td>
+                        <td class="number-column">20000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">20000.0</td>
+                        <td>17-01-2025</td>
+                        <td>V6012</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Sofa Set</td>
+                        <td class="number-column">30000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">30000.0</td>
+                        <td>18-01-2025</td>
+                        <td>V8004</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Plate Set</td>
+                        <td class="number-column">2500.0</td>
+                        <td class="number-column">3</td>
+                        <td class="number-column">7500.0</td>
+                        <td>19-01-2025</td>
+                        <td>V2357</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Glass Set</td>
+                        <td class="number-column">1800.0</td>
+                        <td class="number-column">2</td>
+                        <td class="number-column">3600.0</td>
+                        <td>20-01-2025</td>
+                        <td>V9458</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>Washing Machine</td>
+                        <td class="number-column">35000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">35000.0</td>
+                        <td>21-01-2025</td>
+                        <td>V6578</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>Microwave</td>
+                        <td class="number-column">12000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">12000.0</td>
+                        <td>22-01-2025</td>
+                        <td>V5693</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>Television Stand</td>
+                        <td class="number-column">5000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">5000.0</td>
+                        <td>23-01-2025</td>
+                        <td>V4712</td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>Electric Kettle</td>
+                        <td class="number-column">2500.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">2500.0</td>
+                        <td>24-01-2025</td>
+                        <td>V6903</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>Chandelier</td>
+                        <td class="number-column">20000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">20000.0</td>
+                        <td>25-01-2025</td>
+                        <td>V3829</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>Desk</td>
+                        <td class="number-column">7500.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">7500.0</td>
+                        <td>26-01-2025</td>
+                        <td>V2498</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>Sound System</td>
+                        <td class="number-column">22000.0</td>
+                        <td class="number-column">1</td>
+                        <td class="number-column">22000.0</td>
+                        <td>27-01-2025</td>
+                        <td>V4127</td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>Carpet</td>
+                        <td class="number-column">8500.0</td>
+                        <td class="number-column">2</td>
+                        <td class="number-column">17000.0</td>
+                        <td>28-01-2025</td>
+                        <td>V9561</td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td>Smartwatch</td>
+                        <td class="number-column">12000.0</td>
+                        <td class="number-column">2</td>
+                        <td class="number-column">24000.0</td>
+                        <td>29-01-2025</td>
+                        <td>V2738</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>Speaker</td>
+                        <td class="number-column">5000.0</td>
+                        <td class="number-column">3</td>
+                        <td class="number-column">15000.0</td>
+                        <td>30-01-2025</td>
+                        <td>V7596</td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td>Rice</td>
+                        <td class="number-column">100.0</td>
+                        <td class="number-column">15</td>
+                        <td class="number-column">1500.0</td>
+                        <td>31-01-2025</td>
+                        <td>V6812</td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td>Wheat Flour</td>
+                        <td class="number-column">80.0</td>
+                        <td class="number-column">10</td>
+                        <td class="number-column">800.0</td>
+                        <td>01-02-2025</td>
+                        <td>V5273</td>
+                    </tr>
+                    <tr>
+                        <td>33</td>
+                        <td>Sugar</td>
+                        <td class="number-column">90.0</td>
+                        <td class="number-column">20</td>
+                        <td class="number-column">1800.0</td>
+                        <td>02-02-2025</td>
+                        <td>V8352</td>
+                    </tr>
+                    <tr>
+                        <td>34</td>
+                        <td>Salt</td>
+                        <td class="number-column">30.0</td>
+                        <td class="number-column">12</td>
+                        <td class="number-column">360.0</td>
+                        <td>03-02-2025</td>
+                        <td>V9563</td>
+                    </tr>
+                    <tr>
+                        <td>35</td>
+                        <td>Butter</td>
+                        <td class="number-column">200.0</td>
+                        <td class="number-column">5</td>
+                        <td class="number-column">1000.0</td>
+                        <td>04-02-2025</td>
+                        <td>V9437</td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>Milk</td>
+                        <td class="number-column">50.0</td>
+                        <td class="number-column">30</td>
+                        <td class="number-column">1500.0</td>
+                        <td>05-02-2025</td>
+                        <td>V7423</td>
+                    </tr>
+                    <tr>
+                        <td>37</td>
+                        <td>Cheese</td>
+                        <td class="number-column">250.0</td>
+                        <td class="number-column">8</td>
+                        <td class="number-column">2000.0</td>
+                        <td>06-02-2025</td>
+                        <td>V1934</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>Yogurt</td>
+                        <td class="number-column">60.0</td>
+                        <td class="number-column">25</td>
+                        <td class="number-column">1500.0</td>
+                        <td>07-02-2025</td>
+                        <td>V3246</td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td>Eggs</td>
+                        <td class="number-column">10.0</td>
+                        <td class="number-column">50</td>
+                        <td class="number-column">500.0</td>
+                        <td>08-02-2025</td>
+                        <td>V6142</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>Vegetables</td>
+                        <td class="number-column">150.0</td>
+                        <td class="number-column">20</td>
+                        <td class="number-column">3000.0</td>
+                        <td>09-02-2025</td>
+                        <td>V3672</td>
+                    </tr>
+                    <tr>
+                        <td>41</td>
+                        <td>Fruit</td>
+                        <td class="number-column">200.0</td>
+                        <td class="number-column">15</td>
+                        <td class="number-column">3000.0</td>
+                        <td>10-02-2025</td>
+                        <td>V1784</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>Rice Flour</td>
+                        <td class="number-column">120.0</td>
+                        <td class="number-column">8</td>
+                        <td class="number-column">960.0</td>
+                        <td>11-02-2025</td>
+                        <td>V5928</td>
+                    </tr>
+                    <tr>
+                        <td>43</td>
+                        <td>Vegetable Oil</td>
+                        <td class="number-column">180.0</td>
+                        <td class="number-column">10</td>
+                        <td class="number-column">1800.0</td>
+                        <td>12-02-2025</td>
+                        <td>V4912</td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>Honey</td>
+                        <td class="number-column">400.0</td>
+                        <td class="number-column">5</td>
+                        <td class="number-column">2000.0</td>
+                        <td>13-02-2025</td>
+                        <td>V2876</td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td>Coffee</td>
+                        <td class="number-column">500.0</td>
+                        <td class="number-column">6</td>
+                        <td class="number-column">3000.0</td>
+                        <td>14-02-2025</td>
+                        <td>V8345</td>
+                    </tr>
+                    <tr>
+                        <td>46</td>
+                        <td>Tea</td>
+                        <td class="number-column">150.0</td>
+                        <td class="number-column">10</td>
+                        <td class="number-column">1500.0</td>
+                        <td>15-02-2025</td>
+                        <td>V6532</td>
+                    </tr>
+                    <tr>
+                        <td>47</td>
+                        <td>Instant Noodles</td>
+                        <td class="number-column">20.0</td>
+                        <td class="number-column">30</td>
+                        <td class="number-column">600.0</td>
+                        <td>16-02-2025</td>
+                        <td>V4317</td>
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td>Spices</td>
+                        <td class="number-column">50.0</td>
+                        <td class="number-column">10</td>
+                        <td class="number-column">500.0</td>
+                        <td>17-02-2025</td>
+                        <td>V2153</td>
+                    </tr>
+                    <tr>
+                        <td>49</td>
+                        <td>Biscuits</td>
+                        <td class="number-column">60.0</td>
+                        <td class="number-column">20</td>
+                        <td class="number-column">1200.0</td>
+                        <td>18-02-2025</td>
+                        <td>V7381</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>Chocolates</td>
+                        <td class="number-column">150.0</td>
+                        <td class="number-column">12</td>
+                        <td class="number-column">1800.0</td>
+                        <td>19-02-2025</td>
+                        <td>V4920</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            
+        </div>
+        
         <div class="table-footer">
             1-12
         </div>
-    </main>
+        </div>
+
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const profile = document.getElementById('profile');
+        const logoutDropdown = document.getElementById('logout-dropdown');
+        const dashboard = document.getElementById('dashboard');
+        const mainContent = document.getElementById('main-content');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('shifted');
+        });
+
+        profile.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing when clicking on profile
+            logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
+        });
+
+        dashboard.addEventListener('click', (e) => {
+            if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
+                sidebar.classList.add('hidden');
+                mainContent.classList.remove('shifted');
+            }
+
+            // Collapse the logout dropdown if clicked outside of it
+            if (!e.target.closest('#profile')) {
+                logoutDropdown.style.display = 'none';
+            }
+        });
+
+        function openModal() {
+            // Modal logic here
+        }
+    </script>
 </body>
 </html>

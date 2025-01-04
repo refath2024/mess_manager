@@ -5,53 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mess Manager - Overview</title>
     <style>
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Layout */
+        .dashboard {
             display: flex;
+            flex-direction: column;
             min-height: 100vh;
-            background-color: #f8f9fa;
         }
 
-        .sidebar {
-            width: 250px;
+        /* Header styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem;
             background-color: #fff;
-            border-right: 1px solid #e9ecef;
-            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 2;
+            position: sticky;
+            top: 0;
         }
 
-        .sidebar-item {
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .profile {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
-            color: #495057;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+        }
+
+        /* Dropdown menu for Logout */
+        .logout-dropdown {
+            display: none;  /* Initially hidden */
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            padding: 0.5rem;
+            z-index: 10;
+        }
+
+        .logout-dropdown a {
+            display: block;
+            padding: 0.5rem;
             text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 0.25rem;
+            color: #333;
+            border-radius: 5px;
+            transition: background-color 0.2s;
         }
 
-        .sidebar-item:hover {
-            background-color: #f8f9fa;
+        .logout-dropdown a:hover {
+            background-color: #f3f4f6;
         }
 
-        .sidebar-item.active {
-            background-color: #e9ecef;
+        .logout-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: linear-gradient(135deg, #d1d5db, #e32121);
+            color: white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            
         }
 
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #d1d5db, #ff6969);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-right: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            position: fixed;
+            top: 70px; /* Adjust according to header height */
+            left: 0;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f3f4f6;
+        }
+
+        .nav-link.active {
+            background-color: #e5e7eb;
+            color: #1f2937;
+        }
+
+        /* Main content area */
         .main-content {
-            flex: 1;
+            margin-top: 0px; /* Adjust according to header height */
+            margin-left: 0; /* Initially no sidebar offset */
             padding: 2rem;
+            transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+            width: 100%; /* Full width when sidebar is hidden */
         }
 
-        .overview-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #212529;
+        .main-content.shifted {
+            margin-left: 250px; /* Sidebar width */
+            width: calc(100% - 250px); /* Adjust width to account for sidebar */
+        }
+
+
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
 
         .cards-container {
@@ -156,29 +283,50 @@
     </style>
 </head>
 <body>
-    <aside class="sidebar">
-        <a href="dashboard.html" class="sidebar-item">Home</a>
-        <a href="users.html" class="sidebar-item ">Users</a>
-        <a href="overview.html" class="sidebar-item active">Overview</a>
-        <a href="users_role.html" class="sidebar-item">User Roles</a>
-        <a href="pending_ids.html" class="sidebar-item">Pending IDs</a>
-        <a href="shopping_history.html" class="sidebar-item">Shopping History</a>
-        <a href="vouchers.html" class="sidebar-item">Vouchers List</a>
-        <a href="inventory_state.html" class="sidebar-item">Inventory State</a>
-        <a href="inventory.html" class="sidebar-item">Inventory</a>
-        <a href="admin_messing.html" class="sidebar-item">Messing</a>
-        <a href="admin_meals.html" class="sidebar-item">Meals</a>
-        <a href="edit_menu.html" class="sidebar-item">Edit Menu</a>
-        <a href="meal_consumption.html" class="sidebar-item">Meal Consumptions</a>
-        <a href="admin_bills.html" class="sidebar-item">Bills</a>
-        <a href="payments.html" class="sidebar-item">Payments</a>
-        <a href="dining_member.html" class="sidebar-item">Dining Member State</a>
-        <a href="staff_state.html" class="sidebar-item">Staff State</a>
-        <a href="cook_state.html" class="sidebar-item">Cook State</a>
-        <a href="administration.html" class="sidebar-item">Administration</a>
-    </aside>
-    <main class="main-content">
-        <h1 class="overview-title">Overview</h1>
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <img src="more-option.jpg" alt="Menu Toggle" class="menu-toggle" id="menu-toggle">
+            <div class="profile" id="profile">
+                <img src="refath.jpg" alt="Profile" class="profile-icon">
+                <span>Lt Refath</span>
+                <!-- Dropdown Menu for Logout -->
+                <div class="logout-dropdown" id="logout-dropdown">
+                    <a href="home.html" class="logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Sidebar -->
+        <aside class="sidebar hidden" id="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="dashboard.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="users.html" class="nav-link"  >Users</a></li>
+                    <li class="nav-item"><a href="users_role.html" class="nav-link">User Roles</a></li>
+                    <li class="nav-item"><a href="pending_ids.html" class="nav-link">Pending IDs</a></li>
+                    <li class="nav-item"><a href="shopping_history.html" class="nav-link">Shopping History</a></li>
+                    <li class="nav-item"><a href="vouchers.html" class="nav-link">Voucher List</a></li>
+                    <li class="nav-item"><a href="inventory_state.html" class="nav-link">Inventory State</a></li>
+                    <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
+                    <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
+                    <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
+                    <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
+                    <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
+                    <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
+                    <li class="nav-item"><a href="staff_state.html" class="nav-link">Staff State</a></li>
+                    <li class="nav-item"><a href="cook_state.html" class="nav-link">Cook State</a></li>
+                    <li class="nav-item"><a href="overview.html" class="nav-link active">Overview</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content">
+        <h1 class="page-title">Overview</h1>
         <div class="cards-container">
             <div class="card">
                 <h2 class="card-title">Income Vs Expenditure</h2>
@@ -242,6 +390,41 @@
                 </table>
             </div>
         </div>
-    </main>
+    </div>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const profile = document.getElementById('profile');
+        const logoutDropdown = document.getElementById('logout-dropdown');
+        const dashboard = document.getElementById('dashboard');
+        const mainContent = document.getElementById('main-content');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('shifted');
+        });
+
+        profile.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing when clicking on profile
+            logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
+        });
+
+        dashboard.addEventListener('click', (e) => {
+            if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
+                sidebar.classList.add('hidden');
+                mainContent.classList.remove('shifted');
+            }
+
+            // Collapse the logout dropdown if clicked outside of it
+            if (!e.target.closest('#profile')) {
+                logoutDropdown.style.display = 'none';
+            }
+        });
+
+        function openModal() {
+            // Modal logic here
+        }
+    </script>
 </body>
 </html>
