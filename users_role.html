@@ -198,6 +198,7 @@
 
         button:hover {
             background-color: #0056b3;
+            transform: scale(1.1);
         }
 
         .toolbar {
@@ -309,13 +310,13 @@
             padding: 0.5rem 1rem;
             border: 1px solid #dee2e6;
             border-radius: 4px;
-            background: white;
-            color: #495057;
+            background: rgb(147, 147, 147);
+            color: #ffffff;
             cursor: pointer;
         }
 
         .button:hover {
-            background: #f8f9fa;
+            background: #656566;
         }
 
         .button.dark {
@@ -391,7 +392,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -406,13 +407,13 @@
         <h1 class="page-title">User Roles</h1>
         <div class="toolbar">
             <div class="search-container">
-                <input type="search" class="search-input" placeholder="Search...">
+                <input type="search" class="search-input" placeholder="Search..." id="searchBox">
                 <button class="button">Go</button>
-                <button class="button">Actions</button>
+                
             </div>
-            <button class="button dark">Create</button>
+           <a href="create_role.html"> <button class="button dark">Create</button></a>
         </div>
-        <table class="roles-table">
+        <table class="roles-table" id="data-table">
             <thead>
                 <tr>
                     <th></th>
@@ -436,7 +437,7 @@
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
                     </td>
-                    <td>Cook</td>
+                    <td>Cooks</td>
                 </tr>
                 <tr>
                     <td>
@@ -456,13 +457,48 @@
                     </td>
                     <td>Staff</td>
                 </tr>
+                <tr>
+                    <td>
+                        <svg class="edit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </td>
+                    <td>Secy</td>
+                </tr>
             </tbody>
         </table>
         <div class="table-footer">
-            1-4
+            
         </div>
         </div>
     <script>
+
+document.getElementById('searchBox').addEventListener('input', function() {
+  let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+  let rows = document.querySelectorAll('#data-table tbody tr'); // Select all rows in the data-table
+  
+  rows.forEach(function(row) {
+    let cells = row.getElementsByTagName('td'); // Get all cells in the row
+    let rowText = ''; // Concatenate all cell texts in the row
+    
+    // Loop through each cell and add its text to rowText
+    for (let cell of cells) {
+      rowText += cell.textContent.toLowerCase();
+    }
+    
+    // If the row's text matches the search term, show it, else hide it
+    if (rowText.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
+
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');

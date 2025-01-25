@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messing Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-height: 80vh;
+            overflow: auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container button {
+            width: 30%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: #fff;
+        }
+        .submit-btn:hover {
+            background: #218838;
+        }
+        .cancel-btn {
+            background: #dc3545;
+            color: #fff;
+        }
+        .cancel-btn:hover {
+            background: #a71d2a;
+        }
+        .add-item-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .add-item-btn:hover {
+            background: #0056b3;
+        }
+        .add-item-btn i {
+            margin-right: 8px;
+        }
+        .product-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .meal-selection-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .meal-selection-container button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        .meal-selection-container button:hover {
+            background: #0056b3;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container" id="meal-selection-container">
+        <h1>Select Meal Time</h1>
+        <div class="meal-selection-container">
+            <button id="selectBreakfast">Breakfast</button>
+            <button id="selectLunch">Lunch</button>
+            <button id="selectDinner">Dinner</button>
+        </div>
+    </div>
+
+    <div class="form-container" id="meal-form-container" style="display: none;">
+        <h1 id="meal-heading"></h1>
+
+        <form id="messingForm">
+            <div id="product-entries">
+                <!-- Dynamic Product Entries will appear here -->
+            </div>
+
+            <button type="button" class="add-item-btn" id="addItemButton">
+                <i class="fas fa-plus-circle"></i> Add More Item
+            </button>
+
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn" id="cancelButton">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Show the meal selection screen
+        document.getElementById('meal-selection-container').style.display = 'block';
+        document.getElementById('meal-form-container').style.display = 'none';
+
+        // Set the meal heading based on the selected meal
+        function setMealHeading(meal) {
+            document.getElementById('meal-heading').innerText = meal;
+        }
+
+        // Show the form for the selected meal time
+        function showMealForm(meal) {
+            document.getElementById('meal-selection-container').style.display = 'none';
+            document.getElementById('meal-form-container').style.display = 'block';
+            setMealHeading(meal);
+        }
+
+        // Event listeners for selecting meal time
+        document.getElementById('selectBreakfast').addEventListener('click', function() {
+            showMealForm("Breakfast");
+        });
+
+        document.getElementById('selectLunch').addEventListener('click', function() {
+            showMealForm("Lunch");
+        });
+
+        document.getElementById('selectDinner').addEventListener('click', function() {
+            showMealForm("Dinner");
+        });
+
+        // Function to add a new product entry
+        function addProductEntry() {
+            const productEntryHTML = `
+                <div class="product-entry">
+                    <div class="form-group">
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" class="product-name" name="product_name[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount (in gram):</label>
+                        <input type="number" class="amount" name="amount[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" class="price" name="price[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="members">Dine-in Members:</label>
+                        <input type="number" class="members" name="members[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-price">Unit Price:</label>
+                        <input type="number" class="unit-price" name="unit_price[]" readonly>
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-entries').insertAdjacentHTML('beforeend', productEntryHTML);
+        }
+
+        // Event listener for adding more items
+        document.getElementById('addItemButton').addEventListener('click', addProductEntry);
+
+        // Auto calculate unit price for each product entry
+        document.getElementById('product-entries').addEventListener('input', function(event) {
+            if (event.target.classList.contains('price') || event.target.classList.contains('members')) {
+                const price = parseFloat(event.target.closest('.product-entry').querySelector('.price').value);
+                const members = parseInt(event.target.closest('.product-entry').querySelector('.members').value);
+                const unitPriceField = event.target.closest('.product-entry').querySelector('.unit-price');
+
+                if (!isNaN(price) && !isNaN(members) && members !== 0) {
+                    unitPriceField.value = (price / members).toFixed(2);
+                }
+            }
+        });
+
+        // Submit the form and show confirmation
+        document.getElementById('messingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const confirmation = confirm('Are you sure you want to submit this entry?');
+            if (confirmation) {
+                alert('Entry successfully submitted!');
+                window.location.href = 'admin_messing.html'; // Redirect to the admin messing page
+            }
+        });
+
+        // Cancel button functionality
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel?')) {
+                window.location.href = 'admin_messing.html'; // Redirect to the admin messing page
+            }
+        });
+
+        // Initialize with the first product entry for the selected meal
+        addProductEntry();
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Role</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-group button.submit {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .button-group button.cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .button-group button:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Role</h2>
+    <form id="create-role-form">
+        <div class="input-group">
+            <label for="role-name">Role Name</label>
+            <input type="text" id="role-name" name="role-name" required>
+        </div>
+        <div class="input-group">
+            <label for="role-description">Description</label>
+            <input type="text" id="role-description" name="role-description" required>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="submit">Create</button>
+            <button type="button" class="cancel" onclick="window.location.href='users_role.html'">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('create-role-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert("Role Created Successfully!");
+        window.location.href = 'users.html';  // Go back to users page
+    });
+</script>
+
+</body>
+</html>

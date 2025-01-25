@@ -188,19 +188,7 @@
             cursor: pointer;
         }
 
-        button {
-            padding: 0.5rem 1rem;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
 
-        button:hover {
-            background-color: #0056b3;
-        }
 
         .toolbar {
             display: flex;
@@ -244,13 +232,13 @@
 
 
         .button.primary {
-            background: #212529;
+            background: #484b4e;
             color: white;
             border: none;
         }
 
         .button.primary:hover {
-            background: #343a40;
+            background: #5a5d5f;
         }
 
         .menu-table {
@@ -309,6 +297,61 @@
             margin-top: 1rem;
         }
 
+        .editable {
+            background-color: #f0f0f0; /* Default background for non-editable fields */
+        }
+        .editable input {
+            background-color: #f0f0f0;
+            border: none;
+            pointer-events: none;
+        }
+        .meal-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .edit-btn, .save-btn, .delete-btn {
+            padding: 5px 10px;
+            margin-top: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #B0B0B0; /* Ash color */
+        }
+        .save-btn {
+            background-color: #01d808; /* Green */
+            color: white;
+        }
+        .delete-btn {
+            background-color: #eb1303; /* Red */
+            color: white;
+        }
+        .edit-btn:hover {
+            background-color: #525252; /* Ash color */
+            transform: scale(1.1);
+        }
+        .save-btn:hover {
+            background-color:#029207;
+        }
+        .delete-btn:hover
+        {
+            background-color: #a00b00;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
         @media (max-width: 1200px) {
             .menu-table {
                 font-size: 0.875rem;
@@ -365,7 +408,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link active">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -378,152 +421,240 @@
 
         <!-- Main Content -->
         <div class="main-content" id="main-content">
-            <h1 class="page-title">Edit Menu</h1>
+            <h1 class="page-title">Menu</h1>
 
         <div class="toolbar">
             <div class="search-container">
-                <input type="search" class="search-input" placeholder="Search...">
+                <input type="search" class="search-input" placeholder="Search..." id="searchBox">
                 <button class="button">Go</button>
-                <button class="button">Actions ▼</button>
+                
             </div>
+            <a href="create.html" >
             <button class="button primary">Create</button>
+        </a>
         </div>
 
     <div class="menu-table-container">
-        <table class="menu-table">
+        <table class="menu-table" id="meal-table">
             <thead>
                 <tr>
                     <th>Meal Date</th>
                     <th>Breakfast</th>
                     <th>Lunch</th>
                     <th>Dinner</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>9/15/2024</td>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Noodles</div>
-                            <div class="estimated-price">30</div>
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Biryani</div>
-                            <div class="estimated-price">300</div>
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Payesh, Grill</div>
-                            <div class="estimated-price">250</div>
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
                         </div>
+                    </td>
+                    <td>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+                <tr>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>9/2/2024</td>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Poached Egg</div>
-                            <div class="estimated-price">15</div>
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Beef</div>
-                            <div class="estimated-price">175</div>
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Chicken Curry</div>
-                            <div class="estimated-price">165</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9/3/2024</td>
-                    <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Hotchpotch</div>
-                            <div class="estimated-price">65</div>
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
                         </div>
                     </td>
                     <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Fish Curry</div>
-                            <div class="estimated-price">170</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Beef</div>
-                            <div class="estimated-price">180</div>
-                        </div>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>9/25/2024</td>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Bread, Butter, Jelly</div>
-                            <div class="estimated-price">55</div>
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Fish Curry</div>
-                            <div class="estimated-price">170</div>
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Chicken Grill, Parota</div>
-                            <div class="estimated-price">157</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9/1/2024</td>
-                    <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Vegetable</div>
-                            <div class="estimated-price">35</div>
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
                         </div>
                     </td>
                     <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Chicken</div>
-                            <div class="estimated-price">165</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="meal-cell">
-                            <div class="meal-name">Fish Curry</div>
-                            <div class="estimated-price">180</div>
-                        </div>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>9/26/2024</td>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Vegetable and Parata</div>
-                            <div class="estimated-price">45</div>
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Chicken Curry</div>
-                            <div class="estimated-price">165</div>
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
                         </div>
                     </td>
                     <td>
                         <div class="meal-cell">
-                            <div class="meal-name">Hotchpotch, Beef</div>
-                            <div class="estimated-price">182</div>
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
                         </div>
+                    </td>
+                    <td>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="display">9/15/2024</span>
+                        <input class="edit" type="date" value="2024-09-15" style="display:none;">
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Noodles</span>
+                            <span class="display">30</span>
+                            <input class="edit meal-name" type="text" value="Noodles" style="display:none;">
+                            <input class="edit meal-price" type="number" value="30" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Biryani</span>
+                            <span class="display">300</span>
+                            <input class="edit meal-name" type="text" value="Biryani" style="display:none;">
+                            <input class="edit meal-price" type="number" value="300" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="meal-cell">
+                            <span class="display">Payesh, Grill</span>
+                            <span class="display">250</span>
+                            <input class="edit meal-name" type="text" value="Payesh, Grill" style="display:none;">
+                            <input class="edit meal-price" type="number" value="250" style="display:none;">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="edit-btn" onclick="editRow(this)">Edit</button>
+                        <button class="save-btn" onclick="saveRow(this)" style="display:none;">Save</button>
+                        <button class="delete-btn" onclick="deleteRow(this)" style="display:none;">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -566,6 +697,68 @@
         function openModal() {
             // Modal logic here
         }
+
+        function editRow(button) {
+            var row = button.closest("tr");
+
+            // Toggle button visibility
+            button.style.display = "none";
+            row.querySelector(".save-btn").style.display = "inline-block";
+            row.querySelector(".delete-btn").style.display = "inline-block";
+
+            // Show input fields and hide display elements
+            row.querySelectorAll(".display").forEach(el => el.style.display = "none");
+            row.querySelectorAll(".edit").forEach(el => el.style.display = "inline-block");
+        }
+
+        function saveRow(button) {
+            var row = button.closest("tr");
+
+            // Update display values with input values
+            var inputs = row.querySelectorAll(".edit");
+            var displays = row.querySelectorAll(".display");
+
+            inputs.forEach((input, index) => {
+                displays[index].textContent = input.value;
+            });
+
+            // Toggle button visibility
+            row.querySelector(".edit-btn").style.display = "inline-block";
+            row.querySelector(".save-btn").style.display = "none";
+            row.querySelector(".delete-btn").style.display = "none";
+
+            // Hide input fields and show display elements
+            row.querySelectorAll(".edit").forEach(el => el.style.display = "none");
+            row.querySelectorAll(".display").forEach(el => el.style.display = "inline-block");
+        }
+
+        function deleteRow(button) {
+            var row = button.closest("tr");
+            row.remove();
+        }
+
+        document.getElementById('searchBox').addEventListener('input', function() {
+  let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+  let rows = document.querySelectorAll('#meal-table tbody tr'); // Select all rows in the meal-table
+  
+  rows.forEach(function(row) {
+    let cells = row.getElementsByTagName('td'); // Get all cells in the row
+    let rowText = ''; // Concatenate all cell texts in the row
+    
+    // Loop through each cell and add its text to rowText
+    for (let cell of cells) {
+      rowText += cell.textContent.toLowerCase();
+    }
+    
+    // If the row's text matches the search term, show it, else hide it
+    if (rowText.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
     </script>
 </body>
 </html>

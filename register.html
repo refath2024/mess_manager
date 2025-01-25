@@ -28,7 +28,9 @@
       border-radius: 15px;
       padding: 20px 30px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      width: 400px;
+      width: 450px;
+      overflow: auto;
+      height: 550px;
       animation: fadeIn 1s ease-out;
     }
 
@@ -137,7 +139,7 @@
       <h1>Apply for SMART MESS</h1>
       <p>Fill out the form to register for your officer ID</p>
     </div>
-    <form action="#" method="POST">
+    <form method="POST" action="register.php">
       <div class="form-group">
         <label for="no">No</label>
         <input type="text" id="no" name="no" placeholder="Enter your ID number" required>
@@ -155,8 +157,13 @@
         <input type="text" id="unit" name="unit" placeholder="Enter your unit" required>
       </div>
       <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
         <label for="mobile">Mobile No</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+        <input type="number" id="mobile" name="mobile" placeholder="Enter your Mobile Number" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -164,10 +171,13 @@
       </div>
       <div class="form-buttons">
         <button type="button" class="btn-cancel" onclick="window.location.href='officers_portal.html';">Cancel</button>
-      
         <button type="submit" class="btn-apply">Apply</button>
-        </div>
+      </div>
     </form>
   </div>
+
+  <script> 
+
+  </script>
 </body>
 </html>

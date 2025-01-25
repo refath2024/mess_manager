@@ -230,10 +230,10 @@
                     <p>Officers Login</p>
                 </div>
             </div>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
+            <form id="loginForm" action="login.php" method="POST" onsubmit="return handleLogin(event)">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password *</label>
@@ -263,26 +263,42 @@
             <p>Efficient and Customized Management Software Solutions for Officer Mess Operations.</p>
         </div>
     </div>
-
     <script>
-        // Simulate login process and redirect to userhome.html
-        function handleLogin(event) {
-            event.preventDefault();  // Prevent form submission
+function handleLogin(event) {
+    event.preventDefault();
 
-            // Get the username and password (you can also add a more complex validation here)
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-            // Here you can validate the username and password
-            // For now, let's just simulate a successful login:
-            if (username && password) {
-                // Redirect to userhome.html if login is successful
-                window.location.href = 'userhome.html';
-            } else {
-                // Show an alert or error message
-                alert('Please fill in both fields.');
-            }
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+
+    fetch('login.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())  // Parse the response as JSON
+    .then(data => {
+        if (data.success) {  // Check if the login was successful
+            // Store session info in localStorage
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userName', data.userName);  // Save user name to localStorage
+
+            // Redirect to user home page
+            window.location.href = 'userhome.html';
+        } else {
+            alert(data.message);  // Show the error message from PHP
         }
-    </script>
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your login.');
+    });
+}
+
+
+        </script>
+        
 </body>
 </html>

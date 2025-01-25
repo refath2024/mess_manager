@@ -40,6 +40,21 @@ header {
     z-index: 10; /* Keeps the header on top of other content */
 }
 
+header .user-info {
+  
+    font-size: 16px; /* Adjust font size */
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+}
+
+#user-name {
+    font-size: 18px;
+    font-weight: bold;
+   
+}
+
 header .left-logo {
     position: absolute;
     top: 50%;

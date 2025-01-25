@@ -207,6 +207,7 @@
 
         button:hover {
             background-color: #0056b3;
+            transform: scale(1.1);
         }
 
         .toolbar {
@@ -231,13 +232,13 @@
             padding: 0.5rem 1rem;
             border: 1px solid #dee2e6;
             border-radius: 4px;
-            background: white;
-            color: #495057;
+            background: rgb(132, 131, 131);
+            color: #ffffff;
             cursor: pointer;
         }
 
         .button:hover {
-            background: #f8f9fa;
+            background: #565656;
         }
 
         .button.dark {
@@ -300,6 +301,103 @@
             text-align: right;
             color: #6c757d;
         }
+        /* Popup Modal Styles */
+        /* Add the previous CSS for the popup here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup-modal {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1001;
+        }
+
+        .popup-header {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .popup-footer button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .popup-footer button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .popup-overlay.show, .popup-modal.show {
+            display: block;
+        } 
+        /* Popup message styling */
+        .popup-message {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: green;
+            font-weight: bold;
+        }
+        
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translate(-50%, -50%) scale(0.9); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+    0% { transform: translate(-50%, -50%) scale(0.9); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
     </style>
 </head>
 <body>
@@ -323,7 +421,7 @@
                 <ul class="nav-list">
                     <li class="nav-item"><a href="dashboard.html" class="nav-link"  >Home</a></li>
                     <li class="nav-item"><a href="users.html" class="nav-link">Users</a></li>
-                    <li class="nav-item"><a href="user_role.html" class="nav-link">User Roles</a></li>
+                    <li class="nav-item"><a href="users_role.html" class="nav-link">User Roles</a></li>
                     <li class="nav-item"><a href="pending_ids.html" class="nav-link active">Pending IDs</a></li>
                     <li class="nav-item"><a href="shopping_history.html" class="nav-link">Shopping History</a></li>
                     <li class="nav-item"><a href="vouchers.html" class="nav-link">Voucher List</a></li>
@@ -332,7 +430,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -346,18 +444,18 @@
     <div class="main-content" id="main-content">
         <div class="toolbar">
             <div class="search-container">
-                <input type="search" class="search-input" placeholder="Search...">
+                <input type="search" class="search-input" placeholder="Search..." id="searchBox">
                 <button class="button">Go</button>
-                <button class="button">Actions</button>
+                
             </div>
-            <button class="button dark">Create</button>
+         <a href="add_users_pending.html">   <button class="button dark">Create</button> </a>
         </div>
         <div class="pending">
             <div class="pending-h">
                 <h2>Pending Requests</h2>
             </div>
             <div class="pending-table-container">
-            <table>
+            <table id="data-table">
                 <thead>
                 <tr>
                     <th>BA</th>
@@ -379,8 +477,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -392,8 +490,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -405,8 +503,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -418,8 +516,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -431,8 +529,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -444,8 +542,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -457,8 +555,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -470,8 +568,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -483,8 +581,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
                 <tr>
@@ -496,8 +594,8 @@
                     <td>igsdvovkd</td>
                     <td><span class="status-pending">Pending</span></td>
                     <td>
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
+                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
                     </td>
                 </tr>
             </table>
@@ -505,43 +603,134 @@
         </div>
     </div>
         <div class="table-footer">
-            1-3
+         
         </div>
 </div>
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+    <div class="popup-modal" id="popup-modal">
+        <div class="popup-header" id="popup-header">Confirmation</div>
+        <div class="popup-footer">
+            <button onclick="closePopup()">Cancel</button>
+            <button id="popup-action-btn" onclick="confirmAction()">Confirm</button>
+        </div>
+        <div class="popup-message" id="popup-message"></div> <!-- Feedback message -->
+    </div>
+
+
  <script>
-            const sidebar = document.getElementById('sidebar');
-            const menuToggle = document.getElementById('menu-toggle');
-            const profile = document.getElementById('profile');
-            const logoutDropdown = document.getElementById('logout-dropdown');
-            const dashboard = document.getElementById('dashboard');
-            const mainContent = document.getElementById('main-content');
-    
-            menuToggle.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
-                sidebar.classList.toggle('hidden');
-                mainContent.classList.toggle('shifted');
-            });
-    
-            profile.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent closing when clicking on profile
-                logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
-            });
-    
-            dashboard.addEventListener('click', (e) => {
-                if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
-                    sidebar.classList.add('hidden');
-                    mainContent.classList.remove('shifted');
-                }
-    
-                // Collapse the logout dropdown if clicked outside of it
-                if (!e.target.closest('#profile')) {
-                    logoutDropdown.style.display = 'none';
-                }
-            });
-    
-            function openModal() {
-                // Modal logic here
+let currentRow = null; // Store the current row being acted upon
+
+function openPopup(action, row) {
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupModal = document.getElementById('popup-modal');
+    const popupHeader = document.getElementById('popup-header');
+    const popupActionBtn = document.getElementById('popup-action-btn');
+    const popupMessage = document.getElementById('popup-message');
+
+    // Show the popup
+    popupOverlay.classList.add('show');
+    popupModal.classList.add('show');
+
+    // Set the current row for removal after action
+    currentRow = row;
+
+    // Clear previous message
+    popupMessage.textContent = '';
+
+    // Set the popup content based on the action
+    if (action === 'accept') {
+        popupHeader.textContent = 'Are you sure you want to accept?';
+        popupActionBtn.textContent = 'Accept';
+        popupActionBtn.style.backgroundColor = '#28a745'; // Green color
+    } else {
+        popupHeader.textContent = 'Are you sure you want to reject?';
+        popupActionBtn.textContent = 'Reject';
+        popupActionBtn.style.backgroundColor = '#dc3545'; // Red color
+    }
+}
+
+function closePopup() {
+    // Hide the popup without performing any action
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupModal = document.getElementById('popup-modal');
+
+    popupOverlay.classList.remove('show');
+    popupModal.classList.remove('show');
+}
+
+function confirmAction() {
+    const popupMessage = document.getElementById('popup-message');
+
+    // Perform the action and provide feedback message
+    if (currentRow) {
+        currentRow.style.display = 'none'; // Row will vanish after confirmation
+
+        // Show a success message in the popup
+        popupMessage.textContent = "Action successful!";
+        popupMessage.style.color = "green"; // Green color for success
+    }
+
+    // Optionally, you can hide the popup after a short delay
+    setTimeout(closePopup, 1500); // Close after 1.5 seconds to show the message
+}
+
+const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const profile = document.getElementById('profile');
+        const logoutDropdown = document.getElementById('logout-dropdown');
+        const dashboard = document.getElementById('dashboard');
+        const mainContent = document.getElementById('main-content');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('shifted');
+        });
+
+        profile.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing when clicking on profile
+            logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
+        });
+
+        dashboard.addEventListener('click', (e) => {
+            if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
+                sidebar.classList.add('hidden');
+                mainContent.classList.remove('shifted');
             }
+
+            // Collapse the logout dropdown if clicked outside of it
+            if (!e.target.closest('#profile')) {
+                logoutDropdown.style.display = 'none';
+            }
+        });
+
+        function openModal() {
+            // Modal logic here
+        }
+
+        document.getElementById('searchBox').addEventListener('input', function() {
+  let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+  let rows = document.querySelectorAll('#data-table tbody tr'); // Select all rows in the data-table
+  
+  rows.forEach(function(row) {
+    let cells = row.getElementsByTagName('td'); // Get all cells in the row
+    let rowText = ''; // Concatenate all cell texts in the row
+    
+    // Loop through each cell and add its text to rowText
+    for (let cell of cells) {
+      rowText += cell.textContent.toLowerCase();
+    }
+    
+    // If the row's text matches the search term, show it, else hide it
+    if (rowText.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
         </script>
     </main>
 </body>

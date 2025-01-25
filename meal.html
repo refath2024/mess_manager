@@ -4,81 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal In & Out</title>
-    <link rel="stylesheet" href="Meal.css">
+    <link rel="stylesheet" href="meal.css">
 </head>
+
 <body>
-
     <!-- Notification Popup -->
-<div id="notification" class="notification">
-    <p>Your order has been submitted</p>
-</div>
-
+    <div id="notification" class="notification">
+        <p>Your order has been submitted</p>
+    </div>
 
     <header>
-        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="Left Logo" class="left-logo" id="left-logo"> <!-- Left logo -->
+
+        <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="User Icon" class="left-logo" id="left-logo">
+
+        <img src="MIST Logo.png" alt="Logo" class="logo">
     
-        <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
-        <h1>Smart Mess</h1>
-    
-        <!-- Dropdown Menu -->
-        <div class="dropdown-menu" id="dropdown-menu">
-            <ul>
-                <li><a href="officers_portal.html" id="logout">Logout</a></li>
-            </ul>
-        </div>
-    </header>
+    <h1>Smart Mess</h1>
+
+    <div class="user-info">
+        <span id="user-name">Loading...</span> <!-- User name will appear here -->
+    </div>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdown-menu">
+                <ul>
+                    <li><a href="officers_portal.html" id="logout">Logout</a></li>
+                </ul>
+            </div>
+</header>
+
     <nav>
-        <a href="userhome.html" >Home</a> <!-- Add 'active' class here -->
+        <a href="userhome.html">Home</a>
         <a href="meal.html" class="active">Meal IN/OUT</a>
         <a href="messing.html">Messing</a>
         <a href="menuset3.html">Menu-set</a>
         <a href="billing.html">Billing</a>
         <a href="notifi.html">Notification</a>
     </nav>
-    
-    <div class="border">
-    <h1>Select Your Meal</h1>
 
-    <form>
-        <div class="meal-container">
-            <div class="meal">
-                <label>
-                    <input type="checkbox" name="meal" value="breakfast"> Breakfast
-                </label>
-                <div class="meal-info">
-                    <p class="men"> Eggs, Toast, Juice</p>
-                    <p class="rome"> ৳ 30</p>
+    <div class="border">
+        <h1>Select Your Meal</h1>
+        <form>
+            <div class="meal-container">
+                <div class="meal">
+                    <label>
+                        <input type="checkbox" name="meal" value="breakfast"> Breakfast
+                    </label>
+                    <div class="meal-info">
+                        <p class="men"> Eggs, Toast, Juice</p>
+                        <p class="rome"> ৳ 30</p>
+                    </div>
+                </div>
+                <div class="meal">
+                    <label>
+                        <input type="checkbox" name="meal" value="lunch"> Lunch
+                    </label>
+                    <div class="meal-info">
+                        <p class="men"> Rice, Chicken Curry, Salad</p>
+                        <p class="rome"> ৳ 150</p>
+                    </div>
+                </div>
+                <div class="meal">
+                    <label>
+                        <input type="checkbox" name="meal" value="dinner"> Dinner
+                    </label>
+                    <div class="meal-info">
+                        <p class="men"> Pasta, Garlic Bread, Dessert</p>
+                        <p class="rome">৳ 80</p> 
+                    </div>
                 </div>
             </div>
-            <div class="meal">
-                <label>
-                    <input type="checkbox" name="meal" value="lunch"> Lunch
-                </label>
-                <div class="meal-info">
-                    <p class="men"> Rice, Chicken Curry, Salad</p>
-                    <p class="rome"> ৳ 150</p>
-                </div>
-            </div>
-            <div class="meal">
-                <label>
-                    <input type="checkbox" name="meal" value="dinner"> Dinner
-                </label>
-                <div class="meal-info">
-                    <p class="men"> Pasta, Garlic Bread, Dessert</p>
-                    <p class="rome">৳ 80</p> 
-                </div>
+
+<!-- Remarks and Disposal Section Container -->
+<div class="remarks-disposal-container">
+    <!-- Remarks Section -->
+    <div class="remarks-section">
+        <label for="remarks">Remarks:</label>
+        <textarea id="remarks" name="remarks" placeholder="Write your remarks here..."></textarea>
+    </div>
+
+    <!-- Disposal Section -->
+    <div class="disposal-section">
+        <label for="disposal">Disposal:</label>
+        <select id="disposal" name="disposal">
+            <option value="no" selected>No</option>
+            <option value="yes">Yes</option>
+        </select>
+
+        <div id="disposal-options" class="disposal-options">
+            <label>
+                <input type="radio" name="disposal-option" value="SIQ"> SIQ
+            </label>
+            <label>
+                <input type="radio" name="disposal-option" value="Leave"> Leave
+            </label>
+            <label>
+                <input type="radio" name="disposal-option" value="MessOut"> Mess Out
+            </label>
+            <div class="date-inputs">
+                <label>From: <input type="date" id="from-date"></label>
+                <label>To: <input type="date" id="to-date"></label>
             </div>
         </div>
-        <button type="submit">Submit</button>
-    </form>
+    </div>
+</div>
+
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
     <footer class="footer">
         <p>Developed by Brocoder</p>
     </footer>
-<script src="dropdown.js"></script> <!-- Make sure the path is correct -->
-<script src="notification1.js"></script>
 
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the user is logged in
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'officers_portal.html'; // Redirect to login page if not logged in
+            }
 
+            // Fetch the user's name from localStorage and display it beside the icon
+            const userName = localStorage.getItem('userName') || "Loading..."; // Default to "Loading..." if not found
+            document.getElementById('user-name').textContent = userName;
+
+            const leftLogo = document.getElementById('left-logo');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            // Toggle the dropdown menu when the left logo is clicked
+            leftLogo.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the click event from bubbling up to the document
+                dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Close the dropdown menu if clicked outside
+            window.addEventListener('click', function(event) {
+                if (!leftLogo.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+
+            // Logout action
+            document.getElementById('logout').addEventListener('click', function() {
+                // Clear session storage (or localStorage) when logging out
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                alert('Logged out');
+                window.location.href = 'officers_portal.html'; // Redirect to login page after logout
+            });
+        });
+    </script>
+    <script src="notification1.js"></script>
+    <script src="disposal.js"></script>
 </body>
 </html>

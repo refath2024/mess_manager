@@ -33,6 +33,21 @@ body::before {
     z-index: -1; /* Places the overlay behind the content */
 }
 
+header .user-info {
+  
+    font-size: 16px; /* Adjust font size */
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+}
+
+#user-name {
+    font-size: 18px;
+    font-weight: bold;
+   
+}
+
 header {
     width: 100%;
     height: 15vh; /* Adjusted header height */
@@ -167,15 +182,101 @@ main {
     overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
+/* Container for Remarks and Disposal Section */
+.remarks-disposal-container {
+    display: flex;
+    justify-content: space-between; /* Adjust spacing between the two sections */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Add space between sections */
+    margin-top: 20px; /* Space from the top content */
+}
+
+/* Remarks Section */
+.remarks-section {
+    flex: 1; /* Allow this section to take equal space */
+    margin-right: 10px; /* Space on the right side */
+
+    margin-top: 20px;
+    text-align: left;
+}
+
+.remarks-section label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#remarks {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allow vertical resizing */
+    overflow-y: auto; /* Make scrollable if text exceeds height */
+    font-family: 'Georgia', serif;
+}
+
+/* Disposal Section */
+.disposal-section {
+    margin-top: 20px;
+    margin-left: 150px;
+    text-align: left;
+    color: white;
+    
+    flex: 1;
+}
+
+.disposal-section label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.disposal-section select {
+    width: 60px;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.disposal-options {
+    margin-top: 10px;
+    display: none; /* Hidden by default */
+}
+
+.disposal-options label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.date-inputs {
+    margin-top: 10px;
+}
+
+.date-inputs label {
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: 20px;
+}
+
+
+
 /* Meal selection box styles */
 .border {
     background-color: #1b301b;
     border: 2px solid rgb(1, 16, 10);
-    margin-top: 20px; /* Move the box upwards by 20px */
+    margin-top: 0px; /* Move the box upwards by 20px */
     padding-left: 0px;
-    width: 900px;
-    height: 360px;; /* Allow height to adjust based on content */
-    margin: 50px auto;
+    width: 1000px;
+    overflow-y: auto; /* Allow scrolling */
+     /* Make right section scrollable */
+
+    height: 400px;; /* Allow height to adjust based on content */
+    margin: 20px auto;
     padding: 20px;
     margin-bottom: 500px; /* Increase space from footer (adjust this value) */
 }
@@ -183,7 +284,7 @@ main {
 /* Meal container */
 .meal-container {
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     margin-top: 20px;
     display: flex;
 }

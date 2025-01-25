@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Shopping Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-height: 80vh;
+            overflow: auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn {
+            background: #007bff;
+            color: #fff;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+        .cancel-btn {
+            background: #dc3545;
+            color: #fff;
+        }
+        .cancel-btn:hover {
+            background: #a71d2a;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Shopping Entry</h1>
+        <form id="addShoppingForm">
+            <div class="form-group">
+                <label for="index">Index:</label>
+                <input type="text" id="index" name="index" required>
+            </div>
+            <div class="form-group">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product_name" required>
+            </div>
+            <div class="form-group">
+                <label for="unit-price">Unit Price:</label>
+                <input type="number" id="unit-price" name="unit_price" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="total-price">Total Price:</label>
+                <input type="number" id="total-price" name="total_price" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="buyer">Buyer:</label>
+                <input type="text" id="buyer" name="buyer" required>
+            </div>
+            <div class="form-group">
+                <label for="voucher-id">Voucher ID:</label>
+                <input type="text" id="voucher-id" name="voucher_id" required>
+            </div>
+            <div class="button-container">
+                <a href="shopping_history.html"><button type="submit" class="submit-btn">Submit</button></a>
+               <a href="shopping_history.html"><button type="button" class="cancel-btn" id="cancelButton">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addShoppingForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Show a confirmation popup
+            const productName = document.getElementById('product-name').value;
+            const confirmation = confirm(`Are you sure you want to add ${productName} to the shopping list?`);
+            
+            if (confirmation) {
+                alert(`${productName} has been successfully added to the shopping list!`);
+                // Reset the form
+                document.getElementById('addShoppingForm').reset();
+            }
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', function () {
+            // Reset the form when cancel is clicked
+            document.getElementById('addShoppingForm').reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misc Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            max-height: 80vh;
+            overflow: auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+           
+        }
+
+        .form-container h3 {
+margin-top: 50px;
+        }
+
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            width: 100px;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+        .cancel-btn {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .cancel-btn:hover {
+            background: #a71d2a;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Misc Entry</h1>
+
+        <!-- Subscriptions Form -->
+        <form id="form1">
+            <h3>Subscriptions</h3>
+            <div class="form-group">
+                <label for="orderlyPay">Orderly Pay:</label>
+                <input type="number" id="orderlyPay" name="orderlyPay" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="messMaintenance">Mess Maintenance:</label>
+                <input type="number" id="messMaintenance" name="messMaintenance" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="garden">Garden:</label>
+                <input type="number" id="garden" name="garden" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="newspaper">Newspaper:</label>
+                <input type="number" id="newspaper" name="newspaper" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="silver">Silver:</label>
+                <input type="number" id="silver" name="silver" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="dishAntenna">Dish Antenna:</label>
+                <input type="number" id="dishAntenna" name="dishAntenna" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="sports">Sports:</label>
+                <input type="number" id="sports" name="sports" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="breakageCharge">Breakage Charge:</label>
+                <input type="number" id="breakageCharge" name="breakageCharge" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="internetBill">Internet Bill:</label>
+                <input type="number" id="internetBill" name="internetBill" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="washermanBill">Washerman Bill:</label>
+                <input type="number" id="washermanBill" name="washermanBill" value="0" min="0">
+            </div>
+        </form>
+
+        <!-- Regimental Cuttings Form -->
+        <form id="form2">
+            <h3>Regimental Cuttings</h3>
+            <div class="form-group">
+                <label for="regimentalCuttings">Regimental Cuttings:</label>
+                <input type="number" id="regimentalCuttings" name="regimentalCuttings" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="canttStaSports">Cantt Sta Sports:</label>
+                <input type="number" id="canttStaSports" name="canttStaSports" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="mosque">Mosque:</label>
+                <input type="number" id="mosque" name="mosque" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="reunion">Reunion:</label>
+                <input type="number" id="reunion" name="reunion" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="band">Band:</label>
+                <input type="number" id="band" name="band" value="0" min="0">
+            </div>
+        </form>
+
+        <!-- Miscellaneous Form -->
+        <form id="form3">
+            <h3>Miscellaneous</h3>
+            <div class="form-group">
+                <label for="miscellaneous">Miscellaneous:</label>
+                <input type="number" id="miscellaneous" name="miscellaneous" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="crest">Crest:</label>
+                <input type="number" id="crest" name="crest" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label for="cleanersBill">Cleaners Bill:</label>
+                <input type="number" id="cleanersBill" name="cleanersBill" value="0" min="0">
+            </div>
+        </form>
+
+        <!-- Save and Cancel buttons -->
+        <div class="button-container">
+            <button type="button" class="submit-btn" id="saveButton">Save</button>
+            <button type="button" class="cancel-btn" id="cancelButton">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle save and cancel actions for the entire page (all forms)
+        function handleFormSubmit(saveButtonId, cancelButtonId) {
+            // Event listener for the Save button (for the whole page)
+            document.getElementById(saveButtonId).addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent any immediate action
+
+                const confirmation = confirm("Are you sure you want to save the entries?");
+                
+                if (confirmation) {
+                    alert("Data has been successfully saved!");
+                    window.location.href = "admin_messing.html"; // Redirect to the admin messing page after saving
+                }
+            });
+
+            // Event listener for the Cancel button (for the whole page)
+            document.getElementById(cancelButtonId).addEventListener('click', function(event) {
+                const confirmation = confirm("Are you sure you want to cancel and discard the changes?");
+                
+                if (confirmation) {
+                    alert("Changes have been discarded.");
+                    window.location.href = "admin_messing.html"; // Redirect to the admin messing page after canceling
+                } else {
+                    // Prevent the default action (no navigation)
+                    event.preventDefault();
+                }
+            });
+        }
+
+        // Apply the functionality for the whole page
+        handleFormSubmit('saveButton', 'cancelButton');
+    </script>
+</body>
+</html>

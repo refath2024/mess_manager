@@ -16,6 +16,9 @@
         <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
         <h1>Smart Mess</h1>
     
+  <div class="user-info">
+    <span id="user-name">Loading...</span> <!-- User name will appear here -->
+</div>
         <!-- Dropdown Menu -->
         <div class="dropdown-menu" id="dropdown-menu">
             <ul>
@@ -145,7 +148,44 @@
         <p>Developed by Brocoder</p>
     </footer>
 
-    <script src="dropdown.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the user is logged in
+            if (!localStorage.getItem('isLoggedIn')) {
+                window.location.href = 'officers_portal.html'; // Redirect to login page if not logged in
+            }
+
+            // Fetch the user's name from localStorage and display it beside the icon
+            const userName = localStorage.getItem('userName') || "Loading..."; // Default to "Loading..." if not found
+            document.getElementById('user-name').textContent = userName;
+
+            const leftLogo = document.getElementById('left-logo');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            // Toggle the dropdown menu when the left logo is clicked
+            leftLogo.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the click event from bubbling up to the document
+                dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Close the dropdown menu if clicked outside
+            window.addEventListener('click', function(event) {
+                if (!leftLogo.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+
+            // Logout action
+            document.getElementById('logout').addEventListener('click', function() {
+                // Clear session storage (or localStorage) when logging out
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                alert('Logged out');
+                window.location.href = 'officers_portal.html'; // Redirect to login page after logout
+            });
+        });
+    </script>
     <script src="notification.js"></script>
 </body>
 </html>

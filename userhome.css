@@ -33,6 +33,7 @@ header {
     height: 15vh;
     position: relative;
     background-color: #333;
+    
 }
 
 header .left-logo {
@@ -72,6 +73,21 @@ header h1 {
     letter-spacing: 2px;
 }
 
+
+header .user-info {
+  
+    font-size: 16px; /* Adjust font size */
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+}
+
+#user-name {
+    font-size: 18px;
+    font-weight: bold;
+   
+}
 .dropdown-menu {
     display: none;
     position: absolute;

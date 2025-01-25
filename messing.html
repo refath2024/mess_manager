@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messing</title>
     <link rel="stylesheet" href="messing.css">
+
+    
 </head>
 <body>
     <header>
@@ -12,7 +14,9 @@
     
         <img src="MIST Logo.png" alt="Logo" class="logo"> <!-- Main logo -->
         <h1>Smart Mess</h1>
-    
+        <div class="user-info">
+            <span id="user-name">Loading...</span> <!-- User name will appear here -->
+        </div>
         <!-- Dropdown Menu -->
         <div class="dropdown-menu" id="dropdown-menu">
             <ul>
@@ -23,7 +27,7 @@
     
     
     <nav>
-        <a href="home.html">Home</a>
+        <a href="userhome.html">Home</a>
         <a href="meal.html">Meal IN/OUT</a>
         <a href="messing.html" class="active">Messing</a>
         <a href="menuset3.html">Menu-set</a>
@@ -31,469 +35,563 @@
         <a href="notifi.html">Notification</a>
     </nav>
     <main>
+        
         <section class="left-section">
             <div class="scrollable-tables">
                 <!-- Messing Table -->
-<table>
-    <tr><th colspan="2">Messing</th></tr>
-    <tr>
-        <td>Daily Messing</td><td>11.33.18</td>
-    </tr>
-    <tr>
-        <td>Extra Chit (Messing)</td><td>50.00</td>
-    </tr>
-    <tr>
-        <td>Tea Break</td><td>20.00</td>
-    </tr>
-    <tr class="total-bill-row">
-        <td>Total Bill</td><td>118.33.18</td>
-    </tr>
-</table>
-
-<!-- Bar Table -->
-<table>
-    <tr><th colspan="2">Bar</th></tr>
-    <tr>
-        <td>Chit</td><td>15.00</td>
-    </tr>
-    <tr>
-        <td>Bar Profit (2% of bill)</td><td>10.12</td>
-    </tr>
-    <tr>
-        <td>Cafe Savings</td><td>5.00</td>
-    </tr>
-    <tr class="total-bill-row">
-        <td>Total Bill</td><td>118.33.18</td>
-    </tr>
-</table>
-
-<!-- Subscriptions Table -->
-<table>
-    <tr><th colspan="2">Subscriptions</th></tr>
-    <tr>
-        <td>Orderly Pay</td><td>200.00</td>
-    </tr>
-    <tr>
-        <td>Mess Maintenance</td><td>100.00</td>
-    </tr>
-    <tr>
-        <td>Garden</td><td>50.00</td>
-    </tr>
-    <tr>
-        <td>Newspaper</td><td>10.00</td>
-    </tr>
-    <tr>
-        <td>Silver</td><td>20.00</td>
-    </tr>
-    <tr>
-        <td>Dish Antenna</td><td>30.00</td>
-    </tr>
-    <tr>
-        <td>Sports</td><td>40.00</td>
-    </tr>
-    <tr>
-        <td>Breakage Charge</td><td>15.00</td>
-    </tr>
-    <tr>
-        <td>Internet Bill</td><td>100.00</td>
-    </tr>
-    <tr>
-        <td>Washerman Bill</td><td>20.00</td>
-    </tr>
-    <tr class="total-bill-row">
-        <td>Total Bill</td><td>118.33.18</td>
-    </tr>
-</table>
-
-<!-- Regimental Cuttings Table -->
-<table>
-    <tr><th colspan="2">Regimental Cuttings</th></tr>
-    
-    <tr>
-        <td>Regimental Cuttings</td><td>50.00</td>
-    </tr>
-    <tr>
-        <td>Cantt Sta Sports</td><td>30.00</td>
-    </tr>
-    <tr>
-        <td>Mosque</td><td>20.00</td>
-    </tr>
-    <tr>
-        <td>Reunion</td><td>40.00</td>
-    </tr>
-    <tr>
-        <td>Band</td><td>60.00</td>
-    </tr>
-    <tr class="total-bill-row">
-        <td>Total Bill</td><td>118.33.18</td>
-    </tr>
-</table>
-
-<!-- Miscellaneous Table -->
-<table>
-    <tr><th colspan="2">Miscellaneous</th></tr>
-    <tr>
-        <td>Extra Chit</td><td>54.00</td>
-    </tr>
-    <tr>
-        <td>Orderly Pay</td><td>200.00</td>
-    </tr>
-    <tr>
-        <td>Crest</td><td>30.00</td>
-    </tr>
-    <tr>
-        <td>Cleaners Bill</td><td>40.00</td>
-    </tr>
-    <tr>
-        <td>Arrears till now</td><td>50.00</td>
-    </tr>
-    <tr class="total-bill-row">
-        <td>Total Bill</td><td>118.33.18</td>
-    </tr>
-</table>
-
-<!-- Current Mess Bill -->
-<table>
-    <tr><th colspan="2">Current Mess Bill</th></tr>
-    <tr><td>Total</td><td>1371.18</td></tr>
-</table>
-
-<!-- Bill Payable -->
-<table>
-    <tr><th colspan="2">Bill Payable</th></tr>
-    <tr class="total-bill-row"><td>Total Payable</td><td>1371.18</td></tr>
-</table>
-
+                <table id="messingTable">
+                    <tr><th colspan="2">Messing</th></tr>
+                    <tr>
+                        <td>Daily Messing</td><td>11.33.18</td>
+                    </tr>
+                    <tr>
+                        <td>Extra Chit (Messing)</td><td>50.00</td>
+                    </tr>
+                    <tr>
+                        <td>Tea Break</td><td>20.00</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Bill</td><td class="messingTotal">0.00</td>
+                    </tr>
+                </table>
+        
+                <!-- Bar Table -->
+                <table id="barTable">
+                    <tr><th colspan="2">Bar</th></tr>
+                    <tr>
+                        <td>Chit</td><td>15.00</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Orders</td><td>10.12</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Bill</td><td class="barTotal">0.00</td>
+                    </tr>
+                </table>
+        
+                <!-- Subscriptions Table -->
+                <table id="subscriptionsTable">
+                    <tr><th colspan="2">Subscriptions</th></tr>
+                    <tr>
+                        <td>Orderly Pay</td><td>200.00</td>
+                    </tr>
+                    <tr>
+                        <td>Mess Maintenance</td><td>100.00</td>
+                    </tr>
+                    <tr>
+                        <td>Garden</td><td>50.00</td>
+                    </tr>
+                    <tr>
+                        <td>Newspaper</td><td>10.00</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td><td>20.00</td>
+                    </tr>
+                    <tr>
+                        <td>Dish Antenna</td><td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>Sports</td><td>40.00</td>
+                    </tr>
+                    <tr>
+                        <td>Breakage Charge</td><td>15.00</td>
+                    </tr>
+                    <tr>
+                        <td>Internet Bill</td><td>100.00</td>
+                    </tr>
+                    <tr>
+                        <td>Washerman Bill</td><td>20.00</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Bill</td><td class="subscriptionsTotal">0.00</td>
+                    </tr>
+                </table>
+        
+                <!-- Regimental Cuttings Table -->
+                <table id="regimentalCuttingsTable">
+                    <tr><th colspan="2">Regimental Cuttings</th></tr>
+                    <tr>
+                        <td>Regimental Cuttings</td><td>50.00</td>
+                    </tr>
+                    <tr>
+                        <td>Cantt Sta Sports</td><td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>Mosque</td><td>20.00</td>
+                    </tr>
+                    <tr>
+                        <td>Reunion</td><td>40.00</td>
+                    </tr>
+                    <tr>
+                        <td>Band</td><td>60.00</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Bill</td><td class="regimentalCuttingsTotal">0.00</td>
+                    </tr>
+                </table>
+        
+                <!-- Miscellaneous Table -->
+                <table id="miscellaneousTable">
+                    <tr><th colspan="2">Miscellaneous</th></tr>
+                    <tr>
+                        <td>Extra Chit</td><td>54.00</td>
+                    </tr>
+                    <tr>
+                        <td>Orderly Pay</td><td>200.00</td>
+                    </tr>
+                    <tr>
+                        <td>Crest</td><td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>Cleaners Bill</td><td>40.00</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Bill</td><td class="miscellaneousTotal">0.00</td>
+                    </tr>
+                </table>
+        
+                <!-- Current Mess Bill -->
+                <table id="billPayableTable">
+                    <tr><th colspan="2">Bill Payable</th></tr>
+                    <tr><td>Current Mess Bill</td><td class="currentMessBill">0.00</td></tr>
+                    <tr>
+                        <td>Arrears till now</td><td class="arrearsTillNow">50.00</td>
+                    </tr>
+                    <tr class="total-bill-row">
+                        <td>Total Payable</td><td class="totalPayable">0.00</td>
+                    </tr>
+                </table>
             </div>
         </section>
         <section class="right-section">
-            <table>
-                <thead>
-                    <tr>
-                        <th rowspan="2">Chit Date</th>
-                        <th colspan="4">Messing</th>
-                        <th rowspan="2">Extras</th>
-                        <th rowspan="2">Bar</th>
-                    </tr>
-                    <tr>
-                        <th>Breakfast</th>
-                        <th>Lunch</th>
-                        <th>Dinner</th>
-                        <th>T/Break</th>
-                    </tr>
-                </thead>
-                <tbody class="tablebody">
-                    <!-- Rows 1 to 31 can be dynamically added, or you can manually add them. -->
-                    <tr>
-                        <td>1</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>3.80</td>
-                        <td>54.00</td>
-                        <td>506.00</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>55.00</td>
-                        <td>70.00</td>
-                        <td>45.00</td>
-                        <td>8.20</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>10.45</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>0.81</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <!-- Continue for rows 5 to 31 -->
-                    <tr>
-                        <td>5</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>5.50</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>4.90</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.00</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.30</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>55.00</td>
-                        <td>70.00</td>
-                        <td>45.00</td>
-                        <td>7.80</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>5.10</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>4.50</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>5.80</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>6.20</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>4.70</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.00</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.10</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.40</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td>55.00</td>
-                        <td>70.00</td>
-                        <td>45.00</td>
-                        <td>7.20</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.30</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.80</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>21</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.50</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>22</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.90</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>23</td>
-                        <td>55.00</td>
-                        <td>70.00</td>
-                        <td>45.00</td>
-                        <td>6.80</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.00</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>25</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>5.70</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>26</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>6.10</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>27</td>
-                        <td>55.00</td>
-                        <td>70.00</td>
-                        <td>45.00</td>
-                        <td>7.40</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>28</td>
-                        <td>45.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>5.60</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>29</td>
-                        <td>48.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>6.20</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>30</td>
-                        <td>50.00</td>
-                        <td>60.00</td>
-                        <td>40.00</td>
-                        <td>5.50</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>31</td>
-                        <td>55.00</td>
-                        <td>65.00</td>
-                        <td>42.00</td>
-                        <td>6.00</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td>198.00</td>
-                        <td>255.00</td>
-                        <td>167.00</td>
-                        <td>23.26</td>
-                        <td>54.00</td>
-                        <td>506.00</td>
-                    </tr>
-                    
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td>Total</td>
-                        <td>198.00</td>
-                        <td>255.00</td>
-                        <td>167.00</td>
-                        <td>23.26</td>
-                        <td>54.00</td>
-                        <td>506.00</td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="tablebody">
+                <table id="mealTable">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Chit Date</th>
+                            <th colspan="4">Messing</th>
+                            <th rowspan="2">Extras</th>
+                        </tr>
+                        <tr>
+                            <th>Breakfast</th>
+                            <th>Lunch</th>
+                            <th>Dinner</th>
+                            <th>T/Break</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody>
+                        <!-- Rows 1 to 31 can be dynamically added, or you can manually add them. -->
+                        <tr>
+                            <td>1</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>3.80</td>
+                            <td>54.00</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>55.00</td>
+                            <td>70.00</td>
+                            <td>45.00</td>
+                            <td>8.20</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>10.45</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>0.81</td>
+                            <td>-</td>
+                        </tr>
+                        <!-- Continue for rows 5 to 31 -->
+                        <tr>
+                            <td>5</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>5.50</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>4.90</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.00</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.30</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>55.00</td>
+                            <td>70.00</td>
+                            <td>45.00</td>
+                            <td>7.80</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>5.10</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>4.50</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>5.80</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>6.20</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>4.70</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.00</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.10</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.40</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>55.00</td>
+                            <td>70.00</td>
+                            <td>45.00</td>
+                            <td>7.20</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.30</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.80</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.50</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.90</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>55.00</td>
+                            <td>70.00</td>
+                            <td>45.00</td>
+                            <td>6.80</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.00</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>5.70</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>6.10</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>55.00</td>
+                            <td>70.00</td>
+                            <td>45.00</td>
+                            <td>7.40</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>45.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>5.60</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>48.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>6.20</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>50.00</td>
+                            <td>60.00</td>
+                            <td>40.00</td>
+                            <td>5.50</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>55.00</td>
+                            <td>65.00</td>
+                            <td>42.00</td>
+                            <td>6.00</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+        
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td id="totalBreakfast">0.00</td>
+                            <td id="totalLunch">0.00</td>
+                            <td id="totalDinner">0.00</td>
+                            <td id="totalTBreak">0.00</td>
+                            <td id="totalExtras">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </section>
+        
     </main>
     <footer>
         <p>Developed by Brocoder</p>
     </footer>
-    <script src="dropdown.js"></script> <!-- Make sure the path is correct -->
+
+
+    <script>
+        // Function to calculate totals for each column in the right section
+        function calculateTotals() {
+            let totalBreakfast = 0;
+            let totalLunch = 0;
+            let totalDinner = 0;
+            let totalTBreak = 0;
+            let totalExtras = 0;
+        
+            // Get all table rows except the header and footer
+            let rows = document.querySelectorAll('#mealTable tbody tr');
+        
+            rows.forEach(row => {
+                let breakfast = parseFloat(row.cells[1].textContent) || 0;
+                let lunch = parseFloat(row.cells[2].textContent) || 0;
+                let dinner = parseFloat(row.cells[3].textContent) || 0;
+                let tBreak = parseFloat(row.cells[4].textContent) || 0;
+                let extras = parseFloat(row.cells[5].textContent) || 0;
+        
+                totalBreakfast += breakfast;
+                totalLunch += lunch;
+                totalDinner += dinner;
+                totalTBreak += tBreak;
+                totalExtras += extras;
+            });
+        
+            // Update the footer with the calculated totals
+            document.getElementById('totalBreakfast').textContent = totalBreakfast.toFixed(2);
+            document.getElementById('totalLunch').textContent = totalLunch.toFixed(2);
+            document.getElementById('totalDinner').textContent = totalDinner.toFixed(2);
+            document.getElementById('totalTBreak').textContent = totalTBreak.toFixed(2);
+            document.getElementById('totalExtras').textContent = totalExtras.toFixed(2);
+        }
+        
+        // Function to compute total bill for each table in the left section
+        function computeTableTotal() {
+            let messingTotal = 0;
+            document.querySelectorAll('#messingTable tr td:nth-child(2)').forEach((cell) => {
+                messingTotal += parseFloat(cell.textContent) || 0;
+            });
+            document.querySelector('.messingTotal').textContent = messingTotal.toFixed(2);
+        
+            let barTotal = 0;
+            document.querySelectorAll('#barTable tr td:nth-child(2)').forEach((cell) => {
+                barTotal += parseFloat(cell.textContent) || 0;
+            });
+            document.querySelector('.barTotal').textContent = barTotal.toFixed(2);
+        
+            let subscriptionsTotal = 0;
+            document.querySelectorAll('#subscriptionsTable tr td:nth-child(2)').forEach((cell) => {
+                subscriptionsTotal += parseFloat(cell.textContent) || 0;
+            });
+            document.querySelector('.subscriptionsTotal').textContent = subscriptionsTotal.toFixed(2);
+        
+            let regimentalCuttingsTotal = 0;
+            document.querySelectorAll('#regimentalCuttingsTable tr td:nth-child(2)').forEach((cell) => {
+                regimentalCuttingsTotal += parseFloat(cell.textContent) || 0;
+            });
+            document.querySelector('.regimentalCuttingsTotal').textContent = regimentalCuttingsTotal.toFixed(2);
+        
+            let miscellaneousTotal = 0;
+            document.querySelectorAll('#miscellaneousTable tr td:nth-child(2)').forEach((cell) => {
+                miscellaneousTotal += parseFloat(cell.textContent) || 0;
+            });
+            document.querySelector('.miscellaneousTotal').textContent = miscellaneousTotal.toFixed(2);
+        
+            return {
+                messingTotal,
+                barTotal,
+                subscriptionsTotal,
+                regimentalCuttingsTotal,
+                miscellaneousTotal
+            };
+        }
+        
+        // Function to calculate total payable and current mess bill
+        function updateBillPayable() {
+            const totals = computeTableTotal();
+        
+            // Calculate the total mess bill
+            let currentMessBill = Object.values(totals).reduce((acc, val) => acc + val, 0);
+            document.querySelector('.currentMessBill').textContent = currentMessBill.toFixed(2);
+        
+            // Calculate the arrears till now (it should be dynamically fetched from the arrearsTillNow cell)
+            let arrears = parseFloat(document.querySelector('.arrearsTillNow').textContent) || 0;
+        
+            // Calculate the total payable
+            let totalPayable = currentMessBill + arrears;
+            document.querySelector('.totalPayable').textContent = totalPayable.toFixed(2);
+        }
+        
+        // Using addEventListener to call both functions on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateTotals();   // Call function for right section totals
+            updateBillPayable(); // Call function for left section bill updates
+        });
+    
+    
+            
+        document.addEventListener('DOMContentLoaded', function() {
+                // Check if the user is logged in
+                if (!localStorage.getItem('isLoggedIn')) {
+                    window.location.href = 'officers_portal.html'; // Redirect to login page if not logged in
+                }
+    
+                // Fetch the user's name from localStorage and display it beside the icon
+                const userName = localStorage.getItem('userName') || "Loading..."; // Default to "Loading..." if not found
+                document.getElementById('user-name').textContent = userName;
+    
+                const leftLogo = document.getElementById('left-logo');
+                const dropdownMenu = document.getElementById('dropdown-menu');
+    
+                // Toggle the dropdown menu when the left logo is clicked
+                leftLogo.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent the click event from bubbling up to the document
+                    dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+                });
+    
+                // Close the dropdown menu if clicked outside
+                window.addEventListener('click', function(event) {
+                    if (!leftLogo.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+    
+                // Logout action
+                document.getElementById('logout').addEventListener('click', function() {
+                    // Clear session storage (or localStorage) when logging out
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userName');
+                    alert('Logged out');
+                    window.location.href = 'officers_portal.html'; // Redirect to login page after logout
+                });
+            });
+    
+        </script>
 
 </body>
+
+
+    
 </html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background: #fff;
+            padding: 80px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-height: 70vh;
+            overflow: auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 0px;
+            
+            font-size: 20px;
+            f
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .button-container button {
+            width: 48%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn {
+            background: #007bff;
+            color: #fff;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+        .cancel-btn {
+            background: #dc3545;
+            color: #fff;
+        }
+        .cancel-btn:hover {
+            background: #a71d2a;
+        }
+        .form-group
+        {
+            margin-top: 20px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add New User</h1>
+        <form id="addUserForm">
+            <div class="form-group">
+                <label for="ba-no">BA No:</label>
+                <input type="text" id="ba-no" name="ba_no" required>
+            </div>
+            <div class="form-group">
+                <label for="rank">Rank:</label>
+                <input type="text" id="rank" name="rank" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="unit">Unit:</label>
+                <input type="text" id="unit" name="unit" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile-no">Mobile No:</label>
+                <input type="text" id="mobile-no" name="mobile_no" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">Mess Secretary</option>
+                    <option value="user">Asst Mess Secretary</option>
+                    <option value="user">Dining Member</option>
+                    <option value="user">Cooks</option>
+                    <option value="user">Mess Seargent</option>
+                    <option value="user">Barrack NCO</option>
+                    <option value="user">RP NCO</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn" id="cancelButton">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addUserForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Show a confirmation popup
+            const userName = document.getElementById('name').value;
+            const confirmation = confirm(`Are you sure you want to add ${userName} as a new user?`);
+            
+            if (confirmation) {
+                alert(`${userName} has been successfully added!`);
+                // Redirect back to the Users page (simulate)
+                window.location.href = 'users.html'; // Replace with your actual Users page
+            }
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', function () {
+            // Redirect back to the Users page when cancel is clicked
+            window.location.href = 'users.html'; // Replace with your actual Users page
+        });
+    </script>
+</body>
+</html>

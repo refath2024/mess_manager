@@ -165,22 +165,7 @@
             width: calc(100% - 250px); /* Adjust width to account for sidebar */
         }
 
-        /* Table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
 
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        th {
-            background-color: #f3f4f6;
-        }
 
         a {
             text-decoration: none;
@@ -209,21 +194,7 @@
             margin-bottom: 3rem;
             margin-top: 3rem;
         }
-            .menu-table-container
 
-        {
-            max-height: 300px; /* Adjust the height to show 4 rows */
-            overflow-y: auto; 
-
-        }
-
-
-        .menu-table-container thead {
-            position: sticky;
-            top: 0;
-            background-color: #f8f9fa; /* Ensure the header has a background */
-            z-index: 2; /* Keep it above the table rows */
-        }
         .search-container {
             display: flex;
             gap: 0.5rem;
@@ -243,61 +214,59 @@
         }
 
 
-
-        .button.primary {
-            background: #212529;
-            color: white;
-            border: none;
-        }
-
-        .button.primary:hover {
-            background: #343a40;
-        }
-
-        .payments-table {
+        .table-container {
+            background: #fff;
+           
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 10px;
+            overflow: auto;
+            max-height: 350px;
+
         }
 
-        .payments-table th,
-        .payments-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #dee2e6;
-        }
 
-        .payments-table th {
-            background: #f8f9fa;
-            font-weight: 500;
-            color: #495057;
-            white-space: nowrap;
-        }
 
-        .payments-table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-top: 0px;
+}
 
-        .checkbox-cell {
-            width: 40px;
-            text-align: center;
-        }
+.table-container thead
+{
+    background-color: #f4f4f4;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
 
-        .number-column {
-            text-align: right;
-        }
 
-        .pagination {
-            text-align: right;
-            color: #6c757d;
-            font-size: 0.875rem;
-            margin-top: 1rem;
-        }
+th {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: 0px;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.date, .time {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+
+
 
         @media (max-width: 768px) {
             .sidebar {
@@ -344,7 +313,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link active">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -358,37 +327,144 @@
         <!-- Main Content -->
         <div class="main-content" id="main-content">
 
-            <h1 class="page-title">Payments</h1>
+            <h1 class="page-title">Payments History</h1>
 
         
         <div class="toolbar">
             <div class="search-container">
-                <input type="search" class="search-input" placeholder="Search...">
+                <input type="search" class="search-input" placeholder="Search..." id="searchBox">
                 <button class="button">Go</button>
-                <button class="button">Actions ▼</button>
+               
             </div>
-            <button class="button primary">Create</button>
+            
         </div>
 
-        <table class="payments-table">
+
+        <div class="table-container">
+            <table id="payment-table">
+
             <thead>
                 <tr>
-                    <th class="checkbox-cell"><input type="checkbox"></th>
-                    <th>User No</th>
-                    <th>Payment Date</th>
-                    <th class="number-column">Amount</th>
+                    <th>Payment Amount (BDT)</th>
+                    <th>Payment Time</th>
+                    <th>BA No</th>
+                    <th>Rank</th>
+                    <th>Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="checkbox-cell"><input type="checkbox"></td>
-                    <td>11700</td>
-                    <td>9/2/2024</td>
-                    <td class="number-column">100</td>
+                    <td>5000.00 BDT</td>
+                    <td><span class="date">2025-01-02</span><span class="time">14:35</span></td>
+                    <td>12345</td>
+                    <td>Captain</td>
+                    <td>John Doe</td>
+                </tr>
+                <tr>
+                    <td>6700.00 BDT</td>
+                    <td><span class="date">2025-01-09</span><span class="time">11:20</span></td>
+                    <td>23456</td>
+                    <td>Lieutenant</td>
+                    <td>Jane Smith</td>
+                </tr>
+                <tr>
+                    <td>4200.00 BDT</td>
+                    <td><span class="date">2025-01-08</span><span class="time">09:15</span></td>
+                    <td>34567</td>
+                    <td>Major</td>
+                    <td>Michael Brown</td>
+                </tr>
+                <tr>
+                    <td>8000.00 BDT</td>
+                    <td><span class="date">2025-01-07</span><span class="time">16:50</span></td>
+                    <td>45678</td>
+                    <td>Colonel</td>
+                    <td>Alice Davis</td>
+                </tr>
+                <tr>
+                    <td>5500.00 BDT</td>
+                    <td><span class="date">2025-01-06</span><span class="time">10:45</span></td>
+                    <td>56789</td>
+                    <td>Captain</td>
+                    <td>Robert Wilson</td>
+                </tr>
+                <tr>
+                    <td>6200.00 BDT</td>
+                    <td><span class="date">2025-01-05</span><span class="time">18:30</span></td>
+                    <td>67890</td>
+                    <td>Lieutenant</td>
+                    <td>Emily White</td>
+                </tr>
+                <tr>
+                    <td>7100.00 BDT</td>
+                    <td><span class="date">2025-01-04</span><span class="time">14:20</span></td>
+                    <td>78901</td>
+                    <td>Major</td>
+                    <td>William Green</td>
+                </tr>
+                <tr>
+                    <td>4300.00 BDT</td>
+                    <td><span class="date">2025-01-03</span><span class="time">12:40</span></td>
+                    <td>89012</td>
+                    <td>Captain</td>
+                    <td>Linda Black</td>
+                </tr>
+                <tr>
+                    <td>5900.00 BDT</td>
+                    <td><span class="date">2025-01-02</span><span class="time">09:10</span></td>
+                    <td>90123</td>
+                    <td>Lieutenant</td>
+                    <td>Chris Brown</td>
+                </tr>
+                <tr>
+                    <td>4700.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">11:55</span></td>
+                    <td>12301</td>
+                    <td>Colonel</td>
+                    <td>Sara Taylor</td>
+                </tr>
+                <tr>
+                    <td>5300.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">15:25</span></td>
+                    <td>23412</td>
+                    <td>Major</td>
+                    <td>David Lee</td>
+                </tr>
+                <tr>
+                    <td>6100.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">08:30</span></td>
+                    <td>34521</td>
+                    <td>Captain</td>
+                    <td>Anna Kim</td>
+                </tr>
+                <tr>
+                    <td>7200.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">17:45</span></td>
+                    <td>45632</td>
+                    <td>Lieutenant</td>
+                    <td>Mark Thompson</td>
+                </tr>
+                <tr>
+                    <td>5400.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">13:15</span></td>
+                    <td>56743</td>
+                    <td>Major</td>
+                    <td>Olivia Brown</td>
+                </tr>
+                <tr>
+                    <td>6100.00 BDT</td>
+                    <td><span class="date">2025-01-01</span><span class="time">10:20</span></td>
+                    <td>67854</td>
+                    <td>Captain</td>
+                    <td>Ethan Smith</td>
                 </tr>
             </tbody>
-        </table>
-        <div class="pagination">1 - 1</div>
+            </table>
+        </div>
+        
+
+
+        
     </div>
     <script>
         const sidebar = document.getElementById('sidebar');
@@ -424,6 +500,58 @@
         function openModal() {
             // Modal logic here
         }
+
+
+
+        function sortTableByDateAndTime() {
+  let table = document.querySelector("table tbody");
+  let rows = Array.from(table.rows);
+
+  rows.sort((rowA, rowB) => {
+    let dateA = rowA.cells[1].querySelector('.date').textContent;
+    let timeA = rowA.cells[1].querySelector('.time').textContent;
+    let dateB = rowB.cells[1].querySelector('.date').textContent;
+    let timeB = rowB.cells[1].querySelector('.time').textContent;
+
+    // Compare dates first
+    if (dateA !== dateB) {
+      return new Date(dateA) - new Date(dateB);
+    }
+    // If dates are the same, compare times
+    return timeA.localeCompare(timeB);
+  });
+
+  // Re-order the rows in the table
+  rows.forEach(row => table.appendChild(row));
+}
+
+// Call the function to sort on page load or as needed
+sortTableByDateAndTime();
+
+//searchbox
+document.getElementById('searchBox').addEventListener('input', function() {
+  let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+  let rows = document.querySelectorAll('#payment-table tbody tr'); // Select all rows in the data-table
+  
+  rows.forEach(function(row) {
+    let cells = row.getElementsByTagName('td'); // Get all cells in the row
+    let rowText = ''; // Concatenate all cell texts in the row
+    
+    // Loop through each cell and add its text to rowText
+    for (let cell of cells) {
+      rowText += cell.textContent.toLowerCase();
+    }
+    
+    // If the row's text matches the search term, show it, else hide it
+    if (rowText.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
+
     </script>
 </body>
 </html>

@@ -209,21 +209,70 @@
             margin-bottom: 3rem;
             margin-top: 3rem;
         }
-            .menu-table-container
 
-        {
-            max-height: 300px; /* Adjust the height to show 4 rows */
-            overflow-y: auto; 
+
+        .table-container {
+            background: #fff;
+           
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 10px;
+            overflow: auto;
+            max-height: 350px;
 
         }
 
 
-        .menu-table-container thead {
-            position: sticky;
-            top: 0;
-            background-color: #f8f9fa; /* Ensure the header has a background */
-            z-index: 2; /* Keep it above the table rows */
-        }
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-top: 0px;
+}
+
+.table-container thead
+{
+    background-color: #f4f4f4;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+
+th {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: 0px;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+td[contenteditable="true"] {
+    
+  background-color: #181414;
+  border: 1px solid #ccc;
+}
+
+
+
+
         .search-container {
             display: flex;
             gap: 0.5rem;
@@ -244,37 +293,7 @@
 
 
 
-        .bills-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
 
-        .bills-table th,
-        .bills-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .bills-table th {
-            background: #f8f9fa;
-            font-weight: 500;
-            color: #495057;
-            white-space: nowrap;
-        }
-
-        .bills-table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .number-column {
-            text-align: right;
-        }
 
         @media (max-width: 768px) {
             .sidebar {
@@ -318,7 +337,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link active">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -337,63 +356,378 @@
         
             <div class="toolbar">
                 <div class="search-container">
-                    <input type="search" class="search-input" placeholder="Search...">
+                    <input type="search" class="search-input" placeholder="Search..." id="searchBox">
                     <button class="button">Go</button>
-                    <button class="button">Actions ▼</button>
                 </div>
-                <button class="button primary">Create</button>
+                
             </div>
 
-        <table class="bills-table">
-            <thead>
-                <tr>
-                    <th>User No</th>
-                    <th>User Name</th>
-                    <th>Month</th>
-                    <th class="number-column">Total Bill</th>
-                    <th>Paid At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>11700</td>
-                    <td>Nahid</td>
-                    <td>2024-09</td>
-                    <td class="number-column">365.75</td>
-                    <td>9/2/2024</td>
-                </tr>
-                <tr>
-                    <td>11717</td>
-                    <td>Shahriar</td>
-                    <td>2024-09</td>
-                    <td class="number-column">0</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11754</td>
-                    <td>Parvez</td>
-                    <td>2024-09</td>
-                    <td class="number-column">341.42</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11760</td>
-                    <td>Ramisa</td>
-                    <td>2024-09</td>
-                    <td class="number-column">329.95</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11795</td>
-                    <td>Ayon</td>
-                    <td>2024-09</td>
-                    <td class="number-column">60.11</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="table-container">
+                <table id="data-table">
+                  <thead>
+                    <tr>
+                      <th>BA No</th>
+                      <th>Rank</th>
+                      <th>Name</th>
+                      <th>Bill Status</th>
+                      <th>Arrear</th>
+                      <th>Current Bill</th>
+                      <th>Total Due</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <div class="billing-body">
+                  <tbody id="table-body">
+                    <tr>
+                      <td>12345</td>
+                      <td>Lt</td>
+                      <td>Sami</td>
+                      <td></td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td><button class="edit-btn">Edit</button></td>
+                    </tr>
+                    <tr>
+                      <td>67890</td>
+                      <td>Cpt</td>
+                      <td>Rahman</td>
+                      <td></td>
+                      <td>200</td>
+                      <td>100</td>
+                      <td>300</td>
+                      <td><button class="edit-btn">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>78901</td>
+                        <td>Cpt</td>
+                        <td>Jamil</td>
+                        <td></td>
+                        <td>300</td>
+                        <td>150</td>
+                        <td>450</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>23456</td>
+                        <td>Maj</td>
+                        <td>Rifat</td>
+                        <td></td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>300</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>34567</td>
+                        <td>Lt</td>
+                        <td>Mohi</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>45678</td>
+                        <td>Cpt</td>
+                        <td>Shahin</td>
+                        <td></td>
+                        <td>120</td>
+                        <td>80</td>
+                        <td>200</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>56789</td>
+                        <td>Maj</td>
+                        <td>Rahat</td>
+                        <td></td>
+                        <td>90</td>
+                        <td>110</td>
+                        <td>200</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>67890</td>
+                        <td>Lt</td>
+                        <td>Alif</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>78901</td>
+                        <td>Cpt</td>
+                        <td>Tariq</td>
+                        <td></td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>300</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>Maj</td>
+                        <td>Rashed</td>
+                        <td></td>
+                        <td>50</td>
+                        <td>150</td>
+                        <td>200</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>67890</td>
+                        <td>Lt</td>
+                        <td>Shamim</td>
+                        <td></td>
+                        <td>150</td>
+                        <td>50</td>
+                        <td>200</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>11223</td>
+                        <td>Cpt</td>
+                        <td>Salahuddin</td>
+                        <td></td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>100</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>44556</td>
+                        <td>Maj</td>
+                        <td>Hossain</td>
+                        <td></td>
+                        <td>120</td>
+                        <td>200</td>
+                        <td>320</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>78901</td>
+                        <td>Lt</td>
+                        <td>Rafique</td>
+                        <td></td>
+                        <td>30</td>
+                        <td>20</td>
+                        <td>50</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>23456</td>
+                        <td>Cpt</td>
+                        <td>Imran</td>
+                        <td></td>
+                        <td>150</td>
+                        <td>150</td>
+                        <td>300</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>34567</td>
+                        <td>Maj</td>
+                        <td>Faizan</td>
+                        <td></td>
+                        <td>200</td>
+                        <td>100</td>
+                        <td>300</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>45678</td>
+                        <td>Lt</td>
+                        <td>Riyad</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>56789</td>
+                        <td>Cpt</td>
+                        <td>Sarwar</td>
+                        <td></td>
+                        <td>70</td>
+                        <td>80</td>
+                        <td>150</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>67890</td>
+                        <td>Maj</td>
+                        <td>Ahmed</td>
+                        <td></td>
+                        <td>180</td>
+                        <td>120</td>
+                        <td>300</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>12345</td>
+                        <td>Lt</td>
+                        <td>Mizan</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>23456</td>
+                        <td>Cpt</td>
+                        <td>Fahim</td>
+                        <td></td>
+                        <td>150</td>
+                        <td>100</td>
+                        <td>250</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>78901</td>
+                        <td>Maj</td>
+                        <td>Abir</td>
+                        <td></td>
+                        <td>0</td>
+                        <td>80</td>
+                        <td>80</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>11223</td>
+                        <td>Lt</td>
+                        <td>Arman</td>
+                        <td></td>
+                        <td>60</td>
+                        <td>40</td>
+                        <td>100</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                      <tr>
+                        <td>44556</td>
+                        <td>Cpt</td>
+                        <td>Ruhul</td>
+                        <td></td>
+                        <td>100</td>
+                        <td>50</td>
+                        <td>150</td>
+                        <td><button class="edit-btn">Edit</button></td>
+                      </tr>
+                  </tbody> </div>
+                </table>
+              </div>
+              
+           
     </div>
     <script>
+
+
+//for searching
+
+document.getElementById('searchBox').addEventListener('input', function() {
+  let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+  let rows = document.querySelectorAll('#data-table tbody tr'); // Select all rows in the data-table
+  
+  rows.forEach(function(row) {
+    let cells = row.getElementsByTagName('td'); // Get all cells in the row
+    let rowText = ''; // Concatenate all cell texts in the row
+    
+    // Loop through each cell and add its text to rowText
+    for (let cell of cells) {
+      rowText += cell.textContent.toLowerCase();
+    }
+    
+    // If the row's text matches the search term, show it, else hide it
+    if (rowText.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
+
+
+// Function to update Total Due
+function updateTotalDue(row) {
+  const arrear = parseFloat(row.cells[4].textContent) || 0;
+  const currentBill = parseFloat(row.cells[5].textContent) || 0;
+  const totalDue = arrear + currentBill;
+  row.cells[6].textContent = totalDue; // Update Total Due cell
+  return totalDue;
+}
+
+// Function to update Bill Status
+function updateBillStatus(row) {
+  const totalDue = updateTotalDue(row); // Calculate Total Due first
+  const billStatusCell = row.cells[3];
+  if (totalDue === 0) {
+    billStatusCell.textContent = 'Paid';
+    billStatusCell.style.color = 'green';
+  } else {
+    billStatusCell.textContent = 'Unpaid';
+    billStatusCell.style.color = 'red';
+  }
+}
+
+// Function to toggle row editability
+function toggleRowEdit(row, isEditing) {
+  // Toggle editing for Arrear and Current Bill columns only
+  for (let i = 4; i <= 5; i++) {
+    row.cells[i].contentEditable = isEditing; // Enable/Disable editing
+    row.cells[i].style.backgroundColor = isEditing ? '#f9f9f9' : ''; // Highlight editable cells
+  }
+}
+
+// Function to initialize rows with dynamic logic
+function initializeRows() {
+  const rows = document.querySelectorAll('#table-body tr');
+  rows.forEach(row => {
+    updateBillStatus(row); // Initialize Bill Status dynamically
+  });
+}
+
+// Function to handle Edit and Save button clicks
+function handleEditSaveButtonClick() {
+  const editButtons = document.querySelectorAll('.edit-btn');
+  editButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const row = this.parentElement.parentElement; // Get the row
+      const isEditing = this.textContent === 'Edit';
+
+      if (isEditing) {
+        // Switch to editing mode
+        toggleRowEdit(row, true);
+        this.textContent = 'Save';
+        this.style.backgroundColor = 'green';
+      } else {
+        // Save changes and exit editing mode
+        toggleRowEdit(row, false);
+        updateBillStatus(row); // Recalculate Total Due and Bill Status
+        this.textContent = 'Edit';
+        this.style.backgroundColor = '#007bff';
+      }
+    });
+  });
+}
+
+
+
+// Initialize table on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initializeRows();
+  handleEditSaveButtonClick();
+});
+
+
+
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');

@@ -17,7 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Logout action (for demonstration)
     document.getElementById('logout').addEventListener('click', function() {
-        alert('Logged out');
-        // Add your logout logic here, e.g., redirect to login page
+                // Clear session storage (or localStorage) when logging out
+                localStorage.removeItem('isLoggedIn');  // If using localStorage for session
+                localStorage.removeItem('userName');
+                alert('Logged out');
+                
+                // Redirect to login page (officers_portal.html)
+                window.location.href = 'officers_portal.html';
+            });
     });
-});

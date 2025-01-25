@@ -25,6 +25,21 @@ body::before {
     z-index: -1; /* Places the overlay behind the content */
 }
 
+header .user-info {
+  
+    font-size: 16px; /* Adjust font size */
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+}
+
+#user-name {
+    font-size: 18px;
+    font-weight: bold;
+   
+}
+
 header {
     width: 100%;
     height: 15vh; /* Adjusted header height */
@@ -205,34 +220,57 @@ main {
 
 .right-section {
     width: 60%; /* Adjusted width */
-    height: 380px;
+    height: 398px;
     background-color: #193d19bd;
     border: 4px solid #272927;
     border-radius: 10px;
-    padding: 10px;
+    
+    padding: 2px;
     color: whitesmoke;
-    overflow-y: auto; /* Allow scrolling */
-    max-height: calc(100vh - 20vh - 50px); /* Make right section scrollable */
+    
+    
 }
+
+.tablebody
+{
+    margin-right: 1px;
+    overflow-y: auto; /* Allow scrolling */
+    max-height: calc(100vh - 20vh - 84px); /* Make right section scrollable */
+}
+
+
 
 .right-section table {
     width: 100%;
+  
     border-collapse: collapse;
 }
 
-.right-section th,
+
 .right-section td {
     border: 1px solid #4b5a4b;
     padding: 8px;
     text-align: center; /* Align text in the center */
 }
 
+.right-section th {
+    border: 1px solid #4b5a4b;
+    padding: 8px;
+border-top: 0.1rem ;
+    text-align: center; /* Align text in the center */
+}
+
 /* Sticky thead (header row) */
-.right-section table thead {
+.tablebody table thead {
+    
     position: sticky;
     top: 0;
     background-color: #012501; /* Same as the background of the right section */
     z-index: 2; /* Ensure it stays above other content */
+}
+
+.right-section table tbody {
+   
 }
 
 /* Sticky tfoot (total row) */

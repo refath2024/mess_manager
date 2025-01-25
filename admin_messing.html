@@ -171,24 +171,66 @@
             border-collapse: collapse;
             margin-top: 1rem;
         }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
 
-        th, td {
-            padding: 0.75rem;
+       th, td {
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #e5e5e5;
         }
 
         th {
             background-color: #f3f4f6;
         }
-
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .edit-btn, .remove-btn {
+            cursor: pointer;
+            font-size: 16px;
+            color: #007bff;
+            background: none;
+            border: none;
+            padding: 5px;
+            text-decoration: underline;
+        }
+        .remove-btn {
+            color: #dc3545;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .edit-btn:hover, .remove-btn:hover {
+            color: #0056b3;
+        }
+        .edit-mode input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 14px;
+        }
         a {
             text-decoration: none;
             color: #007bff;
             cursor: pointer;
         }
+        button
+        {
+            padding: 0.5rem 1rem;
+            background-color: #b30707;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover
+        {
+            transform: scale(1.1);
 
-        button {
+        }
+
+        .buttons {
             padding: 0.5rem 1rem;
             background-color: #007bff;
             color: white;
@@ -198,8 +240,26 @@
             transition: background-color 0.2s;
         }
 
-        button:hover {
+        .buttons:hover {
             background-color: #0056b3;
+        }
+        .ml-auto {
+            margin-left: auto;
+
+        }
+        .button.primary.ml-auto
+        {
+            padding: 0.5rem 1rem;
+            background-color: #555d66;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button.primary.ml-auto:hover{
+        transform: scale(1.1);
         }
 
         .toolbar {
@@ -239,7 +299,10 @@
 
 
 
-
+        button.primary.ml-auto: hover
+        {
+            background: #white;
+        }
 
 
 
@@ -249,7 +312,7 @@
             border: none;
         }
 
-        .button.primary:hover {
+        .button:hover {
             background: #0056b3;
         }
 
@@ -292,9 +355,43 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .ml-auto {
-            margin-left: auto;
+
+
+
+.table-container {
+            background: #fff;
+            padding: 20px;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
         }
+        .table-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .item {
+            margin: 10px 0;
+        }
+     
+        .notification-dropdown {
+            position: fixed;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: top 0.5s;
+        }
+        .notification-dropdown.error {
+            background: #f44336;
+        }
+
 
         @media (max-width: 768px) {
             .sidebar {
@@ -341,7 +438,7 @@
                     <li class="nav-item"><a href="admin_messing.html" class="nav-link active">Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
-                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Meal Consumption</a></li>
+                    <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
                     <li class="nav-item"><a href="admin_bills.html" class="nav-link">Bills</a></li>
                     <li class="nav-item"><a href="payments.html" class="nav-link">Payments</a></li>
                     <li class="nav-item"><a href="dining_member.html" class="nav-link">Dining Member State</a></li>
@@ -355,117 +452,288 @@
         <!-- Main Content -->
         <div class="main-content" id="main-content">
       
-            <h1 class="page-title">Messing</h1>
+            <h1 class="page-title">Messing of Today</h1>
             
       
         <div class="toolbar">
             <div class="search-container">
-                <input type="search" class="search-input" placeholder="Search...">
-                <button class="button">Go</button>
-                <button class="button">Actions ▼</button>
+                <input type="search" class="search-input" placeholder="Search..." id="searchBox">
+                <button class="buttons">Find</button>
+                              
             </div>
-            <button class="button primary ml-auto">Create</button>
+            <a href="add_individual.html">  <button class="button primary ml-auto">Indl Entry</button> </a>
+            <a href="add_misc.html">  <button class="button primary ml-auto">Misc Entry</button> </a>
+          <a href="add_messing.html">  <button class="button primary ml-auto">Create</button> </a>
         </div>
-        <table class="messing-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Amount</th>
-                    <th class="number-column">Messing Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="meal-header">
-                    <td colspan="3">Meal: Beef</td>
-                </tr>
-                <tr>
-                    <td>Oil</td>
-                    <td>0.5</td>
-                    <td class="number-column">88.75</td>
-                </tr>
-                <tr>
-                    <td>Beef</td>
-                    <td>1.2</td>
-                    <td class="number-column">822.00</td>
-                </tr>
-                <tr>
-                    <td>Salt</td>
-                    <td>0.1</td>
-                    <td class="number-column">6.10</td>
-                </tr>
-                <tr class="meal-header">
-                    <td colspan="3">Meal: Fish Curry</td>
-                </tr>
-                <tr>
-                    <td>Salt</td>
-                    <td>0.0</td>
-                    <td class="number-column">0.61</td>
-                </tr>
-                <tr>
-                    <td>Fish</td>
-                    <td>0.5</td>
-                    <td class="number-column">105.00</td>
-                </tr>
-                <tr>
-                    <td>Oil</td>
-                    <td>0.0</td>
-                    <td class="number-column">1.78</td>
-                </tr>
-                <tr class="meal-header">
-                    <td colspan="3">Meal: Hotchpotch</td>
-                </tr>
-                <tr>
-                    <td>Rice</td>
-                    <td>0.6</td>
-                    <td class="number-column">40.50</td>
-                </tr>
-                <tr>
-                    <td>Dal</td>
-                    <td>0.3</td>
-                    <td class="number-column">30.00</td>
-                </tr>
-                <tr>
-                    <td>Salt</td>
-                    <td>0.0</td>
-                    <td class="number-column">2.44</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="daydisplay">
+            <h1 id="dayDisplay"></h1> <!-- This will show the current day -->
+        </div>
+        <div class="table-container">
+            <h2>Breakfast Entries</h2>
+            <table id="breakfastTable">
+                <thead> 
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount (g)</th>
+                        <th>Price</th>
+                        <th>Members</th>
+                        <th>Unit Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Eggs</td>
+                        <td>100</td>
+                        <td>200</td>
+                        <td>4</td>
+                        <td>50</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Pancakes</td>
+                        <td>150</td>
+                        <td>300</td>
+                        <td>3</td>
+                        <td>100</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="table-container">
+            <h2>Lunch Entries</h2>
+            <table id="lunchTable">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount (g)</th>
+                        <th>Price</th>
+                        <th>Members</th>
+                        <th>Unit Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chicken</td>
+                        <td>200</td>
+                        <td>500</td>
+                        <td>5</td>
+                        <td>100</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Rice</td>
+                        <td>150</td>
+                        <td>150</td>
+                        <td>5</td>
+                        <td>30</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="table-container">
+            <h2>Dinner Entries</h2>
+            <table id="dinnerTable">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount (g)</th>
+                        <th>Price</th>
+                        <th>Members</th>
+                        <th>Unit Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Soup</td>
+                        <td>200</td>
+                        <td>150</td>
+                        <td>4</td>
+                        <td>37.5</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Salad</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>5</td>
+                        <td>20</td>
+                        <td><button class="edit-btn" onclick="editRow(this)">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
+    </div>
+
+    <div id="notification" class="notification-dropdown"></div>
     <script>
+        
         const sidebar = document.getElementById('sidebar');
-        const menuToggle = document.getElementById('menu-toggle');
-        const profile = document.getElementById('profile');
-        const logoutDropdown = document.getElementById('logout-dropdown');
-        const dashboard = document.getElementById('dashboard');
-        const mainContent = document.getElementById('main-content');
+const menuToggle = document.getElementById('menu-toggle');
+const profile = document.getElementById('profile');
+const logoutDropdown = document.getElementById('logout-dropdown');
+const dashboard = document.getElementById('dashboard');
+const mainContent = document.getElementById('main-content');
 
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
-            sidebar.classList.toggle('hidden');
-            mainContent.classList.toggle('shifted');
-        });
+menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent sidebar from closing when clicking the toggle
+    sidebar.classList.toggle('hidden');
+    mainContent.classList.toggle('shifted');
+});
 
-        profile.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent closing when clicking on profile
-            logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
-        });
+profile.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent closing when clicking on profile
+    logoutDropdown.style.display = (logoutDropdown.style.display === 'block') ? 'none' : 'block';
+});
 
-        dashboard.addEventListener('click', (e) => {
-            if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
-                sidebar.classList.add('hidden');
-                mainContent.classList.remove('shifted');
+dashboard.addEventListener('click', (e) => {
+    if (!sidebar.classList.contains('hidden') && !e.target.closest('#menu-toggle') && !e.target.closest('.sidebar')) {
+        sidebar.classList.add('hidden');
+        mainContent.classList.remove('shifted');
+    }
+
+    // Collapse the logout dropdown if clicked outside of it
+    if (!e.target.closest('#profile')) {
+        logoutDropdown.style.display = 'none';
+    }
+});
+
+function openModal() {
+    // Modal logic here
+}
+
+function editRow(button) {
+    // Get the row of the clicked edit button
+    var row = button.closest('tr');
+    var cells = row.querySelectorAll('td');
+
+    // Check if the row is already in edit mode
+    if (row.classList.contains('edit-mode')) {
+        // Save the changes and exit edit mode
+        cells[0].innerHTML = cells[0].querySelector('input').value;
+        cells[1].innerHTML = cells[1].querySelector('input').value;
+        cells[2].innerHTML = cells[2].querySelector('input').value;
+        cells[3].innerHTML = cells[3].querySelector('input').value;
+        cells[4].innerHTML = cells[4].querySelector('input').value;
+        row.classList.remove('edit-mode');
+        button.innerHTML = 'Edit';  // Reset to Edit
+        
+        // Remove the "Delete" button after saving
+        row.querySelector('.delete-btn').remove();
+    } else {
+        // Turn the row into edit mode
+        cells[0].innerHTML = `<input type="text" value="${cells[0].innerHTML}">`;
+        cells[1].innerHTML = `<input type="number" value="${cells[1].innerHTML}">`;
+        cells[2].innerHTML = `<input type="number" value="${cells[2].innerHTML}">`;
+        cells[3].innerHTML = `<input type="number" value="${cells[3].innerHTML}">`;
+        cells[4].innerHTML = `<input type="number" value="${cells[4].innerHTML}">`;
+        row.classList.add('edit-mode');
+        button.innerHTML = 'Save';  // Change to Save
+        addDeleteButton(row); // Add the delete button only if it's not already there
+    }
+}
+
+function addDeleteButton(row) {
+    // Check if the delete button is already added
+    if (!row.querySelector('.delete-btn')) {
+        // Add a delete button at the end of the row
+        var deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.innerHTML = 'Delete';
+        deleteBtn.onclick = function () {
+            row.remove();
+        };
+        var cell = row.querySelector('td:last-child');
+        cell.appendChild(deleteBtn);
+    }
+}
+
+// Function to get the current day based on GMT+6
+function getCurrentDay() {
+    // Create a new Date object with GMT+6 timezone offset
+    const options = { weekday: 'long', timeZone: 'Asia/Dhaka' };
+    const currentDay = new Intl.DateTimeFormat('en-US', options).format(new Date());
+    document.getElementById('dayDisplay').innerText = currentDay;
+}
+
+// Call the function when the page loads
+window.onload = getCurrentDay;
+
+document.getElementById('searchBox').addEventListener('input', function() {
+    let searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+
+    // Array of table IDs to filter
+    let tableIds = ['breakfastTable', 'lunchTable', 'dinnerTable'];
+
+    // Loop through each table
+    tableIds.forEach(function(tableId) {
+        let rows = document.querySelectorAll(`#${tableId} tbody tr`); // Select all rows in the table
+        
+        rows.forEach(function(row) {
+            let cells = row.getElementsByTagName('td'); // Get all cells in the row
+            let rowText = ''; // Concatenate all cell texts in the row
+
+            // Loop through each cell and add its text to rowText
+            for (let cell of cells) {
+                rowText += cell.textContent.toLowerCase();
             }
 
-            // Collapse the logout dropdown if clicked outside of it
-            if (!e.target.closest('#profile')) {
-                logoutDropdown.style.display = 'none';
+            // If the row's text matches the search term, show it, else hide it
+            if (rowText.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
             }
         });
+    });
+});
 
-        function openModal() {
-            // Modal logic here
-        }
+// Function to add the "Total" row and calculate the sum of unit prices
+function addTotalRow(tableId) {
+    let table = document.getElementById(tableId);
+    let tbody = table.querySelector('tbody');
+    let rows = tbody.getElementsByTagName('tr');
+    let total = 0;
+
+    // Calculate the sum of the Unit Price column (index 4)
+    for (let row of rows) {
+        let unitPriceCell = row.cells[4]; // Column with Unit Price
+        let unitPrice = parseFloat(unitPriceCell.textContent) || 0;
+        total += unitPrice;
+    }
+
+    // Create a new row for the total
+    let newRow = document.createElement('tr');
+
+    // Create cells for the new row
+    for (let i = 0; i < 5; i++) {
+        let cell = document.createElement('td');
+        newRow.appendChild(cell);
+    }
+
+    // Set the first cell to "Total"
+    newRow.cells[0].textContent = 'Total';
+
+    // Set the last cell (Unit Price) to the total value
+    newRow.cells[4].textContent = total.toFixed(2);
+
+    // Add the total row to the table
+    tbody.appendChild(newRow);
+}
+
+// Call the addTotalRow function for each table to add the total row
+addTotalRow('breakfastTable');
+addTotalRow('lunchTable');
+addTotalRow('dinnerTable');
+
     </script>
 </body>
 </html>
