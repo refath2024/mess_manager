@@ -81,6 +81,7 @@ header .user-info {
     top: 50%;
     left: 17%;
     transform: translate(-50%, -50%);
+    color: #e5e5e5;
 }
 
 #user-name {

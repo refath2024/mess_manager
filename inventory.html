@@ -203,7 +203,16 @@
 
         /* Button styles */
 
-.edit-btn {
+        .edit-btn {
+  background-color: grey;
+  color: white;
+  padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+}
+.cancel-btn {
   background-color: grey;
   color: white;
   padding: 0.5rem 1rem;
@@ -226,11 +235,13 @@
 .delete-btn {
   background-color: red;
   color: white;
+  color: white;
   padding: 0.5rem 1rem;
             border: none;
             border-radius: 0.25rem;
             cursor: pointer;
             transition: background-color 0.2s;
+      
 }
 
 /* Hover effect */
@@ -330,18 +341,7 @@ button:hover {
             font-size: 0.875rem;
         }
 
-        .reset-button {
-            color: #ffffff;
-            background: #676767;
-            border: none;
-            cursor: pointer;
-            font-size: 0.875rem;
-            padding: 0.5rem 1rem;
-        }
 
-        .reset-button:hover {
-            color: #495057;
-        }
     </style>
 </head>
 <body>
@@ -402,224 +402,15 @@ button:hover {
             <table class="inventory-table" id="data-table">
                 <thead>
                     <tr>
-                        <th>Inventory ID</th>
-                        <th>Product</th>
-                        <th class="number-column">Unit Price</th>
-                        <th class="number-column">Quantity</th>
-                        <th class="number-column">Net Worth</th>
+                    
+                        <th>Product Name</th>
+                        <th class="number-column">Quantity Held (Kg/L/Qty)</th>
+                        <th>Type</th>
                         <th>Action</th> <!-- New Action Column -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>141</td>
-                        <td>Rice</td>
-                        <td class="number-column">67.5</td>
-                        <td class="number-column">8.4</td>
-                        <td class="number-column">567</td>
-                        <td><button class="edit-btn">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>142</td>
-                        <td>Salt</td>
-                        <td class="number-column">61</td>
-                        <td class="number-column">5.85</td>
-                        <td class="number-column">356.85</td>
-                        <td><button class="edit-btn">Edit</button></td>
-                    </tr>
-                    <tbody>
-                        <tr>
-                            <td>141</td>
-                            <td>Rice</td>
-                            <td class="number-column">67.5</td>
-                            <td class="number-column">8.4</td>
-                            <td class="number-column">567</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>142</td>
-                            <td>Salt</td>
-                            <td class="number-column">61</td>
-                            <td class="number-column">5.85</td>
-                            <td class="number-column">356.85</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>143</td>
-                            <td>Sugar</td>
-                            <td class="number-column">132.5</td>
-                            <td class="number-column">7</td>
-                            <td class="number-column">927.5</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>144</td>
-                            <td>Oil</td>
-                            <td class="number-column">177.5</td>
-                            <td class="number-column">7.49</td>
-                            <td class="number-column">1329.48</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>145</td>
-                            <td>Fish</td>
-                            <td class="number-column">350</td>
-                            <td class="number-column">5.7</td>
-                            <td class="number-column">1995</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>146</td>
-                            <td>Dal</td>
-                            <td class="number-column">100</td>
-                            <td class="number-column">6.7</td>
-                            <td class="number-column">670</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>147</td>
-                            <td>Beef</td>
-                            <td class="number-column">685</td>
-                            <td class="number-column">3.8</td>
-                            <td class="number-column">2603</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>148</td>
-                            <td>Vegetable</td>
-                            <td class="number-column">42.5</td>
-                            <td class="number-column">8</td>
-                            <td class="number-column">340</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>149</td>
-                            <td>Milk</td>
-                            <td class="number-column">62.5</td>
-                            <td class="number-column">4</td>
-                            <td class="number-column">250</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>150</td>
-                            <td>Butter</td>
-                            <td class="number-column">200</td>
-                            <td class="number-column">2.5</td>
-                            <td class="number-column">500</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>151</td>
-                            <td>Cheese</td>
-                            <td class="number-column">300</td>
-                            <td class="number-column">3</td>
-                            <td class="number-column">900</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>152</td>
-                            <td>Honey</td>
-                            <td class="number-column">400</td>
-                            <td class="number-column">1.8</td>
-                            <td class="number-column">720</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>153</td>
-                            <td>Peas</td>
-                            <td class="number-column">50</td>
-                            <td class="number-column">10</td>
-                            <td class="number-column">500</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>154</td>
-                            <td>Wheat</td>
-                            <td class="number-column">80</td>
-                            <td class="number-column">4.5</td>
-                            <td class="number-column">360</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>155</td>
-                            <td>Spices</td>
-                            <td class="number-column">120</td>
-                            <td class="number-column">5</td>
-                            <td class="number-column">600</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>156</td>
-                            <td>Tomato</td>
-                            <td class="number-column">30</td>
-                            <td class="number-column">12</td>
-                            <td class="number-column">360</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>157</td>
-                            <td>Potato</td>
-                            <td class="number-column">15</td>
-                            <td class="number-column">25</td>
-                            <td class="number-column">375</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>158</td>
-                            <td>Cucumber</td>
-                            <td class="number-column">25</td>
-                            <td class="number-column">9.2</td>
-                            <td class="number-column">230</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>159</td>
-                            <td>Carrot</td>
-                            <td class="number-column">40</td>
-                            <td class="number-column">8</td>
-                            <td class="number-column">320</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>160</td>
-                            <td>Spinach</td>
-                            <td class="number-column">35</td>
-                            <td class="number-column">6.5</td>
-                            <td class="number-column">227.5</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>161</td>
-                            <td>Chicken</td>
-                            <td class="number-column">187.5</td>
-                            <td class="number-column">6</td>
-                            <td class="number-column">1125</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>162</td>
-                            <td>Egg</td>
-                            <td class="number-column">12.5</td>
-                            <td class="number-column">12</td>
-                            <td class="number-column">150</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>163</td>
-                            <td>Onion</td>
-                            <td class="number-column">20</td>
-                            <td class="number-column">15</td>
-                            <td class="number-column">300</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>164</td>
-                            <td>Garlic</td>
-                            <td class="number-column">45</td>
-                            <td class="number-column">11</td>
-                            <td class="number-column">495</td>
-                            <td><button class="edit-btn">Edit</button></td>
-                        </tr>
+                    
                     </tbody>
                     
                     <!-- More rows here -->
@@ -628,13 +419,129 @@ button:hover {
         </div>
         <div class="table-footer">
            <a href="add_inventory.html"> <button class="button dark">Input Item</button> </a>
-            <div>
-                <span>1 rows selected</span>
-                <span style="margin-left: 1rem;">Total 12</span>
-            </div>
+
         </div>
+        
     </div>
     <script>
+
+async function fetchData() {
+            const response = await fetch('get_inventory.php');
+            const data = await response.json();
+            const tableBody = document.querySelector('#data-table tbody');
+
+            data.forEach(row => {
+                const tableRow = document.createElement('tr');
+                tableRow.setAttribute('data-id', row.id); // Store id as a data attribute
+
+                tableRow.innerHTML = `
+                    <td>${row.product_name}</td>
+                    <td class="number-column">${row.quantity_held}</td>
+                    <td>${row.type}</td>
+                    <td>
+                        <button onclick="editRow(this)" class="action-btn edit-btn">Edit</button>
+                    </td>
+                `;
+                console.log(`Row ID: ${row.id}, Product Name: ${row.product_name}`);
+
+                tableBody.appendChild(tableRow);
+            });
+            
+        }
+
+        function editRow(button) {
+            const row = button.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            // Convert cells to editable inputs
+            const productName = cells[0].textContent;
+            const quantityHeld = cells[1].textContent;
+            const type = cells[2].textContent;
+
+            cells[0].innerHTML = `<input type="text" value="${productName}">`;
+            cells[1].innerHTML = `<input type="number" value="${quantityHeld}">`;
+            cells[2].innerHTML = `
+                <select>
+                    <option value="utensils" ${type === 'utensils' ? 'selected' : ''}>Utensils</option>
+                    <option value="fresh" ${type === 'fresh' ? 'selected' : ''}>Fresh</option>
+                    <option value="ration" ${type === 'ration' ? 'selected' : ''}>Ration</option>
+                </select>
+            `;
+
+            // Add action buttons
+            cells[3].innerHTML = `
+                <div class="action-buttons">
+                    <button onclick="saveRow(this)" class="action-btn save-btn">Save</button>
+                    <button onclick="cancelEdit(this)" class="action-btn cancel-btn">Cancel</button>
+                    <button onclick="deleteRow(this)" class="action-btn delete-btn">Delete</button>
+                </div>
+            `;
+        }
+
+        function cancelEdit(button) {
+            const row = button.closest('tr');
+            const tableBody = document.querySelector('#data-table tbody');
+            tableBody.innerHTML = ''; // Clear table to reload
+            fetchData(); // Reload original data
+        }
+
+        async function saveRow(button) {
+            const row = button.closest('tr');
+            const cells = row.querySelectorAll('td');
+            const updatedData = {
+                product_name: cells[0].querySelector('input').value,
+                quantity_held: cells[1].querySelector('input').value,
+                type: cells[2].querySelector('select').value
+            };
+
+            const response = await fetch('update_inventory.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData)
+            });
+
+            if (response.ok) {
+                alert('Row updated successfully!');
+                cancelEdit(button);
+            } else {
+                alert('Failed to update row.');
+            }
+        }
+ 
+        async function deleteRow(button) {
+    const row = button.closest('tr'); // Find the row containing the button
+    const id = row.getAttribute('data-id'); // Get the id from the data attribute
+
+    if (!confirm('Are you sure you want to delete this row?')) {
+        return; // Exit if user cancels
+    }
+
+    try {
+        const response = await fetch('delete_inventory.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id }) // Send the id to the server
+        });
+
+        if (response.ok) {
+            alert('Row deleted successfully!');
+            row.remove(); // Remove the row from the table
+        } else {
+            alert('Failed to delete row.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while deleting the row.');
+    }
+}
+
+
+        window.onload = fetchData;
+
+
+
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');
@@ -691,66 +598,7 @@ button:hover {
   });
 });
 
-// Function to make the row editable
-function makeEditable(row) {
-  const cells = row.getElementsByTagName('td');
-  const actionCell = cells[cells.length - 1]; // The Action column
 
-  // Make the row editable
-  for (let i = 0; i < cells.length - 1; i++) { // Ignore the Action column
-    let cell = cells[i];
-    if (cell.classList.contains('number-column')) {
-      cell.innerHTML = `<input type="number" value="${cell.innerText}">`; // For number fields
-    } else {
-      cell.innerHTML = `<input type="text" value="${cell.innerText}">`; // For text fields
-    }
-  }
-
-  // Change Edit button to Save and Delete buttons
-  actionCell.innerHTML = `
-    <button class="save-btn">Save</button>
-    <button class="delete-btn">Delete</button>
-  `;
-
-  // Handle Save button click
-  row.querySelector('.save-btn').addEventListener('click', function() {
-    // Update the row with the new values
-    for (let i = 0; i < cells.length - 1; i++) { // Ignore the Action column
-      let cell = cells[i];
-      cell.innerText = cell.querySelector('input').value; // Set new value
-    }
-
-    // Reset the Action column to Edit button
-    actionCell.innerHTML = `<button class="edit-btn">Edit</button>`;
-
-    // Reattach the event listener to the new Edit button
-    row.querySelector('.edit-btn').addEventListener('click', function() {
-      makeEditable(row); // Make the row editable again
-    });
-
-    // Handle Delete button click
-    row.querySelector('.delete-btn').addEventListener('click', function() {
-      if (confirm('Are you sure you want to delete this row?')) {
-        row.remove(); // Delete the row
-      }
-    });
-  });
-
-  // Handle Delete button click (for dynamically created button)
-  row.querySelector('.delete-btn').addEventListener('click', function() {
-    if (confirm('Are you sure you want to delete this row?')) {
-      row.remove(); // Delete the row
-    }
-  });
-}
-
-// Add event listeners for the initial Edit buttons
-document.querySelectorAll('.edit-btn').forEach(function(button) {
-  button.addEventListener('click', function() {
-    const row = button.closest('tr');
-    makeEditable(row); // Make the row editable
-  });
-});
 
         
     </script>

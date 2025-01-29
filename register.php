@@ -28,6 +28,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Invalid email format";
     } else {
+        // Check if email already exists
+        $email_check_query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        $email_stmt = $conn->prepare($email_check_query);
+        $email_stmt->bind_param("s", $email);
+        $email_stmt->execute();
+        $email_result = $email_stmt->get_result();
+
+        if ($email_result->num_rows > 0) {
+            echo "Email is already registered!";
+            exit();
+        }
+
+        // Check if mobile already exists
+        $mobile_check_query = "SELECT * FROM users WHERE mobile = ? LIMIT 1";
+        $mobile_stmt = $conn->prepare($mobile_check_query);
+        $mobile_stmt->bind_param("s", $mobile);
+        $mobile_stmt->execute();
+        $mobile_result = $mobile_stmt->get_result();
+
+        if ($mobile_result->num_rows > 0) {
+            echo "Mobile number is already registered!";
+            exit();
+        }
+
         // Prepare the SQL statement to insert the data into the users table
         $stmt = $conn->prepare("INSERT INTO users (no, rank, name, unit, email, mobile, password) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?)");

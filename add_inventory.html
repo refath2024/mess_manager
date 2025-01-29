@@ -91,53 +91,53 @@
 <body>
     <div class="form-container">
         <h1>Add Inventory Entry</h1>
-        <form id="addInventoryForm">
-            <div class="form-group">
-                <label for="inventory-id">Inventory ID:</label>
-                <input type="text" id="inventory-id" name="inventory_id" required>
-            </div>
+        <form id="addInventoryForm" action="save_inventory.php" method="POST">
             <div class="form-group">
                 <label for="product-name">Product Name:</label>
                 <input type="text" id="product-name" name="product_name" required>
             </div>
             <div class="form-group">
-                <label for="price">Unit Price:</label>
-                <input type="number" id="price" name="price" step="0.01" required>
+                <label for="quantity_held">Quantity Held (Kg/Qty/L):</label>
+                <input type="number" id="quantity-held" name="quantity_held" required>
             </div>
             <div class="form-group">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" required>
-            </div>
-            <div class="form-group">
-                <label for="net-worth">Net Worth:</label>
-                <input type="number" id="net-worth" name="net_worth" step="0.01" required>
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="ration">Ration</option>
+                    <option value="utensils">Utensils</option>
+                    <option value="fresh">Fresh</option>
+                </select>
             </div>
             <div class="button-container">
-              <a href="inventory.html"><button type="submit" class="submit-btn">Submit</button></a>
-              <a href="inventory.html"><button type="button" class="cancel-btn" id="cancelButton">Cancel</button></a>
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn" id="cancelButton">Cancel</button>
             </div>
         </form>
+        
     </div>
 
     <script>
-        document.getElementById('addInventoryForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
-            
-            // Show a confirmation popup
-            const productName = document.getElementById('product-name').value;
-            const confirmation = confirm(`Are you sure you want to add ${productName} to the inventory?`);
-            
-            if (confirmation) {
-                alert(`${productName} has been successfully added to the inventory!`);
-                // Reset the form
-                document.getElementById('addInventoryForm').reset();
-            }
-        });
+ document.getElementById('addInventoryForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
+    const productName = document.getElementById('product-name').value;
+    const type = document.getElementById('type').value; // Check the type value
+    if (!type) {
+        alert("Please select a type.");
+        return;
+    }
+    const confirmation = confirm(`Are you sure you want to add ${productName} to the inventory?`);
+    if (confirmation) {
+        alert(`${productName} has been successfully added to the inventory!`);
+        document.getElementById('addInventoryForm').submit(); // Manually submit the form
+    }
+});
 
-        document.getElementById('cancelButton').addEventListener('click', function () {
-            // Reset the form when cancel is clicked
-            document.getElementById('addInventoryForm').reset();
-        });
+
+document.getElementById('cancelButton').addEventListener('click', function () {
+    window.location.href = 'inventory.html'; // Redirect to the add_inventory.html page
+});
+
     </script>
 </body>
 </html>

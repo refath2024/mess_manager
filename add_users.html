@@ -97,7 +97,7 @@
 <body>
     <div class="form-container">
         <h1>Add New User</h1>
-        <form id="addUserForm">
+        <form id="addUserForm"  action="add_users.php" method="POST">
             <div class="form-group">
                 <label for="ba-no">BA No:</label>
                 <input type="text" id="ba-no" name="ba_no" required>
@@ -118,10 +118,7 @@
                 <label for="mobile-no">Mobile No:</label>
                 <input type="text" id="mobile-no" name="mobile_no" required>
             </div>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
+            
             <div class="form-group">
                 <label for="email">E-Mail:</label>
                 <input type="email" id="email" name="email" required>
@@ -134,14 +131,9 @@
                 <label for="role">Role:</label>
                 <select id="role" name="role" required>
                     <option value="" disabled selected>Select Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">Mess Secretary</option>
-                    <option value="user">Asst Mess Secretary</option>
+
                     <option value="user">Dining Member</option>
-                    <option value="user">Cooks</option>
-                    <option value="user">Mess Seargent</option>
-                    <option value="user">Barrack NCO</option>
-                    <option value="user">RP NCO</option>
+
                 </select>
             </div>
             <div class="button-container">
@@ -152,24 +144,26 @@
     </div>
 
     <script>
-        document.getElementById('addUserForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
-            
-            // Show a confirmation popup
-            const userName = document.getElementById('name').value;
-            const confirmation = confirm(`Are you sure you want to add ${userName} as a new user?`);
-            
-            if (confirmation) {
-                alert(`${userName} has been successfully added!`);
-                // Redirect back to the Users page (simulate)
-                window.location.href = 'users.html'; // Replace with your actual Users page
-            }
-        });
+            document.getElementById('addUserForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        // Get the user input values
+        const userName = document.getElementById('name').value;
+        const confirmation = confirm(`Are you sure you want to add ${userName} as a new user?`);
+        
+        if (confirmation) {
+            // If confirmed, submit the form using JavaScript
+            this.submit(); // Proceed with form submission
+        } else {
+            // If not confirmed, show a message
+            alert("User addition canceled.");
+        }
+    });
 
-        document.getElementById('cancelButton').addEventListener('click', function () {
-            // Redirect back to the Users page when cancel is clicked
-            window.location.href = 'users.html'; // Replace with your actual Users page
-        });
+    document.getElementById('cancelButton').addEventListener('click', function () {
+        // Redirect back to the Users page when cancel is clicked
+        window.location.href = 'dining_member.html'; // Replace with your actual Users page
+    });
     </script>
 </body>
 </html>

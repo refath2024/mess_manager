@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Shopping Entry</title>
     <style>
+        /* Styles remain the same */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -47,6 +48,10 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 14px;
+        }
+        .form-group input[readonly] {
+            background-color: #f0f0f0;
+            color: #888;
         }
         .button-container {
             display: flex;
@@ -91,26 +96,23 @@
 <body>
     <div class="form-container">
         <h1>Add Shopping Entry</h1>
-        <form id="addShoppingForm">
-            <div class="form-group">
-                <label for="index">Index:</label>
-                <input type="text" id="index" name="index" required>
-            </div>
+        <form id="addShoppingForm" action="add_voucher.php" method="POST">
+            
             <div class="form-group">
                 <label for="product-name">Product Name:</label>
                 <input type="text" id="product-name" name="product_name" required>
             </div>
             <div class="form-group">
-                <label for="unit-price">Unit Price:</label>
+                <label for="unit-price">Unit Price (kg/qty):</label>
                 <input type="number" id="unit-price" name="unit_price" step="0.01" required>
             </div>
             <div class="form-group">
-                <label for="amount">Amount:</label>
+                <label for="amount">Amount (kg/qty):</label>
                 <input type="number" id="amount" name="amount" required>
             </div>
             <div class="form-group">
                 <label for="total-price">Total Price:</label>
-                <input type="number" id="total-price" name="total_price" step="0.01" required>
+                <input type="number" id="total-price" name="total_price" step="0.01" readonly>
             </div>
             <div class="form-group">
                 <label for="date">Date:</label>
@@ -125,31 +127,46 @@
                 <input type="text" id="voucher-id" name="voucher_id" required>
             </div>
             <div class="button-container">
-                <a href="shopping_history.html"><button type="submit" class="submit-btn">Submit</button></a>
-               <a href="shopping_history.html"><button type="button" class="cancel-btn" id="cancelButton">Cancel</button></a>
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn" id="cancelButton" >Cancel</button>
             </div>
         </form>
     </div>
 
     <script>
+        function calculateTotalPrice() {
+            const unitPrice = parseFloat(document.getElementById('unit-price').value) || 0;
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const totalPrice = unitPrice * amount;
+            document.getElementById('total-price').value = totalPrice.toFixed(2);
+        }
+    
+        document.getElementById('unit-price').addEventListener('input', calculateTotalPrice);
+        document.getElementById('amount').addEventListener('input', calculateTotalPrice);
+    
         document.getElementById('addShoppingForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
-            
             // Show a confirmation popup
             const productName = document.getElementById('product-name').value;
             const confirmation = confirm(`Are you sure you want to add ${productName} to the shopping list?`);
-            
+    
             if (confirmation) {
+                // Allow form submission
                 alert(`${productName} has been successfully added to the shopping list!`);
-                // Reset the form
-                document.getElementById('addShoppingForm').reset();
+                return true;
+                // The form will be submitted here automatically
+            } else {
+                // Prevent form submission if the user cancels
+                event.preventDefault();
             }
         });
-
+    
         document.getElementById('cancelButton').addEventListener('click', function () {
             // Reset the form when cancel is clicked
             document.getElementById('addShoppingForm').reset();
+            document.getElementById('total-price').value = ''; // Clear the total price
+            window.location.href = 'shopping_history.html';
         });
     </script>
+    
 </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-
+ 
             <img src="vecteezy_user-icon-on-transparent-background_19879186.png" alt="User Icon" class="left-logo" id="left-logo">
 
             <img src="MIST Logo.png" alt="Logo" class="logo">
@@ -36,67 +36,28 @@
         <a href="notifi.html">Notification</a>
     </nav>
 
-    <div class="head">
-        <h2>Today's Menu</h2>
-    </div>
 
-    <div class="menu-container">
-        <div class="menu-item">
-            <img src="5.jpeg" alt="Breakfast">
-            <h3>Breakfast</h3>
-            <div class="details">
-                <p>Bread, Butter, Eggs</p>
-                <p class="price">50tk</p>
-            </div>
-        </div>
-        <div class="menu-item">
-            <img src="boo.jpg" alt="Lunch">
-            <h3>Lunch</h3>
-            <div class="details">
-                <p>Rice, Chicken, Mixed Veg</p>
-                <p class="price">100tk</p>
-            </div>
-        </div>
-        <div class="menu-item">
-            <img src="joo.jpg" alt="Dinner">
-            <h3>Dinner</h3>
-            <div class="details">
-                <p>Soup, Bread, Salad</p>
-                <p class="price">80tk</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="head">
-        <h2>Tomorrow's Menu</h2>
-    </div>
+   <!-- Today's Menu -->
+   <div class="head">
+    <h2>Today's Menu</h2>
+</div>
 
-    <div class="menu-container">
-        <div class="menu-item">
-            <img src="joo.jpg" alt="Breakfast">
-            <h3>Breakfast</h3>
-            <div class="details">
-                <p>Alu ka paratha,eggs,fruits</p>
-                <p class="price">60tk</p>
-            </div>
-        </div>
-        <div class="menu-item">
-            <img src="boo.jpg" alt="Lunch">
-            <h3>Lunch</h3>
-            <div class="details">
-                <p>Biryani, Salad, Raita</p>
-                <p class="price">120tk</p>
-            </div>
-        </div>
-        <div class="menu-item">
-            <img src="5.jpeg" alt="Dinner">
-            <h3>Dinner</h3>
-            <div class="details">
-                <p>Pizza, Garlic Bread, Dessert</p>
-                <p class="price">150tk</p>
-            </div>
-        </div>
-    </div>
+<div class="menu-container" id="today-menu">
+    <!-- Today's menu items will be injected here by JS -->
+</div>
+
+<!-- Tomorrow's Menu -->
+<div class="head">
+    <h2>Tomorrow's Menu</h2>
+</div>
+
+<div class="menu-container" id="tomorrow-menu">
+    <!-- Tomorrow's menu items will be injected here by JS -->
+</div>
+
+
+    
 
     <footer>
         <p>Developed by Brocoder</p>
@@ -104,6 +65,60 @@
 
      <!-- Make sure the path is correct -->
     <script>
+
+
+// Fetch menu data from the PHP backend
+fetch('get_user_menu.php')
+            .then(response => response.json())
+            .then(data => {
+                // Function to render the menu
+                function renderMenu(menuData, containerId) {
+                    const container = document.getElementById(containerId);
+                    if (menuData) {
+                        const menuHtml = `
+                            <div class="menu-item">
+                                <img src="${menuData.breakfast_image}.png" alt="Breakfast">
+                                <h3>Breakfast</h3>
+                                <div class="details">
+                                    <p>${menuData.breakfast_item}</p>
+                                    <p class="price">Estimated: ${menuData.breakfast_price}tk</p>
+                                </div>
+                            </div>
+
+                            <div class="menu-item">
+                                <img src="${menuData.lunch_image}.png" alt="Lunch">
+                                <h3>Lunch</h3>
+                                <div class="details">
+                                    <p>${menuData.lunch_item}</p>
+                                    <p class="price">Estimated: ${menuData.lunch_price}tk</p>
+                                </div>
+                            </div>
+
+                            <div class="menu-item">
+                                <img src="${menuData.dinner_image}.png" alt="Dinner">
+                                <h3>Dinner</h3>
+                                <div class="details">
+                                    <p>${menuData.dinner_item}</p>
+                                    <p class="price">Estimated: ${menuData.dinner_price}tk</p>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML = menuHtml;
+                    } else {
+                        container.innerHTML = '<p>No menu data available.</p>';
+                    }
+                }
+
+                // Render today's menu
+                renderMenu(data.today, 'today-menu');
+
+                // Render tomorrow's menu
+                renderMenu(data.tomorrow, 'tomorrow-menu');
+            })
+            .catch(error => {
+                console.error('Error fetching menu data:', error);
+            });
+
         
         document.addEventListener('DOMContentLoaded', function() {
             // Check if the user is logged in

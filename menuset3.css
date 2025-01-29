@@ -52,7 +52,7 @@ header .user-info {
 #user-name {
     font-size: 18px;
     font-weight: bold;
-   
+    color: #e5e5e5;
 }
 
 header .left-logo {

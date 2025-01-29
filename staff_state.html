@@ -198,7 +198,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            transform: scale(1.1);
         }
 
         .toolbar {
@@ -306,6 +306,10 @@ z-index: 1; /* Ensure it stays above other content */
                 width: calc(100% - 200px);
             }
         }
+        .hidden {
+    display: none;
+}
+
     </style>
 </head>
 <body>
@@ -363,7 +367,7 @@ z-index: 1; /* Ensure it stays above other content */
                 </div>
                     <div class="toolbar-inside">
                 
-                <a href="add_users.html"><button class="button">Add Users</button></a>
+                <a href="add_staffs.html"><button class="button">Add Staffs/Admin</button></a>
             </div>
             </div>
             <div class="users-table-container">
@@ -383,173 +387,7 @@ z-index: 1; /* Ensure it stays above other content */
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Non-Dining Members -->
-                    <tr>
-                        <td>BA-7868</td>
-                        <td>Maj</td>
-                        <td>Rahim</td>
-                        <td>HQ</td>
-                        <td>01711112222</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Mess Secretary</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>BA-11234</td>
-                        <td>Capt</td>
-                        <td>Kabir</td>
-                        <td>Army ST</td>
-                        <td>01722223333</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Assistant Mess Secretary</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1001</td>
-                        <td>Snk</td>
-                        <td>Rahman</td>
-                        <td>9 Sigs</td>
-                        <td>01733334444</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Mess Sergeant</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1002</td>
-                        <td>Snk</td>
-                        <td>Karim</td>
-                        <td>7 Sigs</td>
-                        <td>01744445555</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Booking NCO</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1003</td>
-                        <td>Snk</td>
-                        <td>Alam</td>
-                        <td>8 Sigs</td>
-                        <td>01755556666</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>RP NCO</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <!-- Waiters -->
-                    <tr>
-                        <td>ID No-2001</td>
-                        <td>Waiter</td>
-                        <td>Hasan</td>
-                        <td>MIST</td>
-                        <td>01766667777</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2002</td>
-                        <td>Waiter</td>
-                        <td>Rafiq</td>
-                        <td>NDC</td>
-                        <td>01777778888</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2003</td>
-                        <td>Waiter</td>
-                        <td>Sajid</td>
-                        <td>10 Sigs</td>
-                        <td>01788889999</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2004</td>
-                        <td>Waiter</td>
-                        <td>Salim</td>
-                        <td>11 Sigs</td>
-                        <td>01799990000</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2005</td>
-                        <td>Waiter</td>
-                        <td>Faruk</td>
-                        <td>HQ</td>
-                        <td>01722334567</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2006</td>
-                        <td>Waiter</td>
-                        <td>Javed</td>
-                        <td>Army ST</td>
-                        <td>01733445678</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2007</td>
-                        <td>Waiter</td>
-                        <td>Nasim</td>
-                        <td>3 Sigs</td>
-                        <td>01744556789</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2008</td>
-                        <td>Waiter</td>
-                        <td>Kamal</td>
-                        <td>4 Sigs</td>
-                        <td>01755667890</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2009</td>
-                        <td>Waiter</td>
-                        <td>Imran</td>
-                        <td>5 Sigs</td>
-                        <td>01766778901</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2010</td>
-                        <td>Waiter</td>
-                        <td>Tariq</td>
-                        <td>6 Sigs</td>
-                        <td>01777889012</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                        <td><button class="action-btn edit-btn" onclick="editRow(this)">Edit</button></td>
-                    </tr>
+
                 </tbody>
             </table>
             
@@ -560,6 +398,185 @@ z-index: 1; /* Ensure it stays above other content */
     </div>
 
     <script>
+
+
+
+
+
+        // Fetch data from fetch_data.php
+        fetch('fetch_staff.php')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#data-table tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                if (data.length > 0) {
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+
+                        tr.innerHTML = `
+                            <td contenteditable="false">${row.no}</td>
+                            <td contenteditable="false">${row.rank}</td>
+                            <td contenteditable="false">${row.name}</td>
+                            <td contenteditable="false">${row.unit}</td>
+                            <td contenteditable="false">${row.mobile}</td>
+                            <td contenteditable="false">${row.email}</td>
+                            <td contenteditable="false">${row.role}</td>
+                            <td contenteditable="false">
+                                <select class="status-dropdown" disabled>
+                                    <option value="Active" ${row.status === 'Active' ? 'selected' : ''}>Active</option>
+                                    <option value="Inactive" ${row.status === 'Inactive' ? 'selected' : ''}>Inactive</option>
+                                </select>
+                            </td>
+                            
+                            <td>
+                                <button class="action-btn edit-btn">Edit</button>
+                                <button class="action-btn save-btn" style="display: none;">Save</button>
+                                <button class="action-btn cancel-btn" style="display: none;">Cancel</button>
+                                <button class="action-btn delete-btn">Delete</button>
+                            </td>
+                        `;
+
+                        tableBody.appendChild(tr);
+                    });
+                } else {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td colspan="9">No data available</td>`;
+                    tableBody.appendChild(tr);
+                }
+
+                addRowEventListeners();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Function to handle row actions
+        function addRowEventListeners() {
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const row = button.closest('tr');
+                    toggleRowEditable(row, true);
+                });
+            });
+
+            document.querySelectorAll('.save-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const row = button.closest('tr');
+                    saveRowChanges(row);
+                });
+            });
+
+            document.querySelectorAll('.cancel-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const row = button.closest('tr');
+                    toggleRowEditable(row, false, true); // Discard changes
+                });
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const row = button.closest('tr');
+                    deleteRow(row);
+                });
+            });
+        }
+
+        function toggleRowEditable(row, editable, discardChanges = false) {
+            const cells = row.querySelectorAll('td[contenteditable]');
+            const dropdown = row.querySelector('.status-dropdown');
+            const editBtn = row.querySelector('.edit-btn');
+            const saveBtn = row.querySelector('.save-btn');
+            const cancelBtn = row.querySelector('.cancel-btn');
+
+            if (editable) {
+                cells.forEach(cell => cell.setAttribute('contenteditable', 'true'));
+                dropdown.removeAttribute('disabled');
+                editBtn.style.display = 'none';
+                saveBtn.style.display = 'inline-block';
+                cancelBtn.style.display = 'inline-block';
+            } else {
+                cells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
+                dropdown.setAttribute('disabled', 'true');
+                if (discardChanges) {
+                    window.location.reload();
+                }
+                editBtn.style.display = 'inline-block';
+                saveBtn.style.display = 'none';
+                cancelBtn.style.display = 'none';
+            }
+        }
+
+        function saveRowChanges(row) {
+    const rowData = Array.from(row.querySelectorAll('td'))
+        .slice(0, 7) // Extract relevant columns (BA No, rank, Name, Unit, Mobile No, Email)
+        .map(cell => cell.textContent.trim());
+
+    const status = row.querySelector('.status-dropdown').value;
+
+    // Debugging log
+    console.log("Saving Row Data:", {
+        no: rowData[0],
+        rank: rowData[1],
+        name: rowData[2],
+        unit: rowData[3],
+        mobile: rowData[4],
+        email: rowData[5],
+        role: rowData[6],
+        status: status,
+    });
+
+    fetch('update_staff.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            no: rowData[0],
+            rank: rowData[1],
+            name: rowData[2],
+            unit: rowData[3],
+            mobile: rowData[4],
+            email: rowData[5],
+            role: rowData[6],
+            status: status,
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Row updated successfully!');
+                toggleRowEditable(row, false);
+            } else {
+                alert('Failed to update row. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error during row save operation:', error);
+            alert('An error occurred while saving the row. Check console for details.');
+        });
+}
+
+
+        function deleteRow(row) {
+            const no = row.querySelector('td').textContent;
+
+            if (confirm('Are you sure you want to delete this row?')) {
+                fetch('delete_staff.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ no }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Row deleted successfully!');
+                            row.remove();
+                        } else {
+                            alert('Failed to delete row.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');
@@ -642,104 +659,6 @@ document.getElementById('searchBox').addEventListener('input', function() {
     }
   });
 });
-
-
-//total
-
-
-
-       
-
- //edit row
-
- const statusOptions = ['Active', 'Inactive'];
-const roleOptions = ['Admin', 'Mess Secretary', 'Assistant Mess Secretary', 'Dining Member', 
-                     'Cook', 'RP NCO', 'Barrack NCO', 'Mess Seargent', 'NC(E)'];
-
-function editRow(button) {
-    const row = button.closest('tr');
-    const cells = row.querySelectorAll('td:not(:last-child)');
-
-    if (button.textContent === "Edit") {
-        // Enable row editing
-        cells.forEach((cell, index) => {
-            if (index === 6) { // Status dropdown
-                const currentValue = cell.textContent.trim();
-                cell.innerHTML = createDropdown(statusOptions, currentValue);
-            } else if (index === 7) { // Role dropdown
-                const currentValue = cell.textContent.trim();
-                cell.innerHTML = createDropdown(roleOptions, currentValue);
-            } else {
-                cell.innerHTML = `<input type="text" value="${cell.textContent.trim()}" />`;
-            }
-        });
-
-        button.textContent = "Save";
-        button.classList.replace('edit-btn', 'save-btn');
-
-        // Clear previous buttons to avoid duplicates
-        const actionCell = row.querySelector('td:last-child');
-        actionCell.innerHTML = `
-            <button class="action-btn save-btn" onclick="editRow(this)">Save</button>
-            <button class="action-btn delete-btn" onclick="deleteRow(this)">Delete</button>`;
-    } else {
-        if (confirm("Do you want to save changes?")) {
-            saveRow(row);
-        }
-    }
-}
-
-function createDropdown(options, selectedValue) {
-    return `
-        <select>
-            ${options.map(option => 
-                `<option value="${option}" ${option === selectedValue ? 'selected' : ''}>${option}</option>`
-            ).join('')}
-        </select>`;
-}
-
-function createDropdown(options, selectedValue) {
-    return `
-        <select>
-            <option disabled ${!selectedValue ? 'selected' : ''}>Select your option</option>
-            ${options.map(option => 
-                `<option value="${option}" ${option === selectedValue ? 'selected' : ''}>${option}</option>`
-            ).join('')}
-        </select>`;
-}
-
-
-function saveRow(row) {
-    const cells = row.querySelectorAll('td:not(:last-child)');
-
-    cells.forEach((cell, index) => {
-        if (index === 6 || index === 7) { // Status and Role dropdowns
-            const select = cell.querySelector('select');
-            const value = select.value;
-
-            if (index === 6) {
-                // Apply status color class dynamically
-                cell.innerHTML = `<span class="status ${value.toLowerCase()}">${value}</span>`;
-            } else {
-                cell.textContent = value;
-            }
-        } else {
-            const input = cell.querySelector('input');
-            cell.textContent = input.value;
-        }
-    });
-
-    // Restore the action cell to "Edit" button
-    const actionCell = row.querySelector('td:last-child');
-    actionCell.innerHTML = `<button class="action-btn edit-btn" onclick="editRow(this)">Edit</button>`;
-}
-
-function deleteRow(button) {
-    if (confirm("Are you sure you want to delete this row?")) {
-        const row = button.closest('tr');
-        row.remove();
-    }
-}
 
 
     </script>

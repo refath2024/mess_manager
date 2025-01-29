@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess Manager - Inventory State</title>
+    <title>Mess Manager - Inventory</title>
     <style>
         /* Reset and base styles */
         * {
@@ -164,30 +166,9 @@
             width: calc(100% - 250px); /* Adjust width to account for sidebar */
         }
 
-        /* Table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
 
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e5e5;
-        }
 
-        th {
-            background-color: #f3f4f6;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007bff;
-            cursor: pointer;
-        }
-
-        button {
+        .button {
             padding: 0.5rem 1rem;
             background-color: #007bff;
             color: white;
@@ -197,9 +178,24 @@
             transition: background-color 0.2s;
         }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+
+
+
+/* Hover effect */
+button:hover {
+  transform: scale(1.1); /* Scale the button when hovered */
+}
+
+/* Optional: Add active effect for button press */
+button:active {
+  transform: scale(1); /* Reset the scale when the button is pressed */
+}
+
+/* Optional: Add a slight shadow for better visual feedback */
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
         .toolbar {
             display: flex;
@@ -208,96 +204,38 @@
             margin-bottom: 3rem;
             margin-top: 3rem;
         }
+            .inventory-table-container
 
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-        }
 
-        .page-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #212529;
-        }
-
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-
-        .chart {
-            height: 400px;
+        .search-container {
             display: flex;
-            align-items: flex-end;
-            gap: 2rem;
-            padding: 2rem 0;
-            position: relative;
-            margin-left: 40px; /* Added space for y-axis */
-        }
-
-        .chart::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            background: #dee2e6;
-        }
-
-        .y-axis {
-            position: absolute;
-            left: -40px;
-            top: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: #6c757d;
-            font-size: 0.875rem;
-        }
-
-        .bar-group {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             gap: 0.5rem;
+            flex: 1;
         }
 
-        .bar {
-            width: 40px; /* Fixed width for bars */
-            background-color: #3B7B8E; /* Exact blue color from image */
-            border-radius: 0;
-            transition: height 0.3s ease;
+        .search-input {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            width: 200px;
         }
 
-        .bar-label {
-            color: #495057;
-            font-size: 0.875rem;
-            text-align: center;
-            transform: rotate(-45deg);
-            transform-origin: right top;
-            white-space: nowrap;
-            margin-top: 20px;
+         /* Add styles for the chart container */
+         .chart-container {
+            margin-top: 5%;
+            width: 50%;
+            margin-left: 7%;
+            align-content:flex-start;
+            
         }
 
-        /* Exact bar heights based on the image */
-        .bar-rice { height: 180px; }
-        .bar-salt { height: 140px; }
-        .bar-chicken { height: 140px; }
-        .bar-milk { height: 100px; }
-        .bar-oil { height: 180px; }
-        .bar-dal { height: 160px; }
-        .bar-noodles { height: 100px; }
-        .bar-beef { height: 90px; }
-        .bar-sugar { height: 160px; }
-        .bar-fish { height: 140px; }
-        .bar-vegetable { height: 200px; }
-        .bar-egg { height: 320px; }
+        .chart-container canvas{
+            margin-top: 5%;
+
+            
+        }
+
+
     </style>
 </head>
 <body>
@@ -325,10 +263,10 @@
                     <li class="nav-item"><a href="users_role.html" class="nav-link">User Roles</a></li>
                     <li class="nav-item"><a href="pending_ids.html" class="nav-link">Pending IDs</a></li>
                     <li class="nav-item"><a href="shopping_history.html" class="nav-link">Shopping History</a></li>
-                    <li class="nav-item"><a href="vouchers.html" class="nav-link">Voucher List</a></li>
+                    <li class="nav-item"><a href="vouchers.html" class="nav-link" >Voucher List</a></li>
                     <li class="nav-item"><a href="inventory_state.html" class="nav-link active">Inventory State</a></li>
-                    <li class="nav-item"><a href="inventory.html" class="nav-link">Inventory</a></li>
-                    <li class="nav-item"><a href="admin_messing.html" class="nav-link">Messing</a></li>
+                    <li class="nav-item"><a href="inventory.html" class="nav-link ">Inventory</a></li>
+                    <li class="nav-item"><a href="admin_messing.html" class="nav-link" >Messing</a></li>
                     <li class="nav-item"><a href="edit_menu.html" class="nav-link">Edit Menu</a></li>
                     <li class="nav-item"><a href="meal_state.html" class="nav-link">Meal State</a></li>
                     <li class="nav-item"><a href="meal_consumption.html" class="nav-link">Menu Vote</a></li>
@@ -343,73 +281,219 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="main-content" id="main-content">
-        <h1 class="page-title">Inventory State</h1>
-        <div class="chart-container">
-            <div class="chart">
-                <div class="y-axis">
-                    <span>14</span>
-                    <span>12</span>
-                    <span>10</span>
-                    <span>8</span>
-                    <span>6</span>
-                    <span>4</span>
-                    <span>2</span>
-                    <span>0</span>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-rice"></div>
-                    <div class="bar-label">Rice</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-salt"></div>
-                    <div class="bar-label">Salt</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-chicken"></div>
-                    <div class="bar-label">Chicken</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-milk"></div>
-                    <div class="bar-label">Milk</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-oil"></div>
-                    <div class="bar-label">Oil</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-dal"></div>
-                    <div class="bar-label">Dal</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-noodles"></div>
-                    <div class="bar-label">Noodles</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-beef"></div>
-                    <div class="bar-label">Beef</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-sugar"></div>
-                    <div class="bar-label">Sugar</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-fish"></div>
-                    <div class="bar-label">Fish</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-vegetable"></div>
-                    <div class="bar-label">Vegetable</div>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-egg"></div>
-                    <div class="bar-label">Egg</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="main-content" id="main-content">
+        <h1 class="page-title">Inventory Chart</h1>
+  
 
+            <!-- Chart container -->
+            <div class="chart-container">
+                <h3>Fresh Products:</h3>
+                <canvas id="freshProductsChart" width="1000" height="800"></canvas>
+            </div>
+
+                        <!-- Chart container -->
+            <div class="chart-container">
+                <h3>Ration Products:</h3>
+                <canvas id="rationProductsChart" width="1000" height="800"></canvas>
+            </div>
+
+                        <!-- Chart container -->
+            <div class="chart-container">
+                <h3>Utensil Products:</h3>
+                <canvas id="utensilProductsChart" width="1000" height="800"></canvas>
+            </div>
+
+
+
+
+    </div>
     <script>
+
+// Fetch the fresh inventory data using AJAX or PHP.
+fetch('get_fresh_inventory.php')
+            .then(response => response.json())
+            .then(data => {
+                generateFreshChart(data);
+            });
+
+function generateFreshChart(filteredData) {
+    console.log(filteredData); // Check what data is being passed
+            // Ensure filteredData contains the data for 'fresh' products
+            const productID = filteredData.map(item => item.id);
+            const productNames = filteredData.map(item => item.product_name);
+            const quantities = filteredData.map(item => parseInt(item.quantity_held, 10));
+
+            const ctx = document.getElementById('freshProductsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Quantity Held (Kg/L/Qty)',
+                        data: quantities,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {  // Corrected here
+                        display: true,
+                        text: 'Quantity Held (Kg/L/Qty)'
+                    },
+                            max: 50,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Product Names'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {  // Add title for the entire chart here
+                    display: true,
+                    text: 'Fresh Products Quantity Analysis'  // Replace with your desired title
+                },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        fetch('get_ration_inventory.php')
+            .then(response => response.json())
+            .then(data => {
+                generateRationChart(data);
+            });
+
+function generateRationChart(filteredData) {
+    console.log(filteredData); // Check what data is being passed
+            // Ensure filteredData contains the data for 'fresh' products
+            const productID = filteredData.map(item => item.id);
+            const productNames = filteredData.map(item => item.product_name);
+            const quantities = filteredData.map(item => parseInt(item.quantity_held, 10));
+
+            const ctx = document.getElementById('rationProductsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Quantity Held (Kg/L/Qty)',
+                        data: quantities,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {  // Corrected here
+                        display: true,
+                        text: 'Quantity Held (Kg/L/Qty)'
+                    },
+                            max: 50,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Product Names'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {  // Add title for the entire chart here
+                    display: true,
+                    text: 'Ration Products Quantity Analysis'  // Replace with your desired title
+                },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+// Fetch the fresh inventory data using AJAX or PHP.
+fetch('get_utensil_inventory.php')
+            .then(response => response.json())
+            .then(data => {
+                generateUtensilChart(data);
+            });
+
+function generateUtensilChart(filteredData) {
+    console.log(filteredData); // Check what data is being passed
+            // Ensure filteredData contains the data for 'fresh' products
+            const productID = filteredData.map(item => item.id);
+            const productNames = filteredData.map(item => item.product_name);
+            const quantities = filteredData.map(item => parseInt(item.quantity_held, 10));
+
+            const ctx = document.getElementById('utensilProductsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Quantity Held (Kg/L/Qty)',
+                        data: quantities,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {  // Corrected here
+                        display: true,
+                        text: 'Quantity Held (Kg/L/Qty)'
+                    },
+                            max: 50,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Product Names'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {  // Add title for the entire chart here
+                    display: true,
+                    text: 'Utensil Products Quantity Analysis'  // Replace with your desired title
+                },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');
@@ -443,7 +527,8 @@
         function openModal() {
             // Modal logic here
         }
-    </script>
 
+               
+    </script>
 </body>
 </html>

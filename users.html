@@ -258,6 +258,7 @@
             color: white;
         }
 
+        
         .users-table-container
 
 {
@@ -277,6 +278,12 @@ z-index: 1; /* Ensure it stays above other content */
         font-weight: bold;
         line-height: 1.5;
     }
+
+.calc
+{
+    margin-top: 3%;
+    font-weight: bold;
+}
 
         /* Responsive design */
         @media (min-width: 720px) {
@@ -357,7 +364,7 @@ z-index: 1; /* Ensure it stays above other content */
                 </div>
                     <div class="toolbar-inside">
                 
-                <a href="add_users.html"><button class="button">Add Users</button></a>
+                
             </div>
             </div>
             <div class="users-table-container">
@@ -365,554 +372,151 @@ z-index: 1; /* Ensure it stays above other content */
             <table class="users-table" id="data-table">
                 <thead>
                     <tr>
-                        <th>BA No</th>
+                        <th>ID No</th>
                         <th>Rank</th>
                         <th>Name</th>
                         <th>Unit</th>
                         <th>Mobile No</th>
-                        <th>Password</th>
-                        <th>Status</th>
+                        <th>Email</th>
                         <th>Role</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Non-Dining Members -->
-                    <tr>
-                        <td>BA-7868</td>
-                        <td>Maj</td>
-                        <td>Rahim</td>
-                        <td>HQ</td>
-                        <td>01711112222</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Mess Secretary</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11234</td>
-                        <td>Capt</td>
-                        <td>Kabir</td>
-                        <td>Army ST</td>
-                        <td>01722223333</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Assistant Mess Secretary</td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1001</td>
-                        <td>Snk</td>
-                        <td>Rahman</td>
-                        <td>9 Sigs</td>
-                        <td>01733334444</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Mess Sergeant</td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1002</td>
-                        <td>Snk</td>
-                        <td>Karim</td>
-                        <td>7 Sigs</td>
-                        <td>01744445555</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Booking NCO</td>
-                    </tr>
-                    <tr>
-                        <td>Snk No-1003</td>
-                        <td>Snk</td>
-                        <td>Alam</td>
-                        <td>8 Sigs</td>
-                        <td>01755556666</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>RP NCO</td>
-                    </tr>
-                    <!-- Waiters -->
-                    <tr>
-                        <td>ID No-2001</td>
-                        <td>Waiter</td>
-                        <td>Hasan</td>
-                        <td>MIST</td>
-                        <td>01766667777</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2002</td>
-                        <td>Waiter</td>
-                        <td>Rafiq</td>
-                        <td>NDC</td>
-                        <td>01777778888</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2003</td>
-                        <td>Waiter</td>
-                        <td>Sajid</td>
-                        <td>10 Sigs</td>
-                        <td>01788889999</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2004</td>
-                        <td>Waiter</td>
-                        <td>Salim</td>
-                        <td>11 Sigs</td>
-                        <td>01799990000</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2005</td>
-                        <td>Waiter</td>
-                        <td>Faruk</td>
-                        <td>HQ</td>
-                        <td>01722334567</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2006</td>
-                        <td>Waiter</td>
-                        <td>Javed</td>
-                        <td>Army ST</td>
-                        <td>01733445678</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2007</td>
-                        <td>Waiter</td>
-                        <td>Nasim</td>
-                        <td>3 Sigs</td>
-                        <td>01744556789</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2008</td>
-                        <td>Waiter</td>
-                        <td>Kamal</td>
-                        <td>4 Sigs</td>
-                        <td>01755667890</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2009</td>
-                        <td>Waiter</td>
-                        <td>Imran</td>
-                        <td>5 Sigs</td>
-                        <td>01766778901</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-2010</td>
-                        <td>Waiter</td>
-                        <td>Tariq</td>
-                        <td>6 Sigs</td>
-                        <td>01777889012</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Waiter</td>
-                    </tr>
-                    
-                    <!-- Cooks -->
-                    <tr>
-                        <td>ID No-3001</td>
-                        <td>Cook</td>
-                        <td>Sujon</td>
-                        <td>CMH</td>
-                        <td>01712345678</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-3002</td>
-                        <td>Cook</td>
-                        <td>Habib</td>
-                        <td>CMTD</td>
-                        <td>01798765432</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1011</td>
-                        <td>Cook</td>
-                        <td>Saiful</td>
-                        <td>9 Sig</td>
-                        <td>01712345678</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1012</td>
-                        <td>Cook</td>
-                        <td>Hossain</td>
-                        <td>10 Sig</td>
-                        <td>01723456789</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1013</td>
-                        <td>Cook</td>
-                        <td>Rony</td>
-                        <td>MIST</td>
-                        <td>01734567890</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1014</td>
-                        <td>Cook</td>
-                        <td>Sabbir</td>
-                        <td>NDC</td>
-                        <td>01745678901</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1015</td>
-                        <td>Cook</td>
-                        <td>Salman</td>
-                        <td>CMH</td>
-                        <td>01756789012</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1016</td>
-                        <td>Cook</td>
-                        <td>Rasel</td>
-                        <td>CMTD</td>
-                        <td>01767890123</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1017</td>
-                        <td>Cook</td>
-                        <td>Shuvo</td>
-                        <td>Army ST</td>
-                        <td>01778901234</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    <tr>
-                        <td>ID No-1018</td>
-                        <td>Cook</td>
-                        <td>Shakib</td>
-                        <td>HQ</td>
-                        <td>01789012345</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Cook</td>
-                    </tr>
-                    
-                    <!-- Dining Members -->
-                    <tr>
-                        <td>BA-7032</td>
-                        <td>Major</td>
-                        <td>Fahim</td>
-                        <td>1 Sigs</td>
-                        <td>01765432101</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7105</td>
-                        <td>Major</td>
-                        <td>Shah Alam</td>
-                        <td>2 Sigs</td>
-                        <td>01776543202</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7182</td>
-                        <td>Major</td>
-                        <td>Mohammad Ali</td>
-                        <td>3 Sigs</td>
-                        <td>01787654303</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7300</td>
-                        <td>Major</td>
-                        <td>Aminul Islam</td>
-                        <td>4 Sigs</td>
-                        <td>01798765404</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7451</td>
-                        <td>Major</td>
-                        <td>Jahid</td>
-                        <td>5 Sigs</td>
-                        <td>01710987605</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7523</td>
-                        <td>Major</td>
-                        <td>Jahangir</td>
-                        <td>6 Sigs</td>
-                        <td>01721098706</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7604</td>
-                        <td>Major</td>
-                        <td>Shahriar</td>
-                        <td>7 Sigs</td>
-                        <td>01732109807</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-7820</td>
-                        <td>Captain</td>
-                        <td>Arif</td>
-                        <td>8 Sigs</td>
-                        <td>01743123408</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-9846</td>
-                        <td>Captain</td>
-                        <td>Rahim</td>
-                        <td>9 Sig</td>
-                        <td>01754323409</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-9912</td>
-                        <td>Captain</td>
-                        <td>Kabir</td>
-                        <td>MIST</td>
-                        <td>01765431210</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10005</td>
-                        <td>Captain</td>
-                        <td>Al Amin</td>
-                        <td>NDC</td>
-                        <td>01776543211</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10147</td>
-                        <td>Captain</td>
-                        <td>Rashid</td>
-                        <td>CMH</td>
-                        <td>01787654312</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10213</td>
-                        <td>Captain</td>
-                        <td>Iqbal</td>
-                        <td>CMTD</td>
-                        <td>01798765413</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10345</td>
-                        <td>Captain</td>
-                        <td>Farhan</td>
-                        <td>Army ST</td>
-                        <td>01710987614</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10401</td>
-                        <td>Captain</td>
-                        <td>Samir</td>
-                        <td>HQ</td>
-                        <td>01721098715</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10520</td>
-                        <td>Captain</td>
-                        <td>Karim</td>
-                        <td>10 Sig</td>
-                        <td>01732109816</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10603</td>
-                        <td>Captain</td>
-                        <td>Hasan</td>
-                        <td>11 Sig</td>
-                        <td>01743210917</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10710</td>
-                        <td>Captain</td>
-                        <td>Sujon</td>
-                        <td>12 Sig</td>
-                        <td>01754321018</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-10950</td>
-                        <td>Lt</td>
-                        <td>Sujon</td>
-                        <td>1 Sigs</td>
-                        <td>01765432119</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11012</td>
-                        <td>Lt</td>
-                        <td>Rashid</td>
-                        <td>2 Sigs</td>
-                        <td>01776543220</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11092</td>
-                        <td>Lt</td>
-                        <td>Rizwan</td>
-                        <td>3 Sigs</td>
-                        <td>01787654321</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11148</td>
-                        <td>Lt</td>
-                        <td>Shakil</td>
-                        <td>4 Sigs</td>
-                        <td>01798765422</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11304</td>
-                        <td>Lt</td>
-                        <td>Tanvir</td>
-                        <td>5 Sigs</td>
-                        <td>01710987623</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11400</td>
-                        <td>Lt</td>
-                        <td>Rakib</td>
-                        <td>6 Sigs</td>
-                        <td>01721098724</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11506</td>
-                        <td>Lt</td>
-                        <td>Shah Alam</td>
-                        <td>7 Sigs</td>
-                        <td>01732109825</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11600</td>
-                        <td>Lt</td>
-                        <td>Rahim</td>
-                        <td>8 Sigs</td>
-                        <td>01743210926</td>
-                        <td>1234</td>
-                        <td><span class="status active">Active</span></td>
-                        <td>Dining Member</td>
-                    </tr>
-                    <tr>
-                        <td>BA-11712</td>
-                        <td>Lt</td>
-                        <td>Jamal</td>
-                        <td>9 Sig</td>
-                        <td>01754323427</td>
-                        <td>1234</td>
-                        <td><span class="status inactive">Inactive</span></td>
-                        <td>Dining Member</td>
-                    </tr>
                     
                 </tbody>
             </table>
             
 </div>
+<div id="totals" class="calc">
+    <p>Total Members = <span id="total-members">0</span></p>
+    <p>Total Cooks = <span id="total-cooks" >0</span></p>
+    <p>Total Staffs and Admins = <span id="total-staffs-admins"  >0</span></p>
+    <p>Total Dining Members = <span id="total-dining-members"  >0</span></p>
+    <p>Total Active Members = <span id="total-active-members">0</span></p>
+    <p>Total Active Dining Members = <span id="total-active-dining-members">0</span></p>
+</div>
+
 <!-- Table Footer -->
 <div class="table-footer"></div>
         </div>
     </div>
 
+
     <script>
+
+// Fetch data from fetch_data.php
+fetch('fetch_all.php')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#data-table tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                let totalMembers = 0;
+        let totalCooks = 0;
+        let totalDiningMembers = 0;
+        let totalActiveMembers = 0;
+        let totalActiveDiningMembers = 0;
+        let totalStaffsAndAdmins = 0;
+
+
+
+                if (data.length > 0) {
+                    data.forEach(row => {
+
+                        console.log(row.status); // Debug: Log the status value
+
+                // Determine the status class dynamically
+                const statusClass = row.status.trim().toLowerCase() === 'active' ? 'status active' : 'status inactive';
+                       // Create and append the table row
+                const tr = document.createElement('tr');
+
+                        tr.innerHTML = `
+                            <td contenteditable="false">${row.no}</td>
+                            <td contenteditable="false">${row.rank}</td>
+                            <td contenteditable="false">${row.name}</td>
+                            <td contenteditable="false">${row.unit}</td>
+                            <td contenteditable="false">${row.mobile}</td>
+                            <td contenteditable="false">${row.email}</td>
+                            <td contenteditable="false">${row.role}</td>
+                                 <td contenteditable="false"> <span class="${statusClass}">${row.status}</span> </td>
+                        `;
+
+                        tableBody.appendChild(tr);
+
+                // Count totals
+                totalMembers++;
+                if (row.role.toLowerCase() === 'cook') totalCooks++;
+                if (row.role.toLowerCase() === 'dining member') totalDiningMembers++;
+                if (row.status.toLowerCase() === 'active') totalActiveMembers++;
+                if (row.role.toLowerCase() === 'dining member' && row.status.toLowerCase() === 'active') totalActiveDiningMembers++;
+
+                // Count Staffs and Admins (all rows excluding Cooks and Dining Members)
+                if (row.role.toLowerCase() !== 'cook' && row.role.toLowerCase() !== 'dining member') {
+                    totalStaffsAndAdmins++;
+                }
+                     
+                        
+                    });
+                } else {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td colspan="9">No data available</td>`;
+                    tableBody.appendChild(tr);
+                }
+// Update totals in the div
+document.getElementById('total-members').textContent = totalMembers;
+        document.getElementById('total-cooks').textContent = totalCooks;
+        document.getElementById('total-staffs-admins').textContent = totalStaffsAndAdmins;
+        document.getElementById('total-dining-members').textContent = totalDiningMembers;
+        document.getElementById('total-active-members').textContent = totalActiveMembers;
+        document.getElementById('total-active-dining-members').textContent = totalActiveDiningMembers;
+                addRowEventListeners();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+ 
+function updateTotals() {
+    const totals = {
+        total_members: parseInt(document.getElementById("total-members").textContent),
+        total_cooks: parseInt(document.getElementById("total-cooks").textContent),
+        total_staffs_admins: parseInt(document.getElementById("total-staffs-admins").textContent),
+        total_dining_members: parseInt(document.getElementById("total-dining-members").textContent),
+        total_active_members: parseInt(document.getElementById("total-active-members").textContent),
+        total_active_dining_members: parseInt(document.getElementById("total-active-dining-members").textContent),
+    };
+
+    fetch("save_totals.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(totals),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            console.log("Totals updated successfully");
+        } else {
+            console.error("Error updating totals:", data.error);
+        }
+    })
+    .catch(error => console.error("Fetch error:", error));
+}
+
+// Monitor value changes and call `updateTotals`
+function monitorChanges() {
+    const observer = new MutationObserver(() => updateTotals());
+    const targets = document.querySelectorAll("#totals span");
+
+    targets.forEach(target => {
+        observer.observe(target, { childList: true, subtree: true });
+    });
+}
+ 
+monitorChanges();
+
+
+
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
         const profile = document.getElementById('profile');
@@ -970,30 +574,7 @@ z-index: 1; /* Ensure it stays above other content */
 });
 
 
-//total
-document.addEventListener("DOMContentLoaded", function () {
-        // Select the table body and rows
-        const rows = document.querySelectorAll("#data-table tbody tr");
 
-        // Initialize counters
-        let totalMembers = rows.length;
-        let activeMembers = 0;
-
-        // Loop through rows to count active members
-        rows.forEach(row => {
-            const statusCell = row.querySelector(".status");
-            if (statusCell && statusCell.textContent.trim().toLowerCase() === "active") {
-                activeMembers++;
-            }
-        });
-
-        // Update the table footer with separate lines for each count
-        const footerContainer = document.querySelector(".table-footer");
-        footerContainer.innerHTML = `
-            <div>Total Mess Members : ${totalMembers}</div>
-            <div style="margin-top: 5px;">Total Active Members : ${activeMembers}</div>
-        `;
-    });
 
     </script>
 </body>
