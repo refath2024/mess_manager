@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mess Manager - Pending IDs</title>
     <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <img src="more-option.jpg" alt="Menu Toggle" class="menu-toggle" id="menu-toggle">
+            <div class=
             background-color: #f5f5f5;
             color: #333;
         }
@@ -455,153 +455,22 @@
                 <h2>Pending Requests</h2>
             </div>
             <div class="pending-table-container">
-            <table id="data-table">
-                <thead>
-                <tr>
-                    <th>BA</th>
-                    <th>Rk</th>
-                    <th>Name</th>
-                    <th>Unit</th>
-                    <th>Mobile No</th>
-                    <th>Password</th>
-                    <th>Status</th>
-                    <th>Option</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td>1</td>
-                    <td>Lt</td>
-                    <td>Istiak Fahad</td>
-                    <td>6 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lt</td>
-                    <td>Maruf Karim</td>
-                    <td>9 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lt</td>
-                    <td>Ahnaf Tahmid</td>
-                    <td>8 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Lt</td>
-                    <td>Shoaib Ahmed</td>
-                    <td>10 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Lt</td>
-                    <td>Ahnaf Shahriar</td>
-                    <td>2 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Lt</td>
-                    <td>Raid Mahmud</td>
-                    <td>12 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Lt</td>
-                    <td>Mostashfi Hoque</td>
-                    <td>11 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Lt</td>
-                    <td>Rafid Kabir</td>
-                    <td>1 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Lt</td>
-                    <td>Rakeen Islam</td>
-                    <td>10 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Lt</td>
-                    <td>Zobaer Ali</td>
-                    <td>9 Sig Bn</td>
-                    <td>0172625233</td>
-                    <td>igsdvovkd</td>
-                    <td><span class="status-pending">Pending</span></td>
-                    <td>
-                        <button onclick="openPopup('accept', this.closest('tr'))">Accept</button>
-                        <button onclick="openPopup('reject', this.closest('tr'))">Reject</button>
-                    </td>
-                </tr>
-            </table>
-            </div>
-        </div>
-    </div>
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-cell">Select</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="checkbox-cell"><input type="checkbox"></td>
+                            <td>john_doe</td>
+                            <td>
         <div class="table-footer">
          
         </div>
@@ -735,3 +604,4 @@ const sidebar = document.getElementById('sidebar');
     </main>
 </body>
 </html>
+
